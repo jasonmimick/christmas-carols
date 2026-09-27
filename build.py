@@ -161,8 +161,12 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   .sheet { max-width: 820px; margin: 0 auto; }
   section.page { display: none; }
   section.page.current { display: block; }
+  #home { max-width: 620px; }
+  #home .hometitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
+                     font-size: 2.4rem; margin: 0 0 1rem; }
   #home h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
-  #home ul { margin: 0; padding-left: 1.4rem; }
+  #home p { line-height: 1.55; margin: 0 0 1em; }
+  #home ul { margin: 0 0 1em; padding-left: 1.4rem; }
   #home li { padding: 0.15rem 0; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
@@ -233,12 +237,23 @@ def build_sheet(paths):
     out.append('</ul><span class="all" id="printall">Print entire songbook</span></nav>')
     out.append("""<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>
 <section class="page" id="home" data-slug="home">
-  <h2>Churches</h2>
+  <h1 class="hometitle">Christmas Carols</h1>
+  <p>This Christmas season we are getting together to sing carols at each of our
+     three churches &mdash; about an hour of the songs everyone knows, with guitars
+     to carry the tune. Afterward: hot cocoa and cookies.</p>
+  <p>No rehearsal, no sign-up, and no need to sing well. Come as you are, bring
+     the kids, and stay for as much of it as you like.</p>
+  <h2>Where &amp; when</h2>
   <ul>
     <li>Holy Mother &amp; Child Parish &mdash; date &amp; time TBD</li>
     <li>St. Joseph's Church &mdash; date &amp; time TBD</li>
     <li>St. Paul's &mdash; date &amp; time TBD</li>
   </ul>
+  <p>Dates and times will be posted here once the schedule is set.</p>
+  <h2>The songbook</h2>
+  <p>The set list on the left has all thirteen carols &mdash; click one to see its
+     sheet music with lyrics and guitar chords. You can print any single song, or
+     print the entire songbook and bring it with you.</p>
 </section>""")
     out.extend(sections)
     out.append("</div></main>")
