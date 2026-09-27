@@ -41,43 +41,6 @@ th, td { border-bottom: 1px solid #999; padding: 0.3em 0.9em 0.3em 0; text-align
 @page { margin: 0.6in; }
 """
 
-INDEX_HTML = """<!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Christmas Carols</title>
-<style>
-  body { background: #fff; color: #000; margin: 0; font-family: Helvetica, Arial, sans-serif;
-         font-size: 17px; line-height: 1.55; }
-  .wrap { max-width: 560px; padding: 2rem 20px 3rem; }
-  h1 { font-size: 1.9rem; margin: 0 0 1.5rem; font-weight: 700; }
-  h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; font-weight: 700; }
-  ul, ol { margin: 0; padding-left: 1.4rem; }
-  li { padding: 0.15rem 0; }
-  a { color: #000; }
-</style></head><body>
-<div class="wrap">
-  <h1>Christmas Carols</h1>
-
-  <h2>Churches</h2>
-  <ul>
-    <li>Holy Mother &amp; Child Parish &mdash; date &amp; time TBD</li>
-    <li>St. Joseph's Church &mdash; date &amp; time TBD</li>
-    <li>St. Paul's &mdash; date &amp; time TBD</li>
-  </ul>
-
-  <h2>Songbook</h2>
-  <ul>
-    <li><a href="songbook.html">Print the songbook (PDF)</a></li>
-  </ul>
-
-  <h2>Songs</h2>
-  <ol>
-{song_items}
-  </ol>
-</div>
-</body></html>
-"""
-
-
 def shift_note(note, steps, flats):
     i = SHARPS.index(note) if note in SHARPS else FLATS.index(note)
     return (FLATS if flats else SHARPS)[(i + steps) % 12]
@@ -180,9 +143,10 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
         border-right: 1px solid #ddd; padding: 1rem 0; box-sizing: border-box; }
   nav .navtitle { font-family: "IM Fell English", Georgia, serif; font-size: 1.3rem;
                   padding: 0.3rem 1rem 0.8rem; }
-  nav a.home { display: block; font-size: 0.8rem; color: #555; text-decoration: none;
-               padding: 0 1rem 0.8rem; }
   nav ul { list-style: none; margin: 0; padding: 0; }
+  nav .label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+               color: #777; padding: 0 1rem 0.4rem; }
+  nav hr { border: none; border-top: 1px solid #ddd; margin: 0.9rem 1rem 0.9rem 0; }
   nav li { display: flex; align-items: center; font-size: 0.9rem; cursor: pointer;
            border-radius: 0 16px 16px 0; margin-right: 8px; }
   nav li .name { flex: 1; padding: 0.45rem 0.4rem 0.45rem 1rem; }
@@ -195,8 +159,11 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
              font-size: 0.9rem; color: #000; cursor: pointer; text-decoration: underline; }
   main { margin-left: 250px; padding: 2rem 20px 3rem; }
   .sheet { max-width: 820px; margin: 0 auto; }
-  section.song { display: none; }
-  section.song.current { display: block; }
+  section.page { display: none; }
+  section.page.current { display: block; }
+  #home h2 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
+  #home ul { margin: 0; padding-left: 1.4rem; }
+  #home li { padding: 0.15rem 0; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
@@ -212,11 +179,11 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   @media print {
     nav { display: none; }
     main { margin-left: 0; padding: 0; }
-    section.song.current { page-break-after: auto; }
     body.print-all #booktitle { display: block; font-family: "IM Fell English", Georgia, serif;
       font-weight: 400; font-size: 2.6rem; text-align: center; padding-top: 3in;
       page-break-after: always; }
     body.print-all section.song { display: block; page-break-after: always; }
+    body.print-all #home { display: none; }
   }
   @page { margin: 0.6in; }
 </style>
@@ -249,7 +216,7 @@ def build_sheet(paths):
         slug = path.stem
         nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
                    f'<span class="pr" title="Print this song">print</span></li>')
-        sec = [f'<section class="song" id="song{n}" data-slug="{html.escape(slug)}">',
+        sec = [f'<section class="page song" id="song{n}" data-slug="{html.escape(slug)}">',
                f'<h2 class="songtitle">{html.escape(title)}</h2>',
                f'<div class="composer">{html.escape(composer)}</div>',
                f'<div id="paper{n}"></div>']
@@ -259,11 +226,20 @@ def build_sheet(paths):
         sec.append("</section>")
         sections.append("\n".join(sec))
         tunes.append(abc)
-    out.append('<nav><div class="navtitle">Christmas Carols</div>'
-               '<a class="home" href="index.html">&larr; back to site</a><ul>')
+    out.append('<nav><div class="navtitle">Christmas Carols</div><ul>'
+               '<li id="navhome"><span class="name">Home</span></li></ul>'
+               '<hr><div class="label">Set list</div><ul>')
     out.extend(nav)
     out.append('</ul><span class="all" id="printall">Print entire songbook</span></nav>')
-    out.append('<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>')
+    out.append("""<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>
+<section class="page" id="home" data-slug="home">
+  <h2>Churches</h2>
+  <ul>
+    <li>Holy Mother &amp; Child Parish &mdash; date &amp; time TBD</li>
+    <li>St. Joseph's Church &mdash; date &amp; time TBD</li>
+    <li>St. Paul's &mdash; date &amp; time TBD</li>
+  </ul>
+</section>""")
     out.extend(sections)
     out.append("</div></main>")
     out.append('<script type="application/json" id="tunes">')
@@ -280,21 +256,23 @@ def build_sheet(paths):
     });
   });
 
-  function show(n, updateHash) {
-    document.querySelectorAll("section.song").forEach(s => s.classList.remove("current"));
+  function show(sectionId, navId, updateHash) {
+    document.querySelectorAll("section.page").forEach(s => s.classList.remove("current"));
     document.querySelectorAll("nav li").forEach(li => li.classList.remove("active"));
-    document.getElementById("song" + n).classList.add("current");
-    document.getElementById("nav" + n).classList.add("active");
-    if (updateHash) history.replaceState(null, "", "#" + document.getElementById("song" + n).dataset.slug);
+    const sec = document.getElementById(sectionId);
+    sec.classList.add("current");
+    document.getElementById(navId).classList.add("active");
+    if (updateHash) history.replaceState(null, "", "#" + sec.dataset.slug);
     window.scrollTo(0, 0);
   }
 
-  document.querySelectorAll("nav li").forEach(li => {
+  document.getElementById("navhome").addEventListener("click", () => show("home", "navhome", true));
+  document.querySelectorAll("nav li[data-n]").forEach(li => {
     const n = +li.dataset.n;
-    li.querySelector(".name").addEventListener("click", () => show(n, true));
+    li.querySelector(".name").addEventListener("click", () => show("song" + n, "nav" + n, true));
     li.querySelector(".pr").addEventListener("click", e => {
       e.stopPropagation();
-      show(n, true);
+      show("song" + n, "nav" + n, true);
       window.print();
     });
   });
@@ -305,9 +283,10 @@ def build_sheet(paths):
   });
   window.addEventListener("afterprint", () => document.body.classList.remove("print-all"));
 
-  const slugs = [...document.querySelectorAll("section.song")].map(s => s.dataset.slug);
-  const fromHash = slugs.indexOf(location.hash.slice(1));
-  show(fromHash >= 0 ? fromHash : 0, false);
+  const bySlug = {};
+  document.querySelectorAll("section.page").forEach(s => bySlug[s.dataset.slug] = s.id);
+  const target = bySlug[location.hash.slice(1)] || "home";
+  show(target, target === "home" ? "navhome" : "nav" + target.slice(4), false);
 </script>
 </body></html>""")
     return "\n".join(out)
@@ -319,10 +298,8 @@ def main():
     (ROOT / "songbook-capo.html").write_text(build(songs, True))
     sheets = sorted((ROOT / "songs-abc").glob("*.abc"))
     (ROOT / "songbook.html").write_text(build_sheet(sheets))
-    items = "\n".join(f"    <li>{html.escape(s['title'])}</li>" for s in songs)
-    (ROOT / "index.html").write_text(INDEX_HTML.replace("{song_items}", items))
     print(f"Wrote {len(songs)} text songs and {len(sheets)} sheet-music songs; "
-          f"outputs: index.html, songbook.html, songbook-text.html, songbook-capo.html")
+          f"outputs: songbook.html, songbook-text.html, songbook-capo.html")
 
 
 if __name__ == "__main__":
