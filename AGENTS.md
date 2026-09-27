@@ -7,7 +7,7 @@ https://christmas-carols-cjm.pages.dev).
 ## Layout
 - `build.py` — generates all HTML. **Home page copy lives here**, in `build_sheet()`.
 - `songs-abc/*.abc` — sheet-music songs → `songbook.html` (the site).
-- `songs/*.cho` — ChordPro text songs → `songbook-text.html`, `songbook-capo.html`.
+- `songs/*.cho` — ChordPro text songs → `songbook-text.html`.
 - `_redirects` — maps `/` to `/songbook.html`.
 - `dist/` — deploy folder, gitignored.
 

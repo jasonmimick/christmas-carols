@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-"""Render songs/*.cho into songbook.html and songbook-capo.html.
+"""Render songs-abc/*.abc into songbook.html and songs/*.cho into songbook-text.html.
 
 Song files use ChordPro-style inline chords: [G]Silent night, [D7]holy night.
-Directives: {title: ..} {key: ..} {time: ..} {capo: N} {note: ..} {label: ..}
-
-songbook.html       chords as written (open position)
-songbook-capo.html  same songs for a guitar with a capo at {capo}, chords
-                    shown as the shapes that player fingers
+Directives: {title: ..} {key: ..} {time: ..} {note: ..} {label: ..}
 """
 import html
 import json
@@ -14,10 +10,6 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-SHARPS = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-FLATS = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-FLAT_KEYS = {"F", "Bb", "Eb", "Ab", "Dm", "Gm", "Cm", "Fm"}
-NOTE = r"[A-G][#b]?"
 
 CSS = """
 body { font-family: Georgia, serif; font-size: 13pt; margin: 0.6in; color: #000; }
@@ -41,27 +33,8 @@ th, td { border-bottom: 1px solid #999; padding: 0.3em 0.9em 0.3em 0; text-align
 @page { margin: 0.6in; }
 """
 
-def shift_note(note, steps, flats):
-    i = SHARPS.index(note) if note in SHARPS else FLATS.index(note)
-    return (FLATS if flats else SHARPS)[(i + steps) % 12]
-
-
-def shift_chord(chord, steps, flats):
-    return re.sub(NOTE, lambda m: shift_note(m.group(), steps, flats), chord)
-
-
-def shift_key(key, steps):
-    """Return (new key name, whether to spell its chords with flats)."""
-    root = re.match(NOTE, key).group()
-    suffix = key[len(root):]
-    flat_name = shift_note(root, steps, True) + suffix
-    if flat_name in FLAT_KEYS:
-        return flat_name, True
-    return shift_note(root, steps, False) + suffix, False
-
-
 def parse(path):
-    song = {"title": path.stem, "key": "C", "time": "", "capo": "0", "note": "", "stanzas": [[]]}
+    song = {"title": path.stem, "key": "C", "time": "", "note": "", "stanzas": [[]]}
     for raw in path.read_text().splitlines():
         line = raw.rstrip()
         m = re.fullmatch(r"\{(\w+):\s*(.*)\}", line)
@@ -74,16 +47,15 @@ def parse(path):
         else:
             song["stanzas"][-1].append(("lyric", line))
     song["stanzas"] = [s for s in song["stanzas"] if s]
-    song["capo"] = int(song["capo"])
     return song
 
 
-def render_line(line, steps, flats):
+def render_line(line):
     parts = re.split(r"\[([^\]]+)\]", line)
     has_chords = len(parts) > 1
     segs = [("", parts[0])] if parts[0] else []
     for chord, text in zip(parts[1::2], parts[2::2]):
-        segs.append((shift_chord(chord, steps, flats) if steps else chord, text))
+        segs.append((chord, text))
     out = []
     for chord, text in segs:
         c = f'<span class="chord">{html.escape(chord)}</span>' if has_chords else ""
@@ -91,17 +63,8 @@ def render_line(line, steps, flats):
     return f'<div class="line">{"".join(out)}</div>'
 
 
-def describe(song, capo_book):
-    """Return (key description, semitone shift, spell with flats)."""
-    if capo_book and song["capo"]:
-        shapes, flats = shift_key(song["key"], -song["capo"])
-        return f'Capo {song["capo"]}, {shapes} shapes (sounds in {song["key"]})', -song["capo"], flats
-    return f'Key of {song["key"]}', 0, False
-
-
-def render_song(number, song, capo_book):
-    desc, steps, flats = describe(song, capo_book)
-    meta = " · ".join(x for x in (desc, song["time"]) if x)
+def render_song(number, song):
+    meta = " · ".join(x for x in (f'Key of {song["key"]}', song["time"]) if x)
     out = [f'<section class="song"><h2>{number}. {html.escape(song["title"])}</h2>',
            f'<div class="meta">{html.escape(meta)}</div>']
     if song["note"]:
@@ -112,20 +75,19 @@ def render_song(number, song, capo_book):
             if kind == "label":
                 out.append(f'<div class="label">{html.escape(text)}</div>')
             else:
-                out.append(render_line(text, steps, flats))
+                out.append(render_line(text))
         out.append("</div>")
     out.append("</section>")
     return "\n".join(out)
 
 
-def build(songs, capo_book):
-    title = "Christmas Carols: Guitar Chords" + (" (Capo Part)" if capo_book else "")
+def build(songs):
+    title = "Christmas Carols: Guitar Chords"
     rows = []
     for n, song in enumerate(songs, 1):
-        desc, _, _ = describe(song, capo_book)
         rows.append(f"<tr><td>{n}</td><td>{html.escape(song['title'])}</td>"
-                    f"<td>{html.escape(desc)}</td><td>{html.escape(song['time'])}</td></tr>")
-    body = "\n".join(render_song(n, s, capo_book) for n, s in enumerate(songs, 1))
+                    f"<td>Key of {html.escape(song['key'])}</td><td>{html.escape(song['time'])}</td></tr>")
+    body = "\n".join(render_song(n, s) for n, s in enumerate(songs, 1))
     return (f'<!doctype html><html><head><meta charset="utf-8"><title>{title}</title>'
             f"<style>{CSS}</style></head><body><h1>{title}</h1>"
             f'<div class="printbar"><button onclick="window.print()">Print / Save as PDF</button></div>'
@@ -389,12 +351,11 @@ def build_sheet(paths):
 
 def main():
     songs = [parse(p) for p in sorted((ROOT / "songs").glob("*.cho"))]
-    (ROOT / "songbook-text.html").write_text(build(songs, False))
-    (ROOT / "songbook-capo.html").write_text(build(songs, True))
+    (ROOT / "songbook-text.html").write_text(build(songs))
     sheets = sorted((ROOT / "songs-abc").glob("*.abc"))
     (ROOT / "songbook.html").write_text(build_sheet(sheets))
     print(f"Wrote {len(songs)} text songs and {len(sheets)} sheet-music songs; "
-          f"outputs: songbook.html, songbook-text.html, songbook-capo.html")
+          f"outputs: songbook.html, songbook-text.html")
 
 
 if __name__ == "__main__":
