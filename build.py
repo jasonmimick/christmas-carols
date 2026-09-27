@@ -176,30 +176,52 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap">
 <style>
   body { background: #fff; color: #000; margin: 0; font-family: Helvetica, Arial, sans-serif; }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 2rem 20px 3rem; }
-  .printbar { margin: 0 0 2rem; }
-  .printbar button { font-size: 1rem; padding: 0.4em 1.2em; margin-right: 0.5em; }
-  h1 { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
-       font-size: 2.6rem; text-align: center; margin: 0 0 2rem; }
-  section.song { margin-bottom: 3.5rem; }
+  nav { position: fixed; top: 0; left: 0; bottom: 0; width: 250px; overflow-y: auto;
+        border-right: 1px solid #ddd; padding: 1rem 0; box-sizing: border-box; }
+  nav .navtitle { font-family: "IM Fell English", Georgia, serif; font-size: 1.3rem;
+                  padding: 0.3rem 1rem 0.8rem; }
+  nav a.home { display: block; font-size: 0.8rem; color: #555; text-decoration: none;
+               padding: 0 1rem 0.8rem; }
+  nav ul { list-style: none; margin: 0; padding: 0; }
+  nav li { display: flex; align-items: center; font-size: 0.9rem; cursor: pointer;
+           border-radius: 0 16px 16px 0; margin-right: 8px; }
+  nav li .name { flex: 1; padding: 0.45rem 0.4rem 0.45rem 1rem; }
+  nav li:hover { background: #f1f1f1; }
+  nav li.active { background: #e9e9e9; font-weight: bold; }
+  nav li .pr { visibility: hidden; padding: 0.45rem 0.7rem; color: #555; font-size: 0.8rem; }
+  nav li:hover .pr { visibility: visible; }
+  nav li .pr:hover { color: #000; text-decoration: underline; }
+  nav .all { display: block; margin: 1rem 1rem 0; padding-top: 1rem; border-top: 1px solid #ddd;
+             font-size: 0.9rem; color: #000; cursor: pointer; text-decoration: underline; }
+  main { margin-left: 250px; padding: 2rem 20px 3rem; }
+  .sheet { max-width: 820px; margin: 0 auto; }
+  section.song { display: none; }
+  section.song.current { display: block; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
               text-align: center; margin: 0 0 0.8em; font-size: 1rem; }
   .verses { font-family: Georgia, serif; font-size: 1rem; margin: 1em auto 0;
             max-width: 34em; line-height: 1.5; }
+  #booktitle { display: none; }
+  @media (max-width: 700px) {
+    nav { position: static; width: auto; border-right: none; border-bottom: 1px solid #ddd; }
+    nav li .pr { visibility: visible; }
+    main { margin-left: 0; }
+  }
   @media print {
-    .printbar { display: none; }
-    h1 { page-break-after: always; padding-top: 3in; }
-    section.song { page-break-after: always; margin-bottom: 0; }
+    nav { display: none; }
+    main { margin-left: 0; padding: 0; }
+    section.song.current { page-break-after: auto; }
+    body.print-all #booktitle { display: block; font-family: "IM Fell English", Georgia, serif;
+      font-weight: 400; font-size: 2.6rem; text-align: center; padding-top: 3in;
+      page-break-after: always; }
+    body.print-all section.song { display: block; page-break-after: always; }
   }
   @page { margin: 0.6in; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.4.4/abcjs-basic-min.js"></script>
 </head><body>
-<div class="wrap">
-<div class="printbar"><button onclick="window.print()">Print / Save as PDF</button></div>
-<h1>Christmas Carols</h1>
 """
 
 
@@ -220,17 +242,30 @@ def parse_abc(path):
 
 def build_sheet(paths):
     out = [SHEET_HEAD]
-    tunes = []
+    tunes, nav = [], []
+    sections = []
     for n, path in enumerate(paths):
         title, composer, abc, extra = parse_abc(path)
-        out.append(f'<section class="song"><h2 class="songtitle">{html.escape(title)}</h2>')
-        out.append(f'<div class="composer">{html.escape(composer)}</div>')
-        out.append(f'<div id="paper{n}"></div>')
+        slug = path.stem
+        nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
+                   f'<span class="pr" title="Print this song">print</span></li>')
+        sec = [f'<section class="song" id="song{n}" data-slug="{html.escape(slug)}">',
+               f'<h2 class="songtitle">{html.escape(title)}</h2>',
+               f'<div class="composer">{html.escape(composer)}</div>',
+               f'<div id="paper{n}"></div>']
         if extra:
             verses = "<br>\n".join(html.escape(v) for v in extra)
-            out.append(f'<div class="verses">{verses}</div>')
-        out.append("</section>")
+            sec.append(f'<div class="verses">{verses}</div>')
+        sec.append("</section>")
+        sections.append("\n".join(sec))
         tunes.append(abc)
+    out.append('<nav><div class="navtitle">Christmas Carols</div>'
+               '<a class="home" href="index.html">&larr; back to site</a><ul>')
+    out.extend(nav)
+    out.append('</ul><span class="all" id="printall">Print entire songbook</span></nav>')
+    out.append('<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>')
+    out.extend(sections)
+    out.append("</div></main>")
     out.append('<script type="application/json" id="tunes">')
     out.append(json.dumps(tunes))
     out.append("""</script>
@@ -238,14 +273,43 @@ def build_sheet(paths):
   const tunes = JSON.parse(document.getElementById("tunes").textContent);
   tunes.forEach((abc, n) => {
     ABCJS.renderAbc("paper" + n, abc, {
-      responsive: "resize",
+      staffwidth: 760,
       add_classes: true,
       format: { gchordfont: "Helvetica 13 bold", vocalfont: "Georgia 13",
-                composerfont: "Helvetica 0", partsfont: "Helvetica 14 italic" }
+                partsfont: "Helvetica 14 italic" }
     });
   });
+
+  function show(n, updateHash) {
+    document.querySelectorAll("section.song").forEach(s => s.classList.remove("current"));
+    document.querySelectorAll("nav li").forEach(li => li.classList.remove("active"));
+    document.getElementById("song" + n).classList.add("current");
+    document.getElementById("nav" + n).classList.add("active");
+    if (updateHash) history.replaceState(null, "", "#" + document.getElementById("song" + n).dataset.slug);
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll("nav li").forEach(li => {
+    const n = +li.dataset.n;
+    li.querySelector(".name").addEventListener("click", () => show(n, true));
+    li.querySelector(".pr").addEventListener("click", e => {
+      e.stopPropagation();
+      show(n, true);
+      window.print();
+    });
+  });
+
+  document.getElementById("printall").addEventListener("click", () => {
+    document.body.classList.add("print-all");
+    window.print();
+  });
+  window.addEventListener("afterprint", () => document.body.classList.remove("print-all"));
+
+  const slugs = [...document.querySelectorAll("section.song")].map(s => s.dataset.slug);
+  const fromHash = slugs.indexOf(location.hash.slice(1));
+  show(fromHash >= 0 ? fromHash : 0, false);
 </script>
-</div></body></html>""")
+</body></html>""")
     return "\n".join(out)
 
 

@@ -4,56 +4,101 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap">
 <style>
   body { background: #fff; color: #000; margin: 0; font-family: Helvetica, Arial, sans-serif; }
-  .wrap { max-width: 820px; margin: 0 auto; padding: 2rem 20px 3rem; }
-  .printbar { margin: 0 0 2rem; }
-  .printbar button { font-size: 1rem; padding: 0.4em 1.2em; margin-right: 0.5em; }
-  h1 { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
-       font-size: 2.6rem; text-align: center; margin: 0 0 2rem; }
-  section.song { margin-bottom: 3.5rem; }
+  nav { position: fixed; top: 0; left: 0; bottom: 0; width: 250px; overflow-y: auto;
+        border-right: 1px solid #ddd; padding: 1rem 0; box-sizing: border-box; }
+  nav .navtitle { font-family: "IM Fell English", Georgia, serif; font-size: 1.3rem;
+                  padding: 0.3rem 1rem 0.8rem; }
+  nav a.home { display: block; font-size: 0.8rem; color: #555; text-decoration: none;
+               padding: 0 1rem 0.8rem; }
+  nav ul { list-style: none; margin: 0; padding: 0; }
+  nav li { display: flex; align-items: center; font-size: 0.9rem; cursor: pointer;
+           border-radius: 0 16px 16px 0; margin-right: 8px; }
+  nav li .name { flex: 1; padding: 0.45rem 0.4rem 0.45rem 1rem; }
+  nav li:hover { background: #f1f1f1; }
+  nav li.active { background: #e9e9e9; font-weight: bold; }
+  nav li .pr { visibility: hidden; padding: 0.45rem 0.7rem; color: #555; font-size: 0.8rem; }
+  nav li:hover .pr { visibility: visible; }
+  nav li .pr:hover { color: #000; text-decoration: underline; }
+  nav .all { display: block; margin: 1rem 1rem 0; padding-top: 1rem; border-top: 1px solid #ddd;
+             font-size: 0.9rem; color: #000; cursor: pointer; text-decoration: underline; }
+  main { margin-left: 250px; padding: 2rem 20px 3rem; }
+  .sheet { max-width: 820px; margin: 0 auto; }
+  section.song { display: none; }
+  section.song.current { display: block; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
               text-align: center; margin: 0 0 0.8em; font-size: 1rem; }
   .verses { font-family: Georgia, serif; font-size: 1rem; margin: 1em auto 0;
             max-width: 34em; line-height: 1.5; }
+  #booktitle { display: none; }
+  @media (max-width: 700px) {
+    nav { position: static; width: auto; border-right: none; border-bottom: 1px solid #ddd; }
+    nav li .pr { visibility: visible; }
+    main { margin-left: 0; }
+  }
   @media print {
-    .printbar { display: none; }
-    h1 { page-break-after: always; padding-top: 3in; }
-    section.song { page-break-after: always; margin-bottom: 0; }
+    nav { display: none; }
+    main { margin-left: 0; padding: 0; }
+    section.song.current { page-break-after: auto; }
+    body.print-all #booktitle { display: block; font-family: "IM Fell English", Georgia, serif;
+      font-weight: 400; font-size: 2.6rem; text-align: center; padding-top: 3in;
+      page-break-after: always; }
+    body.print-all section.song { display: block; page-break-after: always; }
   }
   @page { margin: 0.6in; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.4.4/abcjs-basic-min.js"></script>
 </head><body>
-<div class="wrap">
-<div class="printbar"><button onclick="window.print()">Print / Save as PDF</button></div>
-<h1>Christmas Carols</h1>
 
-<section class="song"><h2 class="songtitle">Deck the Halls</h2>
+<nav><div class="navtitle">Christmas Carols</div><a class="home" href="index.html">&larr; back to site</a><ul>
+<li id="nav0" data-n="0"><span class="name">Deck the Halls</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav1" data-n="1"><span class="name">Go, Tell It on the Mountain</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav2" data-n="2"><span class="name">God Rest Ye Merry, Gentlemen</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav3" data-n="3"><span class="name">Good King Wenceslas</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav4" data-n="4"><span class="name">Hark! The Herald Angels Sing</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav5" data-n="5"><span class="name">It Came Upon a Midnight Clear</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav6" data-n="6"><span class="name">Jingle Bells</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav7" data-n="7"><span class="name">Joy to the World</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav8" data-n="8"><span class="name">O Come, All Ye Faithful</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav9" data-n="9"><span class="name">O Holy Night</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav10" data-n="10"><span class="name">Silent Night</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav11" data-n="11"><span class="name">The First Noel</span><span class="pr" title="Print this song">print</span></li>
+<li id="nav12" data-n="12"><span class="name">We Three Kings of Orient Are</span><span class="pr" title="Print this song">print</span></li>
+</ul><span class="all" id="printall">Print entire songbook</span></nav>
+<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>
+<section class="song" id="song0" data-slug="01-deck-the-halls">
+<h2 class="songtitle">Deck the Halls</h2>
 <div class="composer">Welsh traditional (Nos Galan, 16th c.)</div>
 <div id="paper0"></div>
 </section>
-<section class="song"><h2 class="songtitle">Go, Tell It on the Mountain</h2>
+<section class="song" id="song1" data-slug="02-go-tell-it-on-the-mountain">
+<h2 class="songtitle">Go, Tell It on the Mountain</h2>
 <div class="composer">African-American spiritual, arr. John W. Work Jr.</div>
 <div id="paper1"></div>
 </section>
-<section class="song"><h2 class="songtitle">God Rest Ye Merry, Gentlemen</h2>
+<section class="song" id="song2" data-slug="03-god-rest-ye-merry-gentlemen">
+<h2 class="songtitle">God Rest Ye Merry, Gentlemen</h2>
 <div class="composer">English traditional, 16th c.</div>
 <div id="paper2"></div>
 </section>
-<section class="song"><h2 class="songtitle">Good King Wenceslas</h2>
+<section class="song" id="song3" data-slug="04-good-king-wenceslas">
+<h2 class="songtitle">Good King Wenceslas</h2>
 <div class="composer">Melody: Tempus Adest Floridum, 13th c. Words: John Mason Neale, 1853</div>
 <div id="paper3"></div>
 </section>
-<section class="song"><h2 class="songtitle">Hark! The Herald Angels Sing</h2>
+<section class="song" id="song4" data-slug="05-hark-the-herald-angels-sing">
+<h2 class="songtitle">Hark! The Herald Angels Sing</h2>
 <div class="composer">Felix Mendelssohn, 1840. Words: Charles Wesley, 1739</div>
 <div id="paper4"></div>
 </section>
-<section class="song"><h2 class="songtitle">It Came Upon a Midnight Clear</h2>
+<section class="song" id="song5" data-slug="06-it-came-upon-a-midnight-clear">
+<h2 class="songtitle">It Came Upon a Midnight Clear</h2>
 <div class="composer">Richard S. Willis, 1850. Words: Edmund H. Sears, 1849</div>
 <div id="paper5"></div>
 </section>
-<section class="song"><h2 class="songtitle">Jingle Bells</h2>
+<section class="song" id="song6" data-slug="07-jingle-bells">
+<h2 class="songtitle">Jingle Bells</h2>
 <div class="composer">James Lord Pierpont, 1857</div>
 <div id="paper6"></div>
 <div class="verses">2. A day or two ago, I thought I&#x27;d take a ride,<br>
@@ -61,15 +106,18 @@ And soon Miss Fanny Bright was seated by my side;<br>
 The horse was lean and lank, misfortune seemed his lot,<br>
 He got into a drifted bank and then we got upsot. Oh! (Chorus)</div>
 </section>
-<section class="song"><h2 class="songtitle">Joy to the World</h2>
+<section class="song" id="song7" data-slug="08-joy-to-the-world">
+<h2 class="songtitle">Joy to the World</h2>
 <div class="composer">George F. Handel, arr. Lowell Mason, 1839. Words: Isaac Watts, 1719</div>
 <div id="paper7"></div>
 </section>
-<section class="song"><h2 class="songtitle">O Come, All Ye Faithful</h2>
+<section class="song" id="song8" data-slug="09-o-come-all-ye-faithful">
+<h2 class="songtitle">O Come, All Ye Faithful</h2>
 <div class="composer">John Francis Wade, c. 1743 (Adeste Fideles)</div>
 <div id="paper8"></div>
 </section>
-<section class="song"><h2 class="songtitle">O Holy Night</h2>
+<section class="song" id="song9" data-slug="10-o-holy-night">
+<h2 class="songtitle">O Holy Night</h2>
 <div class="composer">Adolphe Adam, 1847 (Cantique de Noël). Words: John S. Dwight</div>
 <div id="paper9"></div>
 <div class="verses">2. Truly He taught us to love one another; His law is love and His gospel is peace.<br>
@@ -77,18 +125,22 @@ Chains shall He break, for the slave is our brother, and in His name all oppress
 Sweet hymns of joy in grateful chorus raise we; let all within us praise His holy name.<br>
 Christ is the Lord! O praise His name forever! His power and glory evermore proclaim!</div>
 </section>
-<section class="song"><h2 class="songtitle">Silent Night</h2>
+<section class="song" id="song10" data-slug="11-silent-night">
+<h2 class="songtitle">Silent Night</h2>
 <div class="composer">Franz Xaver Gruber, 1818. Words: Josef Mohr, tr. John F. Young</div>
 <div id="paper10"></div>
 </section>
-<section class="song"><h2 class="songtitle">The First Noel</h2>
+<section class="song" id="song11" data-slug="12-the-first-noel">
+<h2 class="songtitle">The First Noel</h2>
 <div class="composer">English traditional, 17th c.</div>
 <div id="paper11"></div>
 </section>
-<section class="song"><h2 class="songtitle">We Three Kings of Orient Are</h2>
+<section class="song" id="song12" data-slug="13-we-three-kings">
+<h2 class="songtitle">We Three Kings of Orient Are</h2>
 <div class="composer">John Henry Hopkins Jr., 1857</div>
 <div id="paper12"></div>
 </section>
+</div></main>
 <script type="application/json" id="tunes">
 ["X:1\nM:4/4\nL:1/8\nQ:1/4=120\nK:D\n\"D\"A3G F2E2 | D2E2 F2D2 | \"A7\"EFGE \"D\"F3E | \"A7\"D2C2 \"D\"D4 |\nw: 1.~Deck the halls with boughs of hol- ly, Fa la la la la, la la la la.\nw: 2.~See the blaz- ing Yule be- fore us, Fa la la la la, la la la la.\nw: 3.~Fast a- way the old year pas- ses, Fa la la la la, la la la la.\n\"D\"A3G F2E2 | D2E2 F2D2 | \"A7\"EFGE \"D\"F3E | \"A7\"D2C2 \"D\"D4 |\nw: 'Tis the sea- son to be jol- ly, Fa la la la la, la la la la.\nw: Strike the harp and join the cho- rus, Fa la la la la, la la la la.\nw: Hail the new, ye lads and las- ses, Fa la la la la, la la la la.\n\"A7\"E3F G2E2 | \"D\"F3G \"A\"A2E2 | \"D\"F^GA2 \"Bm\"Bcd2 | \"E7\"c2B2 \"A\"A4 |\nw: Don we now our gay ap- par- el, Fa la la, la la la, la la la.\nw: Fol- low me in mer- ry mea- sure, Fa la la, la la la, la la la.\nw: Sing we joy- ous all to- ge- ther, Fa la la, la la la, la la la.\n\"D\"A3G F2E2 | D2E2 F2D2 | \"G\"BBBB \"D\"A3G | \"A7\"F2E2 \"D\"D4 |]\nw: Troll the an- cient Yule- tide car- ol, Fa la la la la, la la la la.\nw: While I tell of Yule- tide trea- sure, Fa la la la la, la la la la.\nw: Heed- less of the wind and wea- ther, Fa la la la la, la la la la.", "X:1\nM:4/4\nL:1/4\nQ:1/4=100\nK:G\n\"^Verse\" \"G\"G | B d d e | d B2 G | \"D7\"A A G A | \"G\"B3 G |\nw: 1.~While shep- herds kept their watch- ing O'er si- lent flocks by night, Be-\nw: 2.~The shep- herds feared and trem- bled When lo! a- bove the earth Rang\nw: 3.~Down in a low- ly man- ger The hum- ble Christ was born, And\nB d d e | d B2 G | \"A7\"A A G2 E | \"D7\"D4 |\nw: hold through- out the hea- vens There shone a ho- ly light.\nw: out the an- gel cho- rus That hailed our Sa- vior's birth.\nw: God sent us sal- va- tion That bless- \u00e8d Christ- mas morn.\n\"^Chorus\" \"G\"B2 B/>A/ G/>E/ | D2 G2 | \"D7\"A/ A A/ G A | \"G\"B d e d |\nw: Go, tell it on the moun- tain, O- ver the hills and ev- er- y- where;\nB2 B/>A/ G/>E/ | D2 G G | \"D7\"A A B A | \"G\"G3 z |]\nw: Go, tell it on the moun- tain That Je- sus Christ is born.", "X:1\nM:4/4\nL:1/4\nQ:1/4=140\nK:Em\n\"Em\"E | E B B A | \"C\"G \"D\"F \"Em\"E \"D\"D | \"Em\"E \"C\"F \"Em\"G \"Am\"A | \"Em\"B3\nw: 1.~God rest ye mer- ry, gen- tle- men, let no- thing you dis- may,\nw: 2.~In Beth- le- hem, in Is- ra- el, this bless- \u00e8d Babe was born,\nw: 3.~Now to the Lord sing prais- * es, all you with- in this place,\n\"Em\"E | E B B A | \"C\"(G \"D\"F) \"Em\"E \"D\"D | \"Em\"E \"C\"F \"Em\"G \"Am\"A | \"Em\"B2 z\nw: Re- mem- ber Christ our Sa- * vior was born on Christ- mas Day,\nw: And laid with- in a man- * ger up- on this bless- \u00e8d morn,\nw: And with true love and bro- ther- hood each o- ther now em- brace,\n\"Em\"B | \"C\"c \"G\"A \"Em\"B \"C\"c | \"G\"d \"Em\"e \"G\"B \"Am\"A | \"G\"G \"Em\"E \"Am\"F \"Em\"G | \"Am\"A2\nw: To save us all from Sa- tan's pow'r when we were gone a- stray.\nw: The which His mo- ther Ma- * ry did no- thing take in scorn.\nw: This ho- ly tide of Christ- mas * all o- ther doth de- face.\n\"^Chorus\" \"C\"(G A) | \"G\"B2 \"C\"c \"G\"B | (B \"Em\"A) \"C\"G \"D\"F | \"Em\"E2 \"D\"G/F/ \"Em\"E | \"Am\"A2 \"C\"(G A) | \"Em\"(B \"C\"c) \"G\"d \"Em\"e | \"G\"(B \"Em\"A) \"C\"G \"D\"F | \"Em\"E3 |]\nw: O * ti- dings of com- * fort and joy, com- fort and joy; O * ti- * dings of com- * fort and joy!", "X:1\nM:4/4\nL:1/4\nQ:1/4=110\nK:G\n\"G\"G G G A | G G D2 | \"C\"E \"G\"D \"D\"E F | \"G\"G2 G2 |\nw: 1.~Good King Wen- ces- las looked out On the feast of Ste- phen,\nw: 2.~\"Hi- ther, page, and stand by me, If thou know'st it, tell- ing,\nw: 3.~\"Bring me flesh and bring me wine, Bring me pine logs hi- ther;\nw: 4.~\"Sire, the night is dark- er now, And the wind blows strong- er;\nw: 5.~In his mas- ter's steps he trod, Where the snow lay dint- ed;\n\"G\"G G G A | G G D2 | \"C\"E \"G\"D \"D\"E F | \"G\"G2 G2 |\nw: When the snow lay round a- bout, Deep and crisp and e- ven.\nw: Yon- der pea- sant, who is he? Where and what his dwell- ing?\"\nw: Thou and I will see him dine When we bear them thi- ther.\"\nw: Fails my heart, I know not how, I can go no long- er.\"\nw: Heat was in the ver- y sod Which the saint had print- ed.\n\"G\"d c B A | B A G2 | \"C\"E \"G\"D \"D\"E F | \"G\"G2 G2 |\nw: Bright- ly shone the moon that night, Though the frost was cru- el,\nw: \"Sire, he lives a good league hence, Un- der- neath the moun- tain,\nw: Page and mon- arch, forth they went, Forth they went to- ge- ther,\nw: \"Mark my foot- steps, my good page, Tread thou in them bold- ly:\nw: There- fore, Chris- tian men, be sure, Wealth or rank pos- sess- ing,\n\"G\"D D E F | G G \"D\"A2 | \"G\"d c \"C\"B \"D\"A | \"G\"(G2 \"C\"c2) | \"G\"G4 |]\nw: When a poor man came in sight, Gath- 'ring win- ter fu- * el.\nw: Right a- gainst the fo- rest fence, By Saint Ag- nes' foun- * tain.\"\nw: Through the rude wind's wild la- ment And the bit- ter wea- * ther.\nw: Thou shalt find the win- ter's rage Freeze thy blood less cold- * ly.\"\nw: Ye who now will bless the poor Shall your- selves find bless- * ing.", "X:1\nM:4/4\nL:1/4\nQ:1/4=104\nK:G\n\"G\"D G G3/2 F/ | G \"D\"B (B A) | \"G\"d d d3/2 \"C\"c/ | \"G\"B \"D\"A \"G\"B2 |\nw: 1.~Hark! The her- ald an- gels sing, * \"Glo- ry to the new- born King;\nw: 2.~Christ, by high- est heav'n a- dored; * Christ the ev- er- last- ing Lord;\nw: 3.~Hail the heav'n- ly Prince of Peace! * Hail the Sun of Right- eous- ness!\n\"G\"D G G3/2 F/ | G \"D\"B (B A) | \"G\"d \"D\"A A3/2 F/ | \"D7\"F E \"G\"D2 |\nw: Peace on earth, and mer- cy mild, * God and sin- ners re- con- ciled!\"\nw: Late in time, be- hold Him come, * Off- spring of a vir- gin's womb.\nw: Light and life to all He brings, * Ris'n with heal- ing in His wings.\n\"G\"d d d G | \"C\"c \"G\"B (B A) | \"G\"d d d G | \"C\"c \"G\"B (B A) |\nw: Joy- ful, all ye na- tions rise, * Join the tri- umph of the skies; *\nw: Veiled in flesh the God- head see; * Hail th'in- car- nate De- i- ty, *\nw: Mild He lays His glo- ry by, * Born that man no more may die. *\n\"C\"e e e \"G\"d | c B \"Am\"c2 | \"D\"A \"G\"B/c/ d3/2 G/ | \"Am\"G \"D7\"A \"G\"B2 |\nw: With th'an- gel- ic host pro- claim, \"Christ is * born in Beth- le- hem!\"\nw: Pleased with us in flesh to dwell, Je- sus * our Em- man- u- el.\nw: Born to raise the sons of earth, Born to * give them se- cond birth.\n\"C\"e3/2 e/ e \"G\"d | c B \"Am\"c2 | \"D\"A \"G\"B/c/ d3/2 G/ | \"Am\"G \"D7\"A \"G\"G2 |]\nw: Hark! the her- ald an- gels sing, \"Glo- ry * to the new- born King!\"", "X:1\nM:6/8\nL:1/4\nQ:1/4=60\nK:G\n\"G\"D/ | B \"C\"F/ \"G\"A/G/ E/ | \"G\"D \"D\"E/ \"G\"D \"C\"D/ | \"G\"E/F/ G/ \"D\"G/A/ B/ | \"D7\"A3/2- A\nw: 1.~It came up- on * the mid- night clear, That glor- * ious song * of old, *\nw: 2.~Still through the clo- * ven skies they come With peace- * ful wings * un- furled, *\nw: 3.~For lo! the days * are has- t'ning on, By pro- * phet bards * fore- told, *\n\"G\"D/ | B \"C\"F/ \"G\"A/G/ E/ | \"G\"D \"D\"E/ \"G\"D \"C\"D/ | \"G\"E \"C\"E/ \"G\"F/E/ \"D\"D/ | \"G\"G3/2- G\nw: From an- gels bend- * ing near the earth, To touch their harps * of gold; *\nw: And still their hea- ven- ly mu- sic floats O'er all the wea- * ry world; *\nw: When with the ev- * er circ- ling years Comes round the age * of gold; *\n\"D\"B/ | B \"G\"B,/ B,/^C/ ^D/ | \"Em\"E \"C\"F/ \"G\"G \"G7\"B/ | \"C\"A/G/ \"G\"F/ \"Am\"E/F/ \"D7\"E/ | \"G\"D3/2- D\nw: \"Peace on the earth, * good will to men, From heav'n's all gra- * cious King.\" *\nw: A- bove its sad * and low- ly plains, They bend * on hov- * 'ring wing, *\nw: When peace shall ov- * er all the earth Its an- * cient splen- * dors fling, *\n\"G\"D/ | B \"C\"F/ \"G\"A/G/ E/ | \"G\"D \"D\"E/ \"G\"D \"C\"D/ | \"G\"E \"C\"E/ \"G\"F/E/ \"D\"D/ | \"G\"G3/2- G |]\nw: The world in so- * lemn still- ness lay, To hear the an- * gels sing. *\nw: And ev- er ov- * er its Ba- bel sounds The bless- \u00e8d an- * gels sing. *\nw: And the whole world * send back the song Which now the an- * gels sing. *", "X:1\nM:4/4\nL:1/8\nQ:1/4=120\nK:G\n\"^Verse\" \"G\"D2B2 A2G2 | D4- D2 DD | D2B2 A2G2 | \"C\"E4 z4 |\nw: 1.~Dash- ing through the snow * In a one- horse o- pen sleigh,\n\"Am\"E2c2 B2A2 | \"D7\"f4 z4 | d2d2 c2A2 | \"G\"B4 z4 |\nw: O'er the fields we go, Laugh- ing all the way.\n\"G\"D2B2 A2G2 | D4- D2 DD | D2B2 A2G2 | \"C\"E4 z4 |\nw: Bells on bob- tails ring, * Mak- ing spi- rits bright, * What\n\"Am\"E2c2 B2A2 | \"G\"d2d2 d2d2 | \"D7\"e2d2 c2A2 | \"G\"G4 \"D7\"d4 |\nw: fun it is to ride and sing A sleigh- ing song to- night! Oh!\n\"^Chorus\" \"G\"B2B2 B4 | B2B2 B4 | B2d2 G3A | B8 |\nw: Jin- gle bells, jin- gle bells, Jin- gle all the way,\n\"C\"c2c2 c3c | \"G\"c2B2 B2BB | B2A2 A2B2 | \"D7\"A4 d4 |\nw: Oh, what fun it is to ride In a one- horse o- pen sleigh, hey!\n\"G\"B2B2 B4 | B2B2 B4 | B2d2 G3A | B8 |\nw: Jin- gle bells, jin- gle bells, Jin- gle all the way,\n\"C\"c2c2 c3c | \"G\"c2B2 B2BB | \"D7\"d2d2 c2A2 | \"G\"G8 |]\nw: Oh, what fun it is to ride In a one- horse o- pen sleigh.", "X:1\nM:2/4\nL:1/4\nQ:1/4=84\nK:D\n\"D\"d c3/4B// | A3/2 G/ | \"G\"F \"A7\"E | \"D\"D3/2 A/ | B3/2 B/ | \"A7\"c3/2 c/ | \"D\"d3/2\nw: 1.~Joy to the world, the Lord is come! Let earth re- ceive her King;\nw: 2.~Joy to the earth, the Sa- vior reigns! Let men their songs em- ploy;\nw: 3.~He rules the world with truth and grace, And makes the na- tions prove\nd/ | d/c/ B/A/ | A3/4G//F/ d/ | d/c/ B/A/ | A3/4G//F/ F/ | \"D\"F/F/ F/F//G// | \"A7\"A3/2\nw: Let ev- * 'ry * heart * * pre- pare * Him * room, * * And heav'n and na- ture * sing,\nw: While fields * and * floods, * * rocks, hills * and * plains * * Re- peat the sound- ing * joy,\nw: The glo- * ries * of * * His right- * eous- * ness, * * And won- ders of His * love,\nG//F// | \"D\"E/E/ E/E//F// | \"A7\"G3/2 F//E// | (D/ \"G\"d) B/ | \"D\"A3/4G//F/ G/ | F \"A7\"E | \"D\"D2 |]\nw: And * heav'n and na- ture * sing, And * heav'n, * and heav'n, * * and na- ture sing.\nw: Re- * peat the sound- ing * joy, Re- * peat, * re- peat, * * the sound- ing joy.\nw: And * won- ders of His * love, And * won- * ders, won- * * ders, of His love.", "X:1\nM:4/4\nL:1/4\nQ:1/4=112\nK:G\n\"G\"G | G2 \"D\"D \"G\"G | \"D\"A2 D2 | \"G\"B \"D\"A \"G\"B \"C\"c | \"G\"B2 \"D\"A \"G\"G |\nw: 1.~O come, all ye faith- ful, joy- ful and tri- um- phant, O\nw: 2.~Sing, choirs of an- gels, sing in ex- ul- ta- tion; O\nw: 3.~Yea, Lord, we greet Thee, born this hap- py morn- ing, Je-\n\"G\"G2 (\"D\"F \"Em\"E) | (\"D\"F \"G\"G) (\"C\"A \"G\"B) | (\"D\"F2 E3/2) D/ | D3 z | \"G\"d2 \"C\"c \"G\"B |\nw: come ye, O come * ye, to Beth- * le- hem. Come and be-\nw: sing, all ye cit- i- zens of heav'n * a- bove! Glo- ry to\nw: sus, to Thee * be * all * glo- * ry giv'n; Word of the\n\"Am\"(c2 \"G\"B2) | \"D\"A \"G\"B \"D\"G \"Em\"A | (\"D\"F3/2 E/) \"G\"D G | G \"D\"F \"G\"G \"C\"A |\nw: hold Him, born the King of an- * gels; O come, let us a-\nw: God, * glo- ry in the high- * est; * * * * *\nw: Fa- ther, now in flesh ap- pear- * ing; * * * * *\n\"G\"G2 \"D\"D \"G\"B | B (\"C\"A) \"G\"B \"C\"c | \"G\"B2 \"D\"A \"G\"B | \"C\"c \"G\"B \"D\"A \"G\"G | \"D\"F2 (\"G\"G \"C\"c) | (\"G\"B2 \"D\"A3/2) \"G\"G/ | G3 |]\nw: dore Him, O come, let us a- dore Him, O come, let us a- dore Him, * Christ * the Lord.", "X:1\nM:6/8\nL:1/8\nQ:3/8=50\nK:C\n\"C\"E3 E2 E | G3- G2 G | \"F\"A2 A F2 A | \"C\"c6 |\nw: O ho- ly night! * the stars are bright- ly shin-\nG2 G E2 D | \"C\"C3 E2 F | \"G7\"G3 F2 D | \"C\"C6- | C4 z2 |\nw: ing, It is the night of the dear Sa- vior's birth. *\n\"C\"E3 E2 E | G3- G2 G | \"F\"A2 A F2 A | \"C\"c6 |\nw: Long lay the world * in sin and er- ror pin-\nG2 G ^F2 E | \"Em\"B3 G2 A | \"B7\"B3 c2 B | \"Em\"E6- | E3 z2 G |\nw: ing, Till He ap- peared and the soul felt its worth. * A\n\"G7\"G3 A3 | D3 G3 | \"C\"A2 G c2 E | A3 G2 G |\nw: thrill of hope the wea- ry world re- joi- ces, For\n\"G7\"G3 A3 | D3 G3 | \"C\"A2 G c2 E | G3- G2 z |\nw: yon- der breaks a new and glo- rious morn. *\n\"Am\"c6- | c2 z B2 A | \"Em\"B6- | B2 z B3 | \"Am\"d6- | d z A A2 A | \"Em\"c6- | c3 z2 c |\nw: Fall * on your knees! * O hear * the an- gel voi- * ces!\n\"C\"e6 | \"G7\"d3- d2 G | \"C\"c6- | \"F\"c2 z B2 A | \"C\"G6- | \"G7\"G z G A2 G | \"C\"G6- | G2 z c3 |\nw: O night * di- vine, * O night when * Christ was born! * * O\n\"G7\"d6- | d2 z G3 | \"C\"e6- | e3 d3 | \"F\"c3- c2 z | \"C\"B3 \"G7\"c2 d | \"C\"c6- | c4 z2 |]\nw: night, * O ho- * ly night, * O night di- vine! *", "X:1\nM:3/4\nL:1/4\nQ:1/4=60\nK:G\n\"G\"D3/4E// D/ B,3/2 | D3/4E// D/ B,3/2 | \"D7\"A A/ F3/2 | \"G\"G G/ D3/2 |\nw: 1.~Si- * lent night, ho- * ly night, All is calm, all is bright\nw: 2.~Si- * lent night, ho- * ly night, Shep- herds quake at the sight;\nw: 3.~Si- * lent night, ho- * ly night, Son of God, love's pure light;\n\"C\"E E/ G3/4F// E/ | \"G\"D3/4E// D/ B,3/2 | \"C\"E E/ G3/4F// E/ | \"G\"D3/4E// D/ B,3/2 |\nw: Round yon vir- * gin mo- ther and Child. Ho- ly In- fant, so ten- der and mild,\nw: Glo- ries stream * from hea- ven a- far, Heaven- ly hosts * sing Al- le- lu- ia!\nw: Ra- diant beams * from Thy ho- ly face With the dawn of re- deem- * ing grace,\n\"D7\"A A/ c3/4A// F/ | \"G\"(G3/2 B3/2) | G/D/ B,/ \"D7\"D3/4C// A,/ | \"G\"G,3 |]\nw: Sleep in hea- ven- ly peace, * Sleep * in hea- ven- ly peace.\nw: Christ the Sa- vior is born, * Christ * the Sa- vior is born!\nw: Je- sus, Lord, at Thy birth, * Je- * sus, Lord, at Thy birth.", "X:1\nM:3/4\nL:1/4\nQ:1/4=100\nK:D\n\"D\"F/E/ | (D3/2 E/) F/G/ | \"G\"A2 \"D\"B/c/ | (d \"G\"c) \"D\"B | \"A7\"A2 B/c/ | \"D\"(d \"G\"c) \"D\"B | \"A7\"(A B)\nw: 1.~The * first * No- * el the * an- gel did say Was to cer- tain poor shep- herds\nw: 2.~They * look- * \u00e8d * up and * saw * a star Shin- ing in * the east, *\nw: 3.~And * by * the * light of * that * same star Three * Wise * Men came *\nc | \"D\"(d \"G\"A) \"D\"G | F2 F/E/ | (D3/2 E/) F/G/ | \"G\"A2 \"D\"B/c/ | (d \"G\"c) \"D\"B | \"A7\"A2\nw: in fields as they lay; In * fields * where * they lay * tend- ing their sheep,\nw: be- yond * them far; And * to * the * earth it * gave * great light,\nw: from coun- * try far; To * seek * for a King was * their * in- tent,\nB/c/ | \"D\"(d \"G\"c) \"D\"B | \"A7\"(A B) c | \"D\"(d \"G\"A) \"D\"G | F2\nw: On a cold win- ter's night * that was * so deep.\nw: And * so it con- tin- ued both day * and night.\nw: And to fol- low the star * wher- ev- er it went.\n\"^Chorus\" \"D\"F/E/ | (D3/2 E/) F/G/ | \"G\"A2 \"D\"d/c/ | \"G\"B2 \"D\"B | \"A7\"(A2 A) | \"D\"d \"G\"c \"D\"B | \"A7\"(A B) c | \"D\"(d \"G\"A) \"D\"G | F2 |]\nw: No- * el, * No- * el, No- * el, No- el, * Born is the King * of Is- * ra- el.", "X:1\nM:6/8\nL:1/8\nQ:3/8=60\nK:Em\n\"Em\"B2A G2E | \"B7\"FGF \"Em\"E3 | B2A G2E | \"B7\"FGF \"Em\"E3 |\nw: 1.~We three kings of O- ri- ent are; Bear- ing gifts we tra- verse a- far,\nw: 2.~Born a King on Beth- le- hem's plain, Gold I bring to crown Him a- gain,\nw: 3.~Glo- rious now be- hold Him rise, * King and God and Sa- cri- fice; *\n\"Em\"G2G \"D\"A2A | \"G\"B2B dcB | \"Am\"ABA \"B7\"G2F | \"Em\"E3 \"D7\"F2A |\nw: Field and foun- tain, moor and moun- tain, * Fol- low- ing yon- der star. O *\nw: King for- ev- er, ceas- ing nev- er, * O- ver us all to reign. O *\nw: Al- le- lu- ia, Al- le- lu- ia, * Sounds through the earth and skies. O *\n\"^Chorus\" \"G\"G2G G2D | \"C\"G2E \"G\"G3 | G2G G2D | \"C\"G2E \"G\"G3 |\nw: star of won- der, star of night, Star with roy- al beau- ty bright,\n\"Em\"G2G \"D\"A2\"G\"B | \"C\"c2\"G\"B \"D\"A2\"G\"B | G2G G2D | \"C\"G2E \"G\"G3 |]\nw: West- ward lead- ing, still pro- ceed- ing, Guide us to thy per- fect light."]
 </script>
@@ -96,11 +148,40 @@ Christ is the Lord! O praise His name forever! His power and glory evermore proc
   const tunes = JSON.parse(document.getElementById("tunes").textContent);
   tunes.forEach((abc, n) => {
     ABCJS.renderAbc("paper" + n, abc, {
-      responsive: "resize",
+      staffwidth: 760,
       add_classes: true,
       format: { gchordfont: "Helvetica 13 bold", vocalfont: "Georgia 13",
-                composerfont: "Helvetica 0", partsfont: "Helvetica 14 italic" }
+                partsfont: "Helvetica 14 italic" }
     });
   });
+
+  function show(n, updateHash) {
+    document.querySelectorAll("section.song").forEach(s => s.classList.remove("current"));
+    document.querySelectorAll("nav li").forEach(li => li.classList.remove("active"));
+    document.getElementById("song" + n).classList.add("current");
+    document.getElementById("nav" + n).classList.add("active");
+    if (updateHash) history.replaceState(null, "", "#" + document.getElementById("song" + n).dataset.slug);
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll("nav li").forEach(li => {
+    const n = +li.dataset.n;
+    li.querySelector(".name").addEventListener("click", () => show(n, true));
+    li.querySelector(".pr").addEventListener("click", e => {
+      e.stopPropagation();
+      show(n, true);
+      window.print();
+    });
+  });
+
+  document.getElementById("printall").addEventListener("click", () => {
+    document.body.classList.add("print-all");
+    window.print();
+  });
+  window.addEventListener("afterprint", () => document.body.classList.remove("print-all"));
+
+  const slugs = [...document.querySelectorAll("section.song")].map(s => s.dataset.slug);
+  const fromHash = slugs.indexOf(location.hash.slice(1));
+  show(fromHash >= 0 ? fromHash : 0, false);
 </script>
-</div></body></html>
+</body></html>
