@@ -9,6 +9,7 @@ songbook-capo.html  same songs for a guitar with a capo at {capo}, chords
                     shown as the shapes that player fingers
 """
 import html
+import json
 import re
 from pathlib import Path
 
@@ -169,13 +170,95 @@ def build(songs, capo_book):
             f"{''.join(rows)}</table>\n{body}</body></html>")
 
 
+SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christmas Carols Songbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap">
+<style>
+  body { background: #fff; color: #000; margin: 0; font-family: Helvetica, Arial, sans-serif; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 2rem 20px 3rem; }
+  .printbar { margin: 0 0 2rem; }
+  .printbar button { font-size: 1rem; padding: 0.4em 1.2em; margin-right: 0.5em; }
+  h1 { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
+       font-size: 2.6rem; text-align: center; margin: 0 0 2rem; }
+  section.song { margin-bottom: 3.5rem; }
+  h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
+                 font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
+  .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
+              text-align: center; margin: 0 0 0.8em; font-size: 1rem; }
+  .verses { font-family: Georgia, serif; font-size: 1rem; margin: 1em auto 0;
+            max-width: 34em; line-height: 1.5; }
+  @media print {
+    .printbar { display: none; }
+    h1 { page-break-after: always; padding-top: 3in; }
+    section.song { page-break-after: always; margin-bottom: 0; }
+  }
+  @page { margin: 0.6in; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.4.4/abcjs-basic-min.js"></script>
+</head><body>
+<div class="wrap">
+<div class="printbar"><button onclick="window.print()">Print / Save as PDF</button></div>
+<h1>Christmas Carols</h1>
+"""
+
+
+def parse_abc(path):
+    """Split an .abc file into (title, composer, abc-for-render, extra verse lines)."""
+    title, composer, abc, extra = "", "", [], []
+    for line in path.read_text().splitlines():
+        if line.startswith("T:"):
+            title = line[2:].strip()
+        elif line.startswith("C:"):
+            composer = line[2:].strip()
+        elif line.startswith("W:"):
+            extra.append(line[2:].strip())
+        else:
+            abc.append(line)
+    return title, composer, "\n".join(abc), extra
+
+
+def build_sheet(paths):
+    out = [SHEET_HEAD]
+    tunes = []
+    for n, path in enumerate(paths):
+        title, composer, abc, extra = parse_abc(path)
+        out.append(f'<section class="song"><h2 class="songtitle">{html.escape(title)}</h2>')
+        out.append(f'<div class="composer">{html.escape(composer)}</div>')
+        out.append(f'<div id="paper{n}"></div>')
+        if extra:
+            verses = "<br>\n".join(html.escape(v) for v in extra)
+            out.append(f'<div class="verses">{verses}</div>')
+        out.append("</section>")
+        tunes.append(abc)
+    out.append('<script type="application/json" id="tunes">')
+    out.append(json.dumps(tunes))
+    out.append("""</script>
+<script>
+  const tunes = JSON.parse(document.getElementById("tunes").textContent);
+  tunes.forEach((abc, n) => {
+    ABCJS.renderAbc("paper" + n, abc, {
+      responsive: "resize",
+      add_classes: true,
+      format: { gchordfont: "Helvetica 13 bold", vocalfont: "Georgia 13",
+                composerfont: "Helvetica 0", partsfont: "Helvetica 14 italic" }
+    });
+  });
+</script>
+</div></body></html>""")
+    return "\n".join(out)
+
+
 def main():
     songs = [parse(p) for p in sorted((ROOT / "songs").glob("*.cho"))]
-    (ROOT / "songbook.html").write_text(build(songs, False))
+    (ROOT / "songbook-text.html").write_text(build(songs, False))
     (ROOT / "songbook-capo.html").write_text(build(songs, True))
+    sheets = sorted((ROOT / "songs-abc").glob("*.abc"))
+    (ROOT / "songbook.html").write_text(build_sheet(sheets))
     items = "\n".join(f"    <li>{html.escape(s['title'])}</li>" for s in songs)
     (ROOT / "index.html").write_text(INDEX_HTML.replace("{song_items}", items))
-    print(f"Wrote {len(songs)} songs to index.html, songbook.html and songbook-capo.html")
+    print(f"Wrote {len(songs)} text songs and {len(sheets)} sheet-music songs; "
+          f"outputs: index.html, songbook.html, songbook-text.html, songbook-capo.html")
 
 
 if __name__ == "__main__":
