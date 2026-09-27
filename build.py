@@ -241,8 +241,6 @@ def build_sheet(paths):
   <p>This Christmas season we are getting together to sing carols at each of our
      three churches &mdash; about an hour of the songs everyone knows, with guitars
      to carry the tune, and hot cocoa and cookies the whole time.</p>
-  <p>No rehearsal, no sign-up, and no need to sing well. Come as you are, bring
-     the kids, and stay for as much of it as you like.</p>
   <h2>Where &amp; when</h2>
   <ul>
     <li>Holy Mother &amp; Child Parish &mdash; date &amp; time TBD</li>
