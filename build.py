@@ -275,6 +275,9 @@ def build_sheet(paths):
   <p>The set list on the left has all thirteen carols &mdash; click one to see its
      sheet music with lyrics and guitar chords. You can print any single song, or
      print the entire songbook and bring it with you.</p>
+  <p>We're still checking the music. Here are the
+     <a href="https://github.com/jasonmimick/christmas-carols/issues">issues with the music</a>
+     we're working through. If anyone wants to work on an issue, feel free.</p>
 </section>""")
     out.extend(sections)
     out.append("</div></main>")
