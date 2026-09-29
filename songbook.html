@@ -36,6 +36,13 @@
   #home p { line-height: 1.55; margin: 0 0 1em; }
   #home ul { margin: 0 0 1em; padding-left: 1.4rem; }
   #home li { padding: 0.15rem 0; }
+  #home .callout { border: 2px solid #c8312a; border-left-width: 6px; background: #fdf1ef;
+                   border-radius: 6px; padding: 1rem 1.2rem; margin: 2rem 0 1rem; }
+  #home .callout h2 { margin: 0 0 0.4rem; color: #a3241e; }
+  #home .callout p { margin: 0 0 0.8rem; }
+  #home .callout .btn { display: inline-block; background: #c8312a; color: #fff; font-weight: bold;
+                        text-decoration: none; padding: 0.55rem 1.1rem; border-radius: 5px; }
+  #home .callout .btn:hover { background: #a3241e; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
@@ -152,10 +159,13 @@
   <p>The set list on the left has all thirteen carols &mdash; click one to see its
      sheet music with lyrics and guitar chords. You can print any single song, or
      print the entire songbook and bring it with you.</p>
-  <h2>Issues</h2>
-  <p>We're still checking the music. Here are the
-     <a href="https://github.com/jasonmimick/christmas-carols/issues">issues with the music</a>
-     we're working through. If anyone wants to work on an issue, feel free.</p>
+  <div class="callout">
+    <h2>Help us fix the music</h2>
+    <p>We're still checking every carol against published sheet music, and some have
+       wrong notes, lyrics under the wrong notes, or chords that clash. Each problem is
+       listed as an issue. If you spot a mistake or want to take one on, please jump in.</p>
+    <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues">See the issues &rarr;</a>
+  </div>
 </section>
 <section class="page song" id="song0" data-slug="01-deck-the-halls">
 <h2 class="songtitle">Deck the Halls</h2>
