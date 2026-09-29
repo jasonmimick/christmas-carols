@@ -262,13 +262,13 @@ def build_sheet(paths):
   </g>
 </svg>
   </div>
-  <p>This Christmas season we are getting together to sing carols at each of the
-     three churches in our parish, across northern and western Saratoga County.</p>
+  <p>This Christmas season we are getting together to sing carols at each of our
+     three churches.</p>
   <h2>Where &amp; when</h2>
   <ul>
-    <li>Sunday, December 6, 6 pm &mdash; St. Paul's, Rock City Falls</li>
-    <li>Sunday, December 13, 6 pm &mdash; St. Joseph's, Greenfield Center</li>
-    <li>Sunday, December 20, 6 pm &mdash; Holy Mother &amp; Child, Corinth</li>
+    <li>Sunday, December 6, 6 pm &mdash; St. Paul's</li>
+    <li>Sunday, December 13, 6 pm &mdash; St. Joseph's</li>
+    <li>Sunday, December 20, 6 pm &mdash; Holy Mother &amp; Child</li>
   </ul>
   <h2>The songbook</h2>
   <p>The set list on the left has all thirteen carols &mdash; click one to see its
