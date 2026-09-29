@@ -266,11 +266,10 @@ def build_sheet(paths):
      three churches.</p>
   <h2>Where &amp; when</h2>
   <ul>
-    <li>Holy Mother &amp; Child Parish &mdash; date &amp; time TBD</li>
-    <li>St. Joseph's Church &mdash; date &amp; time TBD</li>
-    <li>St. Paul's &mdash; date &amp; time TBD</li>
+    <li>St. Paul's &mdash; Sunday, December 6, 6 pm</li>
+    <li>St. Joseph's Church &mdash; Sunday, December 13, 6 pm</li>
+    <li>Holy Mother &amp; Child Parish &mdash; Sunday, December 20, 6 pm</li>
   </ul>
-  <p>Dates and times will be posted here once the schedule is set.</p>
   <h2>The songbook</h2>
   <p>The set list on the left has all thirteen carols &mdash; click one to see its
      sheet music with lyrics and guitar chords. You can print any single song, or
