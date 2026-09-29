@@ -140,6 +140,10 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   #home .callout .btn { display: inline-block; background: #c8312a; color: #fff; font-weight: bold;
                         text-decoration: none; padding: 0.55rem 1.1rem; border-radius: 5px; }
   #home .callout .btn:hover { background: #a3241e; }
+  #home .callout.practice { border-color: #b8860b; background: #fdf6e0; }
+  #home .callout.practice h2 { color: #7a5a00; }
+  #home .callout.practice .btn { background: #b8860b; }
+  #home .callout.practice .btn:hover { background: #8f6808; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
@@ -272,12 +276,17 @@ def build_sheet(paths):
   <p>This Christmas season we are getting together to sing carols at each of our
      three churches.</p>
   <h2>Where &amp; when</h2>
-  <p>Practice: October &mdash; time &amp; date TBD</p>
   <ul>
     <li>St. Paul's &mdash; Sunday, December 6, 6 pm</li>
     <li>St. Joseph's Church &mdash; Sunday, December 13, 6 pm</li>
     <li>Holy Mother &amp; Child Parish &mdash; Sunday, December 20, 6 pm</li>
   </ul>
+  <div class="callout practice">
+    <h2>October/November practice</h2>
+    <p>We'd like to get together to practice before the first sing-along on
+       December 6. Date, time and place are still TBD. Tell us what works for you.</p>
+    <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues/1">Help pick a practice date &rarr;</a>
+  </div>
   <h2>The songbook</h2>
   <p>The set list on the left has all thirteen carols &mdash; click one to see its
      sheet music with lyrics and guitar chords. You can print any single song, or
