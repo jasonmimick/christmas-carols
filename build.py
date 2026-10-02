@@ -9,6 +9,8 @@ import json
 import re
 from pathlib import Path
 
+import lilyrender
+
 ROOT = Path(__file__).parent
 
 CSS = """
@@ -121,6 +123,10 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
              font-size: 0.9rem; color: #000; cursor: pointer; text-decoration: underline; }
   main { margin-left: 250px; padding: 2rem 20px 3rem; }
   .sheet { max-width: 820px; margin: 0 auto; }
+  .ly svg { display: block; width: 100%; height: auto; color: #1d1d1b; }
+  .ly-narrow { display: none; }
+  @media (max-width: 820px) { .ly-wide { display: none; } .ly-narrow { display: block; } }
+  @media print { .ly-wide { display: block !important; } .ly-narrow { display: none !important; } }
   section.page { display: none; }
   section.page.current { display: block; }
   #home { max-width: 620px; }
@@ -184,7 +190,6 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   }
   @page { margin: 0.6in; }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/abcjs/6.4.4/abcjs-basic-min.js"></script>
 </head><body>
 """
 
@@ -208,11 +213,12 @@ def parse_abc(path):
 
 def build_sheet(paths, appendix=()):
     out = [SHEET_HEAD]
-    tunes, nav = [], []
+    nav = []
     sections = []
     n_curated = 0
     for n, path in enumerate(paths):
         title, composer, abc, extra, curated = parse_abc(path)
+        wide, narrow = lilyrender.render(path)
         n_curated += bool(curated)
         thumb = ' <span class="cur">&#10003; curated</span>' if curated else ""
         slug = path.stem
@@ -222,13 +228,13 @@ def build_sheet(paths, appendix=()):
                f'<h2 class="songtitle">{html.escape(title)}</h2>',
                f'<div class="composer">{html.escape(composer)}</div>',
                *([f'<div class="curated">&#10003; Curated &mdash; checked against a lead sheet from {html.escape(curated)}</div>'] if curated else []),
-               f'<div id="paper{n}"></div>']
+               f'<div class="ly ly-wide">{wide}</div>',
+               f'<div class="ly ly-narrow">{narrow}</div>']
         if extra:
             verses = "<br>\n".join(html.escape(v) for v in extra)
             sec.append(f'<div class="verses">{verses}</div>')
         sec.append("</section>")
         sections.append("\n".join(sec))
-        tunes.append(abc)
     out.append('<nav><div class="navtitle">Christmas Carols<span class="toggle">Songs &#9662;</span></div><ul>'
                '<li id="navhome"><span class="name">Home</span></li></ul>'
                '<hr><div class="label">Set list</div><ul>')
@@ -323,42 +329,8 @@ def build_sheet(paths, appendix=()):
 </section>""".replace("@@CURATED@@", str(n_curated)).replace("@@TOTAL@@", str(len(paths))))
     out.extend(sections)
     out.append("</div></main>")
-    out.append('<script type="application/json" id="tunes">')
-    out.append(json.dumps(tunes))
-    out.append("""</script>
-<script>
-  const tunes = JSON.parse(document.getElementById("tunes").textContent);
-  function renderTunes() {
-    const available = document.querySelector(".sheet").clientWidth - 30;
-    tunes.forEach((abc, n) => {
-      const opts = {
-        staffwidth: 760,
-        add_classes: true,
-        format: { gchordfont: "Helvetica 13 bold", vocalfont: "Georgia 13",
-                  partsfont: "Helvetica 14 italic" }
-      };
-      // A source line with more than 5 bars does not fit 760px and is clipped; wrap those tunes too.
-      const longLine = abc.split("\\n").some(l => !/^[A-Za-z%]:|^%/.test(l) && (l.match(/\\|/g) || []).length > 5);
-      if (available < 760) {
-        opts.staffwidth = Math.max(available, 480);
-        opts.wrap = { minSpacing: 1, maxSpacing: 2.7, preferredMeasuresPerLine: 3 };
-        if (available < 480) opts.responsive = "resize";
-      } else if (longLine) {
-        opts.wrap = { minSpacing: 1, maxSpacing: 2.7, preferredMeasuresPerLine: 4 };
-      }
-      ABCJS.renderAbc("paper" + n, abc, opts);
-    });
-  }
-  renderTunes();
-  let lastWidth = window.innerWidth, resizeTimer;
-  window.addEventListener("resize", () => {
-    if (window.innerWidth === lastWidth) return;
-    lastWidth = window.innerWidth;
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(renderTunes, 200);
-  });
-
-  const nav = document.querySelector("nav");
+    out.append("<script>")
+    out.append("""  const nav = document.querySelector("nav");
   document.querySelector("nav .navtitle").addEventListener("click", () => nav.classList.toggle("open"));
 
   function show(sectionId, navId, updateHash) {
