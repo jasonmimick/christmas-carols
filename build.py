@@ -318,13 +318,11 @@ def build_sheet(paths, appendix=()):
      print the entire songbook and bring it with you.</p>
   <div class="callout">
     <h2>Help us fix the music</h2>
-    <p>We're still checking every carol against published sheet music, and some have
-       wrong notes, lyrics under the wrong notes, or chords that clash. Each problem is
-       listed as an issue. If you spot a mistake or want to take one on, please jump in.</p>
-    <p><strong>@@CURATED@@ of @@TOTAL@@ carols are curated</strong> (marked with a green &#10003; curated tag in the set list).</p>
-    <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues">See the issues &rarr;</a>
+    <p>We checked every carol against published sheet music, but a few issues are
+       still left. If you find a mistake &mdash; a wrong note, a lyric under the wrong
+       note, or a chord that clashes &mdash; let us know and we will update the music.</p>
   </div>
-</section>""".replace("@@CURATED@@", str(n_curated)).replace("@@TOTAL@@", str(len(paths))))
+</section>""")
     out.extend(sections)
     out.append("</div></main>")
     out.append("<script>")
