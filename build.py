@@ -212,14 +212,14 @@ def build_sheet(paths):
     for n, path in enumerate(paths):
         title, composer, abc, extra, curated = parse_abc(path)
         n_curated += bool(curated)
-        thumb = ' <span class="cur">&#128077; curated</span>' if curated else ""
+        thumb = ' <span class="cur">&#10003; curated</span>' if curated else ""
         slug = path.stem
         nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}{thumb}</span>'
                    f'<span class="pr" title="Print this song">print</span></li>')
         sec = [f'<section class="page song" id="song{n}" data-slug="{html.escape(slug)}">',
                f'<h2 class="songtitle">{html.escape(title)}</h2>',
                f'<div class="composer">{html.escape(composer)}</div>',
-               *([f'<div class="curated">&#128077; Curated &mdash; checked against a lead sheet from {html.escape(curated)}</div>'] if curated else []),
+               *([f'<div class="curated">&#10003; Curated &mdash; checked against a lead sheet from {html.escape(curated)}</div>'] if curated else []),
                f'<div id="paper{n}"></div>']
         if extra:
             verses = "<br>\n".join(html.escape(v) for v in extra)
@@ -305,7 +305,7 @@ def build_sheet(paths):
     <p>We're still checking every carol against published sheet music, and some have
        wrong notes, lyrics under the wrong notes, or chords that clash. Each problem is
        listed as an issue. If you spot a mistake or want to take one on, please jump in.</p>
-    <p><strong>@@CURATED@@ of @@TOTAL@@ carols are curated</strong> (marked with a green &#128077; curated tag in the set list).</p>
+    <p><strong>@@CURATED@@ of @@TOTAL@@ carols are curated</strong> (marked with a green &#10003; curated tag in the set list).</p>
     <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues">See the issues &rarr;</a>
   </div>
 </section>""".replace("@@CURATED@@", str(n_curated)).replace("@@TOTAL@@", str(len(paths))))
