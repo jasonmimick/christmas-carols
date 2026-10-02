@@ -146,6 +146,8 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   #home .callout.practice .btn:hover { background: #8f6808; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
+  .curated { font-size: 0.85rem; color: #2f6b34; margin: 0.2rem 0 0.6rem; }
+  @media print { .curated { display: none; } }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
               text-align: center; margin: 0 0 0.8em; font-size: 1rem; }
   .verses { font-family: Georgia, serif; font-size: 1rem; margin: 1em auto 0;
@@ -185,9 +187,11 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
 
 def parse_abc(path):
     """Split an .abc file into (title, composer, abc-for-render, extra verse lines)."""
-    title, composer, abc, extra = "", "", [], []
+    title, composer, abc, extra, curated = "", "", [], [], ""
     for line in path.read_text().splitlines():
-        if line.startswith("T:"):
+        if line.startswith("%curated:"):
+            curated = line[9:].strip()
+        elif line.startswith("T:"):
             title = line[2:].strip()
         elif line.startswith("C:"):
             composer = line[2:].strip()
@@ -195,21 +199,25 @@ def parse_abc(path):
             extra.append(line[2:].strip())
         else:
             abc.append(line)
-    return title, composer, "\n".join(abc), extra
+    return title, composer, "\n".join(abc), extra, curated
 
 
 def build_sheet(paths):
     out = [SHEET_HEAD]
     tunes, nav = [], []
     sections = []
+    n_curated = 0
     for n, path in enumerate(paths):
-        title, composer, abc, extra = parse_abc(path)
+        title, composer, abc, extra, curated = parse_abc(path)
+        n_curated += bool(curated)
+        thumb = " &#128077;" if curated else ""
         slug = path.stem
-        nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
+        nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}{thumb}</span>'
                    f'<span class="pr" title="Print this song">print</span></li>')
         sec = [f'<section class="page song" id="song{n}" data-slug="{html.escape(slug)}">',
                f'<h2 class="songtitle">{html.escape(title)}</h2>',
                f'<div class="composer">{html.escape(composer)}</div>',
+               *([f'<div class="curated">&#128077; Curated &mdash; checked against a lead sheet from {html.escape(curated)}</div>'] if curated else []),
                f'<div id="paper{n}"></div>']
         if extra:
             verses = "<br>\n".join(html.escape(v) for v in extra)
@@ -295,9 +303,10 @@ def build_sheet(paths):
     <p>We're still checking every carol against published sheet music, and some have
        wrong notes, lyrics under the wrong notes, or chords that clash. Each problem is
        listed as an issue. If you spot a mistake or want to take one on, please jump in.</p>
+    <p><strong>@@CURATED@@ of @@TOTAL@@ carols are curated</strong> (&#128077; in the set list).</p>
     <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues">See the issues &rarr;</a>
   </div>
-</section>""")
+</section>""".replace("@@CURATED@@", str(n_curated)).replace("@@TOTAL@@", str(len(paths))))
     out.extend(sections)
     out.append("</div></main>")
     out.append('<script type="application/json" id="tunes">')
