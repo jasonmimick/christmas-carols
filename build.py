@@ -311,7 +311,6 @@ def build_sheet(paths, appendix=()):
   <div class="callout practice">
     <h2>Practice</h2>
     <p><strong>Saturday, October 17, 3:30&ndash;5 pm, Holy Mother &amp; Child Parish, Corinth</strong></p>
-    <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues/1">Practice details &rarr;</a>
   </div>
   <h2>The songbook</h2>
   <p>The set list on the left has all thirteen carols &mdash; click one to see its
