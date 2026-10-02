@@ -146,6 +146,8 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   #home .callout.practice .btn:hover { background: #8f6808; }
   h2.songtitle { font-family: "IM Fell English", Georgia, serif; font-weight: 400;
                  font-size: 2rem; text-align: center; margin: 0 0 0.1em; }
+  nav li .cur { font-size: 0.7rem; font-weight: normal; color: #fff; background: #2f6b34;
+    border-radius: 9px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; }
   .curated { font-size: 0.85rem; color: #2f6b34; margin: 0.2rem 0 0.6rem; }
   @media print { .curated { display: none; } }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
@@ -210,7 +212,7 @@ def build_sheet(paths):
     for n, path in enumerate(paths):
         title, composer, abc, extra, curated = parse_abc(path)
         n_curated += bool(curated)
-        thumb = " &#128077;" if curated else ""
+        thumb = ' <span class="cur">&#128077; curated</span>' if curated else ""
         slug = path.stem
         nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}{thumb}</span>'
                    f'<span class="pr" title="Print this song">print</span></li>')
@@ -303,7 +305,7 @@ def build_sheet(paths):
     <p>We're still checking every carol against published sheet music, and some have
        wrong notes, lyrics under the wrong notes, or chords that clash. Each problem is
        listed as an issue. If you spot a mistake or want to take one on, please jump in.</p>
-    <p><strong>@@CURATED@@ of @@TOTAL@@ carols are curated</strong> (&#128077; in the set list).</p>
+    <p><strong>@@CURATED@@ of @@TOTAL@@ carols are curated</strong> (marked with a green &#128077; curated tag in the set list).</p>
     <a class="btn" href="https://github.com/jasonmimick/christmas-carols/issues">See the issues &rarr;</a>
   </div>
 </section>""".replace("@@CURATED@@", str(n_curated)).replace("@@TOTAL@@", str(len(paths))))
