@@ -8,6 +8,8 @@ https://christmas-carols-cjm.pages.dev).
 - `build.py` — generates all HTML. **Home page copy lives here**, in `build_sheet()`.
 - `songs-abc/*.abc` — sheet-music songs → `songbook.html` (the site).
 - `songs/*.cho` — ChordPro text songs → `songbook-text.html`.
+- `appendix/*.txt` — plain-text extras shown under "Appendix" in the set list. First line is
+  the title, the rest is shown as preformatted text. Not part of the 13 curated carols.
 - `_redirects` — maps `/` to `/songbook.html`.
 - `dist/` — deploy folder, gitignored.
 
@@ -19,6 +21,9 @@ npx wrangler pages deploy dist --project-name christmas-carols --branch main
 ```
 
 ## Gotchas
+- A song is "curated" when its `.abc` has a `%curated: <source>` line under the header. That
+  shows a green check in the set list and on the song, and counts toward the home-page total.
+  Only add it after the song's notes, lyrics and chords were checked against that source.
 - `songbook.html` is generated. Edit `build.py` (or the song files), never the
   HTML by hand, or the next build wipes the change.
 - Deploys are direct upload with Wrangler. Pushing to GitHub does not deploy.

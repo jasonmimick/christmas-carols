@@ -1,0 +1,20 @@
+Jingle-Bell Rock
+Words and Music by Joe Beal and Jim Boothe
+Key of C. Moderate shuffle, swing (quarter note = 130).
+Chords only. Each | is one bar of 4 beats; two chords in a bar get 2 beats each.
+
+VERSE   "Jingle-bell, jingle-bell, jingle-bell rock ..."
+
+  | C   Cmaj7 | C        | C#o7     | Dm  G7   |
+  | Dm  G7    | Dm  G7   |
+
+  Verses 1 and 3 end:   | Dm       | G7#5     |   then back to the top
+  Verses 2 and 4 end:   | D7  G7   | C   C7   |   then on to the bridge
+
+BRIDGE  "What a bright time, it's the right time ..."
+
+  | F        | F#o7     | C        | ...
+
+  (The chart we have stops here; the rest of the bridge is missing.)
+
+Chord key:  o7 = diminished seventh,  #5 = sharp five,  maj7 = major seventh

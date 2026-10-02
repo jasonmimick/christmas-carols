@@ -150,6 +150,8 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
     border-radius: 9px; padding: 0.05rem 0.45rem; margin-left: 0.4rem; white-space: nowrap; }
   .curated { font-size: 0.85rem; color: #2f6b34; margin: 0.2rem 0 0.6rem; }
   @media print { .curated { display: none; } }
+  pre.plain { font-family: Menlo, Consolas, monospace; font-size: 0.85rem; line-height: 1.5;
+    white-space: pre-wrap; overflow-x: auto; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
               text-align: center; margin: 0 0 0.8em; font-size: 1rem; }
   .verses { font-family: Georgia, serif; font-size: 1rem; margin: 1em auto 0;
@@ -204,7 +206,7 @@ def parse_abc(path):
     return title, composer, "\n".join(abc), extra, curated
 
 
-def build_sheet(paths):
+def build_sheet(paths, appendix=()):
     out = [SHEET_HEAD]
     tunes, nav = [], []
     sections = []
@@ -231,6 +233,16 @@ def build_sheet(paths):
                '<li id="navhome"><span class="name">Home</span></li></ul>'
                '<hr><div class="label">Set list</div><ul>')
     out.extend(nav)
+    if appendix:
+        out.append('</ul><hr><div class="label">Appendix</div><ul>')
+        for k, path in enumerate(appendix):
+            n = len(paths) + k
+            title, *body = path.read_text().rstrip("\n").split("\n")
+            out.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
+                       f'<span class="pr" title="Print this song">print</span></li>')
+            sections.append(f'<section class="page song" id="song{n}" data-slug="{html.escape(path.stem)}">'
+                            f'<h2 class="songtitle">{html.escape(title)}</h2>'
+                            f'<pre class="plain">{html.escape(chr(10).join(body))}</pre></section>')
     out.append('</ul><span class="all" id="printall">Print entire songbook</span></nav>')
     out.append("""<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>
 <section class="page" id="home" data-slug="home">
@@ -386,7 +398,7 @@ def main():
     songs = [parse(p) for p in sorted((ROOT / "songs").glob("*.cho"))]
     (ROOT / "songbook-text.html").write_text(build(songs))
     sheets = sorted((ROOT / "songs-abc").glob("*.abc"))
-    (ROOT / "songbook.html").write_text(build_sheet(sheets))
+    (ROOT / "songbook.html").write_text(build_sheet(sheets, sorted((ROOT / "appendix").glob("*.txt"))))
     print(f"Wrote {len(songs)} text songs and {len(sheets)} sheet-music songs; "
           f"outputs: songbook.html, songbook-text.html")
 
