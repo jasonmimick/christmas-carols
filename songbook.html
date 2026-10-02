@@ -308,10 +308,14 @@ Chord key:  o7 = diminished seventh,  #5 = sharp five,  maj7 = major seventh</pr
         format: { gchordfont: "Helvetica 13 bold", vocalfont: "Georgia 13",
                   partsfont: "Helvetica 14 italic" }
       };
+      // A source line with more than 5 bars does not fit 760px and is clipped; wrap those tunes too.
+      const longLine = abc.split("\n").some(l => !/^[A-Za-z%]:|^%/.test(l) && (l.match(/\|/g) || []).length > 5);
       if (available < 760) {
         opts.staffwidth = Math.max(available, 480);
         opts.wrap = { minSpacing: 1, maxSpacing: 2.7, preferredMeasuresPerLine: 3 };
         if (available < 480) opts.responsive = "resize";
+      } else if (longLine) {
+        opts.wrap = { minSpacing: 1, maxSpacing: 2.7, preferredMeasuresPerLine: 4 };
       }
       ABCJS.renderAbc("paper" + n, abc, opts);
     });
