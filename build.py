@@ -220,9 +220,8 @@ def build_sheet(paths, appendix=()):
         title, composer, abc, extra, curated = parse_abc(path)
         wide, narrow = lilyrender.render(path)
         n_curated += bool(curated)
-        thumb = ' <span class="cur">&#10003; curated</span>' if curated else ""
         slug = path.stem
-        nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}{thumb}</span>'
+        nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
                    f'<span class="pr" title="Print this song">print</span></li>')
         sec = [f'<section class="page song" id="song{n}" data-slug="{html.escape(slug)}">',
                f'<h2 class="songtitle">{html.escape(title)}</h2>',
