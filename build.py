@@ -137,11 +137,11 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   .views a { flex: 1; text-align: center; font-size: 0.8rem; padding: 0.3rem 0; color: #000; text-decoration: none; }
   .views a.on { background: #222; color: #fff; font-weight: bold; }
   .chordsong .stanza { margin: 0 0 1.3em; break-inside: avoid; }
-  .chordsong .label { font-style: italic; font-weight: bold; margin-bottom: 0.2em; font-family: Georgia, serif; }
-  .chordsong .line { line-height: 1.3; font-family: Georgia, serif; font-size: 1.1rem; }
+  .chordsong .label { font-style: italic; font-weight: bold; margin-bottom: 0.2em; font-family: Menlo, Consolas, monospace; }
+  .chordsong .line { line-height: 1.3; font-family: Menlo, Consolas, "Courier New", monospace; font-size: 1rem; }
   .chordsong .seg { display: inline-block; vertical-align: bottom; white-space: pre; }
   .chordsong .chord { display: block; min-height: 1.3em; padding-right: 0.5em; color: #a3241e;
-                      font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 0.95rem; }
+                      font-family: inherit; font-weight: bold; font-size: inherit; }
   .chordsong .lyric { display: block; min-height: 1.3em; }
   .chordsong .meta { font-family: Helvetica, Arial, sans-serif; font-size: 0.85rem; color: #555;
                      text-align: center; margin: 0 0 1.2rem; }
