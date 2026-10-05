@@ -71,6 +71,13 @@ def render_song(number, song):
            f'<div class="meta">{html.escape(meta)}</div>']
     if song["note"]:
         out.append(f'<div class="note">{html.escape(song["note"])}</div>')
+    out.append(render_stanzas(song))
+    out.append("</section>")
+    return "\n".join(out)
+
+
+def render_stanzas(song):
+    out = []
     for stanza in song["stanzas"]:
         out.append('<div class="stanza">')
         for kind, text in stanza:
@@ -79,7 +86,6 @@ def render_song(number, song):
             else:
                 out.append(render_line(text))
         out.append("</div>")
-    out.append("</section>")
     return "\n".join(out)
 
 
@@ -127,6 +133,18 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   .ly-narrow { display: none; }
   @media (max-width: 820px) { .ly-wide { display: none; } .ly-narrow { display: block; } }
   @media print { .ly-wide { display: block !important; } .ly-narrow { display: none !important; } }
+  .views { display: flex; margin: 0 1rem 0.9rem; border: 1px solid #bbb; border-radius: 16px; overflow: hidden; }
+  .views a { flex: 1; text-align: center; font-size: 0.8rem; padding: 0.3rem 0; color: #000; text-decoration: none; }
+  .views a.on { background: #222; color: #fff; font-weight: bold; }
+  .chordsong .stanza { margin: 0 0 1.3em; break-inside: avoid; }
+  .chordsong .label { font-style: italic; font-weight: bold; margin-bottom: 0.2em; font-family: Georgia, serif; }
+  .chordsong .line { line-height: 1.3; font-family: Georgia, serif; font-size: 1.1rem; }
+  .chordsong .seg { display: inline-block; vertical-align: bottom; white-space: pre; }
+  .chordsong .chord { display: block; min-height: 1.3em; padding-right: 0.5em; color: #a3241e;
+                      font-family: Helvetica, Arial, sans-serif; font-weight: bold; font-size: 0.95rem; }
+  .chordsong .lyric { display: block; min-height: 1.3em; }
+  .chordsong .meta { font-family: Helvetica, Arial, sans-serif; font-size: 0.85rem; color: #555;
+                     text-align: center; margin: 0 0 1.2rem; }
   section.page { display: none; }
   section.page.current { display: block; }
   #home { max-width: 620px; }
@@ -211,14 +229,15 @@ def parse_abc(path):
     return title, composer, "\n".join(abc), extra, curated
 
 
-def build_sheet(paths, appendix=()):
+def build_sheet(paths, appendix=(), chords=None):
+    """chords=None builds the sheet-music page; chords={slug: song} builds the chords-over-lyrics page."""
     out = [SHEET_HEAD]
     nav = []
     sections = []
     n_curated = 0
     for n, path in enumerate(paths):
         title, composer, abc, extra, curated = parse_abc(path)
-        wide, narrow = lilyrender.render(path)
+        wide, narrow = ('', '') if chords is not None else lilyrender.render(path)
         n_curated += bool(curated)
         slug = path.stem
         nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
@@ -226,15 +245,24 @@ def build_sheet(paths, appendix=()):
         sec = [f'<section class="page song" id="song{n}" data-slug="{html.escape(slug)}">',
                f'<h2 class="songtitle">{html.escape(title)}</h2>',
                f'<div class="composer">{html.escape(composer)}</div>',
-               *([f'<div class="curated">&#10003; Curated &mdash; checked against a lead sheet from {html.escape(curated)}</div>'] if curated else []),
-               f'<div class="ly ly-wide">{wide}</div>',
-               f'<div class="ly ly-narrow">{narrow}</div>']
+               *([f'<div class="curated">&#10003; Curated &mdash; checked against a lead sheet from {html.escape(curated)}</div>'] if curated else [])]
+        if chords is not None:
+            song = chords[slug]
+            meta = " · ".join(x for x in (f'Key of {song["key"]}', song["time"]) if x)
+            sec.append(f'<div class="meta">{html.escape(meta)}</div>')
+            sec.append(f'<div class="chordsong">{render_stanzas(song)}</div>')
+            extra = []
+        else:
+            sec += [f'<div class="ly ly-wide">{wide}</div>', f'<div class="ly ly-narrow">{narrow}</div>']
         if extra:
             verses = "<br>\n".join(html.escape(v) for v in extra)
             sec.append(f'<div class="verses">{verses}</div>')
         sec.append("</section>")
         sections.append("\n".join(sec))
-    out.append('<nav><div class="navtitle">Christmas Carols<span class="toggle">Songs &#9662;</span></div><ul>'
+    views = ('<div class="views"><a href="/songbook" data-view="sheet"{}>Sheet music</a>'
+             '<a href="/chords" data-view="chords"{}>Chords &amp; lyrics</a></div>').format(
+        *((' class="on"', "") if chords is None else ("", ' class="on"')))
+    out.append('<nav><div class="navtitle">Christmas Carols<span class="toggle">Songs &#9662;</span></div>' + views + '<ul>'
                '<li id="navhome"><span class="name">Home</span></li></ul>'
                '<hr><div class="label">Set list</div><ul>')
     out.extend(nav)
@@ -337,6 +365,9 @@ def build_sheet(paths, appendix=()):
     sec.classList.add("current");
     document.getElementById(navId).classList.add("active");
     if (updateHash) history.replaceState(null, "", "#" + sec.dataset.slug);
+    document.querySelectorAll(".views a").forEach(a => {
+      a.href = (a.dataset.view === "chords" ? "/chords" : "/songbook") + (sec.dataset.slug ? "#" + sec.dataset.slug : "");
+    });
     window.scrollTo(0, 0);
   }
 
@@ -371,8 +402,10 @@ def main():
     (ROOT / "songbook-text.html").write_text(build(songs))
     sheets = sorted((ROOT / "songs-abc").glob("*.abc"))
     (ROOT / "songbook.html").write_text(build_sheet(sheets, sorted((ROOT / "appendix").glob("*.txt"))))
+    by_slug = {p.stem: parse(p) for p in sorted((ROOT / "songs").glob("*.cho"))}
+    (ROOT / "chords.html").write_text(build_sheet(sheets, sorted((ROOT / "appendix").glob("*.txt")), chords=by_slug))
     print(f"Wrote {len(songs)} text songs and {len(sheets)} sheet-music songs; "
-          f"outputs: songbook.html, songbook-text.html")
+          f"outputs: songbook.html, chords.html, songbook-text.html")
 
 
 if __name__ == "__main__":
