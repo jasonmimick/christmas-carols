@@ -76,10 +76,16 @@ def render_song(number, song):
     return "\n".join(out)
 
 
-def render_stanzas(song):
-    out = []
+def render_stanzas(song, numbered=False):
+    """numbered=True (chords page): unlabeled stanzas become 'Verse N', chorus/refrain stanzas get a marked block."""
+    out, verse = [], 0
     for stanza in song["stanzas"]:
-        out.append('<div class="stanza">')
+        labeled = stanza[0][0] == "label"
+        cls = "stanza refrain" if labeled else "stanza"
+        out.append(f'<div class="{cls}">')
+        if numbered and not labeled and len(song["stanzas"]) > 1:
+            verse += 1
+            out.append(f'<div class="label">Verse {verse}</div>')
         for kind, text in stanza:
             if kind == "label":
                 out.append(f'<div class="label">{html.escape(text)}</div>')
@@ -136,7 +142,10 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   .views { display: flex; margin: 0 1rem 0.9rem; border: 1px solid #bbb; border-radius: 16px; overflow: hidden; }
   .views a { flex: 1; text-align: center; font-size: 0.8rem; padding: 0.3rem 0; color: #000; text-decoration: none; }
   .views a.on { background: #222; color: #fff; font-weight: bold; }
-  .chordsong .stanza { margin: 0 0 1.3em; break-inside: avoid; }
+  .chordsong .stanza { margin: 0; padding: 1.1em 0 1.1em; border-top: 1px solid #ccc; break-inside: avoid; }
+  .chordsong .stanza:first-child { border-top: none; }
+  .chordsong .stanza.refrain { background: #f6f3ee; border-left: 4px solid #a3241e; padding-left: 1em; }
+  .chordsong .stanza.refrain .label { color: #a3241e; }
   .chordsong .label { font-style: italic; font-weight: bold; margin-bottom: 0.2em; font-family: Menlo, Consolas, monospace; }
   .chordsong .line { line-height: 1.3; font-family: Menlo, Consolas, "Courier New", monospace; font-size: 1rem; }
   .chordsong .seg { display: inline-block; vertical-align: bottom; white-space: pre; }
@@ -250,7 +259,7 @@ def build_sheet(paths, appendix=(), chords=None):
             song = chords[slug]
             meta = " · ".join(x for x in (f'Key of {song["key"]}', song["time"]) if x)
             sec.append(f'<div class="meta">{html.escape(meta)}</div>')
-            sec.append(f'<div class="chordsong">{render_stanzas(song)}</div>')
+            sec.append(f'<div class="chordsong">{render_stanzas(song, numbered=True)}</div>')
             extra = []
         else:
             sec += [f'<div class="ly ly-wide">{wide}</div>', f'<div class="ly ly-narrow">{narrow}</div>']

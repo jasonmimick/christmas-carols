@@ -31,7 +31,10 @@
   .views { display: flex; margin: 0 1rem 0.9rem; border: 1px solid #bbb; border-radius: 16px; overflow: hidden; }
   .views a { flex: 1; text-align: center; font-size: 0.8rem; padding: 0.3rem 0; color: #000; text-decoration: none; }
   .views a.on { background: #222; color: #fff; font-weight: bold; }
-  .chordsong .stanza { margin: 0 0 1.3em; break-inside: avoid; }
+  .chordsong .stanza { margin: 0; padding: 1.1em 0 1.1em; border-top: 1px solid #ccc; break-inside: avoid; }
+  .chordsong .stanza:first-child { border-top: none; }
+  .chordsong .stanza.refrain { background: #f6f3ee; border-left: 4px solid #a3241e; padding-left: 1em; }
+  .chordsong .stanza.refrain .label { color: #a3241e; }
   .chordsong .label { font-style: italic; font-weight: bold; margin-bottom: 0.2em; font-family: Menlo, Consolas, monospace; }
   .chordsong .line { line-height: 1.3; font-family: Menlo, Consolas, "Courier New", monospace; font-size: 1rem; }
   .chordsong .seg { display: inline-block; vertical-align: bottom; white-space: pre; }
@@ -202,6 +205,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from Ultimate Guitar (Misc Christmas chord sheet, key of G)</div>
 <div class="meta">Key of G · 4/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Deck the halls with </span></span><span class="seg"><span class="chord">G</span><span class="lyric">boughs of holly,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Fa la la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la, la </span></span><span class="seg"><span class="chord">D</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la.</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">&#x27;Tis the season </span></span><span class="seg"><span class="chord">G</span><span class="lyric">to be jolly,</span></span></div>
@@ -212,6 +216,7 @@
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Fa la la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la, la </span></span><span class="seg"><span class="chord">D</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">See the blazing </span></span><span class="seg"><span class="chord">G</span><span class="lyric">Yule before us,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Fa la la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">D</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la.</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Strike the harp and </span></span><span class="seg"><span class="chord">G</span><span class="lyric">join the chorus,</span></span></div>
@@ -222,6 +227,7 @@
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Fa la la la la la </span></span><span class="seg"><span class="chord">D</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Fast away the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">old year passes,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Fa la la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">D</span><span class="lyric">la la </span></span><span class="seg"><span class="chord">G</span><span class="lyric">la.</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Hail the new, ye </span></span><span class="seg"><span class="chord">G</span><span class="lyric">lads and lasses,</span></span></div>
@@ -237,7 +243,7 @@
 <div class="composer">African-American spiritual; verses by John W. Work II</div>
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of G · 4/4</div>
-<div class="chordsong"><div class="stanza">
+<div class="chordsong"><div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Go, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">tell it on the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">mountain,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">Over the hills and </span></span><span class="seg"><span class="chord">G</span><span class="lyric">everywhere;</span></span></div>
@@ -245,30 +251,33 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">That </span></span><span class="seg"><span class="chord">C</span><span class="lyric">Jesus </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">Christ is </span></span><span class="seg"><span class="chord">G</span><span class="lyric">born.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">While shepherds kept their watch</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">ing</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O&#x27;er </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">silent flocks by </span></span><span class="seg"><span class="chord">G</span><span class="lyric">night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Behold throughout the heav</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">ens</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">There </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">shone a holy </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">light.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="lyric">The shepherds feared and trembled</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">When lo! above the earth</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Rang out the angel chorus</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">That hailed our Savior&#x27;s birth.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="lyric">Down in a lowly manger</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">The humble Christ was born,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And God sent us salvation</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">That blessed Christmas morn.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div></div>
 </section>
@@ -278,6 +287,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from Tom</div>
 <div class="meta">Key of Em · 4/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">God </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">rest ye merry, gentlemen,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Let </span></span><span class="seg"><span class="chord">C</span><span class="lyric">nothing you dis</span></span><span class="seg"><span class="chord">B7</span><span class="lyric">may,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Re</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">member Christ our Savior</span></span></div>
@@ -285,13 +295,14 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">To </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">save us all from </span></span><span class="seg"><span class="chord">G</span><span class="lyric">Satan&#x27;s power</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">When </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">we were gone a</span></span><span class="seg"><span class="chord">D</span><span class="lyric">stray.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">tidings of </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">comfort and </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">joy,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Comfort and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">joy,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">tidings of </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">comfort and </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">joy.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="lyric">In Bethlehem, in Israel,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">This blessed Babe was born,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And laid within a manger</span></span></div>
@@ -299,10 +310,11 @@
 <div class="line"><span class="seg"><span class="lyric">The which His Mother Mary</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Did nothing take in scorn.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="lyric">Now to the Lord sing praises,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">All you within this place,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And with true love and brotherhood</span></span></div>
@@ -310,7 +322,7 @@
 <div class="line"><span class="seg"><span class="lyric">This holy tide of Christmas</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">All other doth deface.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div></div>
 </section>
@@ -320,6 +332,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of G · 2/2</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Good King </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">Wences</span></span><span class="seg"><span class="chord">G</span><span class="lyric">las looked </span></span><span class="seg"><span class="chord">D</span><span class="lyric">out</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">On the </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">feast of </span></span><span class="seg"><span class="chord">G</span><span class="lyric">Stephen,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">When the </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">snow lay </span></span><span class="seg"><span class="chord">G</span><span class="lyric">round a</span></span><span class="seg"><span class="chord">D</span><span class="lyric">bout,</span></span></div>
@@ -330,6 +343,7 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Gathering winter </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">fu</span></span><span class="seg"><span class="chord">C</span><span class="lyric">-</span></span><span class="seg"><span class="chord">G</span><span class="lyric">el.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">&quot;Hither, </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">page, and </span></span><span class="seg"><span class="chord">G</span><span class="lyric">stand by </span></span><span class="seg"><span class="chord">D</span><span class="lyric">me,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">If thou </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">know&#x27;st it, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">telling,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Yonder </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">peasant, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">who is </span></span><span class="seg"><span class="chord">D</span><span class="lyric">he?</span></span></div>
@@ -340,6 +354,7 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">By Saint Agnes&#x27; </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">foun</span></span><span class="seg"><span class="chord">C</span><span class="lyric">-</span></span><span class="seg"><span class="chord">G</span><span class="lyric">tain.&quot;</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">&quot;Bring me </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">flesh and </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bring me </span></span><span class="seg"><span class="chord">D</span><span class="lyric">wine,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Bring me </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">pine logs </span></span><span class="seg"><span class="chord">G</span><span class="lyric">hither;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Thou and </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">I will </span></span><span class="seg"><span class="chord">G</span><span class="lyric">see him </span></span><span class="seg"><span class="chord">D</span><span class="lyric">dine</span></span></div>
@@ -350,6 +365,7 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">And the bitter </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">weath</span></span><span class="seg"><span class="chord">C</span><span class="lyric">-</span></span><span class="seg"><span class="chord">G</span><span class="lyric">er.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">&quot;Sire, the </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">night is </span></span><span class="seg"><span class="chord">G</span><span class="lyric">darker </span></span><span class="seg"><span class="chord">D</span><span class="lyric">now,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">And the </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">wind blows </span></span><span class="seg"><span class="chord">G</span><span class="lyric">stronger;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Fails my </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">heart, I </span></span><span class="seg"><span class="chord">G</span><span class="lyric">know not </span></span><span class="seg"><span class="chord">D</span><span class="lyric">how,</span></span></div>
@@ -360,6 +376,7 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Freeze thy blood less </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">cold</span></span><span class="seg"><span class="chord">C</span><span class="lyric">-</span></span><span class="seg"><span class="chord">G</span><span class="lyric">ly.&quot;</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 5</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">In his </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">master&#x27;s </span></span><span class="seg"><span class="chord">G</span><span class="lyric">steps he </span></span><span class="seg"><span class="chord">D</span><span class="lyric">trod,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Where the </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">snow lay </span></span><span class="seg"><span class="chord">G</span><span class="lyric">dinted;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Heat was </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">in the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">very </span></span><span class="seg"><span class="chord">D</span><span class="lyric">sod</span></span></div>
@@ -376,6 +393,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of G · 4/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Hark! the herald angels </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">sing,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">&quot;Glory </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">to the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">new</span></span><span class="seg"><span class="chord">D7</span><span class="lyric">born </span></span><span class="seg"><span class="chord">G</span><span class="lyric">King;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Peace on earth and </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">mercy </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">mild,</span></span></div>
@@ -385,12 +403,13 @@
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">With th&#x27;an</span></span><span class="seg"><span class="chord">G</span><span class="lyric">gelic </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">host </span></span><span class="seg"><span class="chord">E</span><span class="lyric">pro</span></span><span class="seg"><span class="chord">Am</span><span class="lyric">claim,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">&quot;Christ is </span></span><span class="seg"><span class="chord">G</span><span class="lyric">born in Beth</span></span><span class="seg"><span class="chord">D7</span><span class="lyric">le</span></span><span class="seg"><span class="chord">G</span><span class="lyric">hem.&quot;</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Refrain</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Hark! the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">herald </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">an</span></span><span class="seg"><span class="chord">E</span><span class="lyric">gels </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">sing,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">&quot;Glory </span></span><span class="seg"><span class="chord">G</span><span class="lyric">to the new</span></span><span class="seg"><span class="chord">D7</span><span class="lyric">born </span></span><span class="seg"><span class="chord">G</span><span class="lyric">King.&quot;</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="lyric">Christ, by highest heav&#x27;n adored;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Christ, the everlasting Lord;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Late in time behold Him come,</span></span></div>
@@ -400,10 +419,11 @@
 <div class="line"><span class="seg"><span class="lyric">Pleased as man with men to dwell,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Jesus, our Emmanuel!</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Refrain</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="lyric">Hail the heav&#x27;n-born Prince of Peace;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Hail the Sun of Righteousness;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Light and life to all He brings,</span></span></div>
@@ -413,10 +433,11 @@
 <div class="line"><span class="seg"><span class="lyric">Born to raise the sons of earth,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Born to give them second birth!</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Refrain</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="lyric">Come, desire of nations, come,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Fix in us Thy humble home;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Rise, the woman&#x27;s conquering seed,</span></span></div>
@@ -426,7 +447,7 @@
 <div class="line"><span class="seg"><span class="lyric">Oh, to all Thyself impart,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Formed in each believing heart.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Refrain</div>
 </div></div>
 </section>
@@ -436,6 +457,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from Tom</div>
 <div class="meta">Key of G · 6/8</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">It </span></span><span class="seg"><span class="chord">G</span><span class="lyric">came up</span></span><span class="seg"><span class="chord">C</span><span class="lyric">on the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">midnight clear,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">That </span></span><span class="seg"><span class="chord">C</span><span class="lyric">glorious </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">song of </span></span><span class="seg"><span class="chord">D</span><span class="lyric">old,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">From </span></span><span class="seg"><span class="chord">G</span><span class="lyric">angels </span></span><span class="seg"><span class="chord">C</span><span class="lyric">bending </span></span><span class="seg"><span class="chord">G</span><span class="lyric">near the earth</span></span></div>
@@ -446,6 +468,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">To </span></span><span class="seg"><span class="chord">C</span><span class="lyric">hear the </span></span><span class="seg"><span class="chord">D/F#</span><span class="lyric">angels </span></span><span class="seg"><span class="chord">G</span><span class="lyric">sing.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="lyric">Still through the cloven skies they come</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">With peaceful wings unfurled,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And still their heavenly music floats</span></span></div>
@@ -456,6 +479,7 @@
 <div class="line"><span class="seg"><span class="lyric">The blessed angels sing.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="lyric">And ye, beneath life&#x27;s crushing load,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Whose forms are bending low,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Who toil along the climbing way</span></span></div>
@@ -466,6 +490,7 @@
 <div class="line"><span class="seg"><span class="lyric">And hear the angels sing.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="lyric">For lo! the days are hastening on,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">By prophet bards foretold,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">When with the ever-circling years</span></span></div>
@@ -482,6 +507,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of G · 4/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Dashing through the snow</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">In a one-horse open </span></span><span class="seg"><span class="chord">C</span><span class="lyric">sleigh,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">O&#x27;er the fields we </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">go,</span></span></div>
@@ -491,7 +517,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">What </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">fun it is to </span></span><span class="seg"><span class="chord">G</span><span class="lyric">ride and sing</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">A </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">sleighing song to</span></span><span class="seg"><span class="chord">G</span><span class="lyric">night!</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Jingle bells, jingle bells,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Jingle all the way,</span></span></div>
@@ -503,6 +529,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">In a </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">one-horse open </span></span><span class="seg"><span class="chord">G</span><span class="lyric">sleigh.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="lyric">A day or two ago</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">I thought I&#x27;d take a ride,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And soon Miss Fannie Bright</span></span></div>
@@ -512,10 +539,11 @@
 <div class="line"><span class="seg"><span class="lyric">He got into a drifted bank</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And then we got upsot.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="lyric">A day or two ago,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">The story I must tell,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">I went out on the snow,</span></span></div>
@@ -525,10 +553,11 @@
 <div class="line"><span class="seg"><span class="lyric">He laughed as there I sprawling lie,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">But quickly drove away.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="lyric">Now the ground is white,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Go it while you&#x27;re young,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Take the girls tonight</span></span></div>
@@ -538,7 +567,7 @@
 <div class="line"><span class="seg"><span class="lyric">Hitch him to an open sleigh</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">And crack! you&#x27;ll take the lead.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 </div></div>
 </section>
@@ -548,6 +577,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of D · 2/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">D</span><span class="lyric">Joy to the world! the Lord </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">is </span></span><span class="seg"><span class="chord">D</span><span class="lyric">come;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Let </span></span><span class="seg"><span class="chord">G</span><span class="lyric">earth re</span></span><span class="seg"><span class="chord">A</span><span class="lyric">ceive her </span></span><span class="seg"><span class="chord">D</span><span class="lyric">King;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Let every heart prepare Him room,</span></span></div>
@@ -556,6 +586,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">And </span></span><span class="seg"><span class="chord">D</span><span class="lyric">heaven, and heaven and na</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ture </span></span><span class="seg"><span class="chord">D</span><span class="lyric">sing.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">D</span><span class="lyric">Joy to the world! the Sav</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ior </span></span><span class="seg"><span class="chord">D</span><span class="lyric">reigns;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Let </span></span><span class="seg"><span class="chord">G</span><span class="lyric">men their </span></span><span class="seg"><span class="chord">A</span><span class="lyric">songs em</span></span><span class="seg"><span class="chord">D</span><span class="lyric">ploy;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">While fields and floods, rocks, hills, and plains</span></span></div>
@@ -564,6 +595,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Re</span></span><span class="seg"><span class="chord">D</span><span class="lyric">peat, repeat the sound</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ing </span></span><span class="seg"><span class="chord">D</span><span class="lyric">joy.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">D</span><span class="lyric">No more let sins and sor</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">rows </span></span><span class="seg"><span class="chord">D</span><span class="lyric">grow,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Nor </span></span><span class="seg"><span class="chord">G</span><span class="lyric">thorns in</span></span><span class="seg"><span class="chord">A</span><span class="lyric">fest the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">ground;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">He comes to make His blessings flow</span></span></div>
@@ -572,6 +604,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Far </span></span><span class="seg"><span class="chord">D</span><span class="lyric">as, far as the curse </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">is </span></span><span class="seg"><span class="chord">D</span><span class="lyric">found.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="chord">D</span><span class="lyric">He rules the world with truth </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">grace,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">And </span></span><span class="seg"><span class="chord">G</span><span class="lyric">makes the </span></span><span class="seg"><span class="chord">A</span><span class="lyric">nations </span></span><span class="seg"><span class="chord">D</span><span class="lyric">prove</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">The glories of His righteousness,</span></span></div>
@@ -586,11 +619,12 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of G · 4/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">O come, all ye </span></span><span class="seg"><span class="chord">D</span><span class="lyric">faithful, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">joyful </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">and tri</span></span><span class="seg"><span class="chord">G</span><span class="lyric">um</span></span><span class="seg"><span class="chord">D</span><span class="lyric">phant,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Em</span><span class="lyric">O come </span></span><span class="seg"><span class="chord">A</span><span class="lyric">ye, O </span></span><span class="seg"><span class="chord">D</span><span class="lyric">come </span></span><span class="seg"><span class="chord">G</span><span class="lyric">ye to </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Beth</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">le</span></span><span class="seg"><span class="chord">D</span><span class="lyric">hem;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Come </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">and be</span></span><span class="seg"><span class="chord">D7</span><span class="lyric">hold </span></span><span class="seg"><span class="chord">G</span><span class="lyric">Him, </span></span><span class="seg"><span class="chord">D</span><span class="lyric">born the </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">King of </span></span><span class="seg"><span class="chord">D</span><span class="lyric">angels;</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">O come, let </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">us a</span></span><span class="seg"><span class="chord">G</span><span class="lyric">dore Him,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O come, let </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">us a</span></span><span class="seg"><span class="chord">G</span><span class="lyric">dore </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Him,</span></span></div>
@@ -598,11 +632,12 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Christ </span></span><span class="seg"><span class="chord">D</span><span class="lyric">the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">Lord.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="lyric">Sing, choirs of angels, sing in exultation,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Sing, all ye citizens of heaven above;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Glory to God, glory in the highest;</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">O come, let </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">us a</span></span><span class="seg"><span class="chord">G</span><span class="lyric">dore Him,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O come, let </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">us a</span></span><span class="seg"><span class="chord">G</span><span class="lyric">dore </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Him,</span></span></div>
@@ -610,11 +645,12 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Christ </span></span><span class="seg"><span class="chord">D</span><span class="lyric">the </span></span><span class="seg"><span class="chord">G</span><span class="lyric">Lord.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="lyric">Yea, Lord, we greet Thee, born this happy morning,</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Jesus, to Thee be glory given;</span></span></div>
 <div class="line"><span class="seg"><span class="lyric">Word of the Father, now in flesh appearing;</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">O come, let </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">us a</span></span><span class="seg"><span class="chord">G</span><span class="lyric">dore Him,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O come, let </span></span><span class="seg"><span class="chord">D7</span><span class="lyric">us a</span></span><span class="seg"><span class="chord">G</span><span class="lyric">dore </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Him,</span></span></div>
@@ -628,6 +664,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of C · 4/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">O holy night! the </span></span><span class="seg"><span class="chord">F</span><span class="lyric">stars are brightly </span></span><span class="seg"><span class="chord">C</span><span class="lyric">shining,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">It is the night of the </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">dear Savior&#x27;s </span></span><span class="seg"><span class="chord">C</span><span class="lyric">birth.</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Long lay the world in </span></span><span class="seg"><span class="chord">F</span><span class="lyric">sin and error </span></span><span class="seg"><span class="chord">C</span><span class="lyric">pin</span></span><span class="seg"><span class="chord">C7</span><span class="lyric">ing,</span></span></div>
@@ -636,11 +673,13 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">For </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">yonder breaks a </span></span><span class="seg"><span class="chord">C</span><span class="lyric">new and glorious morn.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Fall on your </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">knees! Oh, </span></span><span class="seg"><span class="chord">Dm</span><span class="lyric">hear the angel </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">voices!</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O </span></span><span class="seg"><span class="chord">C</span><span class="lyric">night </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">di</span></span><span class="seg"><span class="chord">C</span><span class="lyric">vine! </span></span><span class="seg"><span class="chord">F</span><span class="lyric">O </span></span><span class="seg"><span class="chord">C</span><span class="lyric">night </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">when Christ was </span></span><span class="seg"><span class="chord">C</span><span class="lyric">born!</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">O </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">night di</span></span><span class="seg"><span class="chord">C</span><span class="lyric">vine! </span></span><span class="seg"><span class="chord">Dm</span><span class="lyric">O </span></span><span class="seg"><span class="chord">C</span><span class="lyric">night, </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">O night di</span></span><span class="seg"><span class="chord">C</span><span class="lyric">vine!</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Led by the light of </span></span><span class="seg"><span class="chord">F</span><span class="lyric">faith serenely </span></span><span class="seg"><span class="chord">C</span><span class="lyric">beaming,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">With glowing hearts by his </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">cradle we </span></span><span class="seg"><span class="chord">C</span><span class="lyric">stand.</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">So, led by light of </span></span><span class="seg"><span class="chord">F</span><span class="lyric">a star sweetly </span></span><span class="seg"><span class="chord">C</span><span class="lyric">gleam</span></span><span class="seg"><span class="chord">C7</span><span class="lyric">ing,</span></span></div>
@@ -649,11 +688,13 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">In </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">all our trials </span></span><span class="seg"><span class="chord">C</span><span class="lyric">born to be our friend.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">He knows our </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">need, to </span></span><span class="seg"><span class="chord">Dm</span><span class="lyric">our weakness no </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">stranger.</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Be</span></span><span class="seg"><span class="chord">C</span><span class="lyric">hold </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">your </span></span><span class="seg"><span class="chord">C</span><span class="lyric">King, </span></span><span class="seg"><span class="chord">F</span><span class="lyric">be</span></span><span class="seg"><span class="chord">C</span><span class="lyric">fore </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">him lowly </span></span><span class="seg"><span class="chord">C</span><span class="lyric">bend!</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Be</span></span><span class="seg"><span class="chord">G7</span><span class="lyric">hold your </span></span><span class="seg"><span class="chord">C</span><span class="lyric">King, </span></span><span class="seg"><span class="chord">Dm</span><span class="lyric">your </span></span><span class="seg"><span class="chord">C</span><span class="lyric">King, </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">before him </span></span><span class="seg"><span class="chord">C</span><span class="lyric">bend!</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 5</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Truly he taught us </span></span><span class="seg"><span class="chord">F</span><span class="lyric">to love one an</span></span><span class="seg"><span class="chord">C</span><span class="lyric">other;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">His law is love and his </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">gospel is </span></span><span class="seg"><span class="chord">C</span><span class="lyric">peace.</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Chains shall he break, for </span></span><span class="seg"><span class="chord">F</span><span class="lyric">the slave is our </span></span><span class="seg"><span class="chord">C</span><span class="lyric">broth</span></span><span class="seg"><span class="chord">C7</span><span class="lyric">er,</span></span></div>
@@ -662,6 +703,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Let </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">all within us </span></span><span class="seg"><span class="chord">C</span><span class="lyric">praise his holy name.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 6</div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Christ is the </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">Lord! Then </span></span><span class="seg"><span class="chord">Dm</span><span class="lyric">ever, ever </span></span><span class="seg"><span class="chord">Am</span><span class="lyric">praise we,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">His </span></span><span class="seg"><span class="chord">C</span><span class="lyric">power </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">and </span></span><span class="seg"><span class="chord">C</span><span class="lyric">glo</span></span><span class="seg"><span class="chord">F</span><span class="lyric">ry </span></span><span class="seg"><span class="chord">C</span><span class="lyric">ev</span></span><span class="seg"><span class="chord">G7</span><span class="lyric">ermore pro</span></span><span class="seg"><span class="chord">C</span><span class="lyric">claim!</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">His </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">power and </span></span><span class="seg"><span class="chord">C</span><span class="lyric">glo</span></span><span class="seg"><span class="chord">Dm</span><span class="lyric">ry </span></span><span class="seg"><span class="chord">C</span><span class="lyric">ev</span></span><span class="seg"><span class="chord">G7</span><span class="lyric">ermore pro</span></span><span class="seg"><span class="chord">C</span><span class="lyric">claim!</span></span></div>
@@ -673,6 +715,7 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of C · 3/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Silent night, holy night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G7</span><span class="lyric">All is calm, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">all is bright</span></span></div>
 <div class="line"><span class="seg"><span class="chord">F</span><span class="lyric">Round yon virgin </span></span><span class="seg"><span class="chord">C</span><span class="lyric">mother and child,</span></span></div>
@@ -681,6 +724,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Sleep in </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">heavenly </span></span><span class="seg"><span class="chord">C</span><span class="lyric">peace.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Silent night, holy night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G7</span><span class="lyric">Shepherds quake </span></span><span class="seg"><span class="chord">C</span><span class="lyric">at the sight;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">F</span><span class="lyric">Glories stream from </span></span><span class="seg"><span class="chord">C</span><span class="lyric">heaven afar,</span></span></div>
@@ -689,6 +733,7 @@
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Christ the </span></span><span class="seg"><span class="chord">G7</span><span class="lyric">Savior is </span></span><span class="seg"><span class="chord">C</span><span class="lyric">born.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">C</span><span class="lyric">Silent night, holy night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G7</span><span class="lyric">Son of God, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">love&#x27;s pure light;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">F</span><span class="lyric">Radiant beams from </span></span><span class="seg"><span class="chord">C</span><span class="lyric">Thy holy face,</span></span></div>
@@ -703,34 +748,37 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of D · 3/4</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">The </span></span><span class="seg"><span class="chord">D</span><span class="lyric">first </span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">No</span></span><span class="seg"><span class="chord">A</span><span class="lyric">el </span></span><span class="seg"><span class="chord">G</span><span class="lyric">the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">angel </span></span><span class="seg"><span class="chord">G</span><span class="lyric">did </span></span><span class="seg"><span class="chord">D</span><span class="lyric">say,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Was to </span></span><span class="seg"><span class="chord">D</span><span class="lyric">certain </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">poor </span></span><span class="seg"><span class="chord">D</span><span class="lyric">shep</span></span><span class="seg"><span class="chord">G</span><span class="lyric">herds </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">in </span></span><span class="seg"><span class="chord">D</span><span class="lyric">fields as </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">they </span></span><span class="seg"><span class="chord">D</span><span class="lyric">lay;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">In </span></span><span class="seg"><span class="chord">D</span><span class="lyric">fields </span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">where </span></span><span class="seg"><span class="chord">D</span><span class="lyric">they </span></span><span class="seg"><span class="chord">G</span><span class="lyric">lay </span></span><span class="seg"><span class="chord">D</span><span class="lyric">keeping </span></span><span class="seg"><span class="chord">G</span><span class="lyric">their </span></span><span class="seg"><span class="chord">D</span><span class="lyric">sheep,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">On a </span></span><span class="seg"><span class="chord">D</span><span class="lyric">cold win</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ter&#x27;s </span></span><span class="seg"><span class="chord">D</span><span class="lyric">night </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">that </span></span><span class="seg"><span class="chord">D</span><span class="lyric">was </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">so </span></span><span class="seg"><span class="chord">D</span><span class="lyric">deep.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">No</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el, </span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">No</span></span><span class="seg"><span class="chord">F#m</span><span class="lyric">el, </span></span><span class="seg"><span class="chord">D</span><span class="lyric">No</span></span><span class="seg"><span class="chord">G</span><span class="lyric">el, No</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Bm</span><span class="lyric">Born </span></span><span class="seg"><span class="chord">D</span><span class="lyric">is </span></span><span class="seg"><span class="chord">G</span><span class="lyric">the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">King </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">of </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Is</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ra</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">They </span></span><span class="seg"><span class="chord">D</span><span class="lyric">look</span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">ed </span></span><span class="seg"><span class="chord">A</span><span class="lyric">up </span></span><span class="seg"><span class="chord">G</span><span class="lyric">and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">saw </span></span><span class="seg"><span class="chord">G</span><span class="lyric">a </span></span><span class="seg"><span class="chord">D</span><span class="lyric">star,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Shining </span></span><span class="seg"><span class="chord">D</span><span class="lyric">in </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">east, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">be</span></span><span class="seg"><span class="chord">D</span><span class="lyric">yond </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">them </span></span><span class="seg"><span class="chord">D</span><span class="lyric">far;</span></span></div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">And </span></span><span class="seg"><span class="chord">D</span><span class="lyric">to </span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">earth </span></span><span class="seg"><span class="chord">G</span><span class="lyric">it </span></span><span class="seg"><span class="chord">D</span><span class="lyric">gave </span></span><span class="seg"><span class="chord">G</span><span class="lyric">great </span></span><span class="seg"><span class="chord">D</span><span class="lyric">light,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">And </span></span><span class="seg"><span class="chord">D</span><span class="lyric">so it </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">con</span></span><span class="seg"><span class="chord">D</span><span class="lyric">tin</span></span><span class="seg"><span class="chord">G</span><span class="lyric">ued </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">both </span></span><span class="seg"><span class="chord">D</span><span class="lyric">day </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">night.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">No</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el, </span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">No</span></span><span class="seg"><span class="chord">F#m</span><span class="lyric">el, </span></span><span class="seg"><span class="chord">D</span><span class="lyric">No</span></span><span class="seg"><span class="chord">G</span><span class="lyric">el, No</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Bm</span><span class="lyric">Born </span></span><span class="seg"><span class="chord">D</span><span class="lyric">is </span></span><span class="seg"><span class="chord">G</span><span class="lyric">the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">King </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">of </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Is</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ra</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">Then </span></span><span class="seg"><span class="chord">D</span><span class="lyric">en</span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">tered </span></span><span class="seg"><span class="chord">A</span><span class="lyric">in </span></span><span class="seg"><span class="chord">G</span><span class="lyric">those </span></span><span class="seg"><span class="chord">D</span><span class="lyric">wise </span></span><span class="seg"><span class="chord">G</span><span class="lyric">men </span></span><span class="seg"><span class="chord">D</span><span class="lyric">three,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Full </span></span><span class="seg"><span class="chord">D</span><span class="lyric">rev</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">&#x27;rent</span></span><span class="seg"><span class="chord">D</span><span class="lyric">ly </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">up</span></span><span class="seg"><span class="chord">D</span><span class="lyric">on </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">their </span></span><span class="seg"><span class="chord">D</span><span class="lyric">knee,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">And </span></span><span class="seg"><span class="chord">D</span><span class="lyric">of</span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">fered </span></span><span class="seg"><span class="chord">D</span><span class="lyric">there </span></span><span class="seg"><span class="chord">G</span><span class="lyric">in </span></span><span class="seg"><span class="chord">D</span><span class="lyric">His </span></span><span class="seg"><span class="chord">G</span><span class="lyric">pres</span></span><span class="seg"><span class="chord">D</span><span class="lyric">ence,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Their </span></span><span class="seg"><span class="chord">D</span><span class="lyric">gold </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">myrrh </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">frank</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">in</span></span><span class="seg"><span class="chord">D</span><span class="lyric">cense.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">A7</span><span class="lyric">No</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el, </span></span><span class="seg"><span class="chord">Bm</span><span class="lyric">No</span></span><span class="seg"><span class="chord">F#m</span><span class="lyric">el, </span></span><span class="seg"><span class="chord">D</span><span class="lyric">No</span></span><span class="seg"><span class="chord">G</span><span class="lyric">el, No</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Bm</span><span class="lyric">Born </span></span><span class="seg"><span class="chord">D</span><span class="lyric">is </span></span><span class="seg"><span class="chord">G</span><span class="lyric">the </span></span><span class="seg"><span class="chord">D</span><span class="lyric">King </span></span><span class="seg"><span class="chord">G</span><span class="lyric">  </span></span><span class="seg"><span class="chord">A7</span><span class="lyric">of </span></span><span class="seg"><span class="chord">D</span><span class="lyric">Is</span></span><span class="seg"><span class="chord">A7</span><span class="lyric">ra</span></span><span class="seg"><span class="chord">D</span><span class="lyric">el.</span></span></div>
@@ -742,12 +790,13 @@
 <div class="curated">&#10003; Curated &mdash; checked against a lead sheet from RiffSpot.com (Easy Guitar)</div>
 <div class="meta">Key of Em · 3/8</div>
 <div class="chordsong"><div class="stanza">
+<div class="label">Verse 1</div>
 <div class="line"><span class="seg"><span class="chord">Em</span><span class="lyric">We three kings of </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">Orient </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">are;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Bearing gifts we </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">traverse a</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">far,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Field and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">fountain, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">moor and mountain,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Following </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">yonder </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">star.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">star of wonder, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">star of </span></span><span class="seg"><span class="chord">G</span><span class="lyric">night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Star with royal </span></span><span class="seg"><span class="chord">C</span><span class="lyric">beauty </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bright,</span></span></div>
@@ -755,12 +804,13 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Guide us to thy </span></span><span class="seg"><span class="chord">C</span><span class="lyric">perfect </span></span><span class="seg"><span class="chord">G</span><span class="lyric">light.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 2</div>
 <div class="line"><span class="seg"><span class="chord">Em</span><span class="lyric">Born a King on </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">Bethlehem&#x27;s </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">plain,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Gold I bring to </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">crown Him a</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">gain,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">King for</span></span><span class="seg"><span class="chord">D</span><span class="lyric">ever, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">ceasing never,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Over us </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">all to </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">reign.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">star of wonder, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">star of </span></span><span class="seg"><span class="chord">G</span><span class="lyric">night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Star with royal </span></span><span class="seg"><span class="chord">C</span><span class="lyric">beauty </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bright,</span></span></div>
@@ -768,12 +818,13 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Guide us to thy </span></span><span class="seg"><span class="chord">C</span><span class="lyric">perfect </span></span><span class="seg"><span class="chord">G</span><span class="lyric">light.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 3</div>
 <div class="line"><span class="seg"><span class="chord">Em</span><span class="lyric">Frankincense to </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">offer have </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">I,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Incense owns a </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">Deity </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">nigh;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Prayer and </span></span><span class="seg"><span class="chord">D</span><span class="lyric">praising, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">all men raising,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Worship Him, </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">God on </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">high.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">star of wonder, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">star of </span></span><span class="seg"><span class="chord">G</span><span class="lyric">night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Star with royal </span></span><span class="seg"><span class="chord">C</span><span class="lyric">beauty </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bright,</span></span></div>
@@ -781,12 +832,13 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Guide us to thy </span></span><span class="seg"><span class="chord">C</span><span class="lyric">perfect </span></span><span class="seg"><span class="chord">G</span><span class="lyric">light.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 4</div>
 <div class="line"><span class="seg"><span class="chord">Em</span><span class="lyric">Myrrh is mine; its </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">bitter per</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">fume,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Breathes a life of </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">gathering </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">gloom;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Sorr&#x27;wing, </span></span><span class="seg"><span class="chord">D</span><span class="lyric">sighing, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bleeding, dying,</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Sealed in the </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">stone-cold </span></span><span class="seg"><span class="chord">Em</span><span class="lyric">tomb.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">star of wonder, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">star of </span></span><span class="seg"><span class="chord">G</span><span class="lyric">night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Star with royal </span></span><span class="seg"><span class="chord">C</span><span class="lyric">beauty </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bright,</span></span></div>
@@ -794,12 +846,13 @@
 <div class="line"><span class="seg"><span class="chord">G</span><span class="lyric">Guide us to thy </span></span><span class="seg"><span class="chord">C</span><span class="lyric">perfect </span></span><span class="seg"><span class="chord">G</span><span class="lyric">light.</span></span></div>
 </div>
 <div class="stanza">
+<div class="label">Verse 5</div>
 <div class="line"><span class="seg"><span class="chord">Em</span><span class="lyric">Glorious now be</span></span><span class="seg"><span class="chord">B7</span><span class="lyric">hold Him a</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">rise,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">King and God and </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">sacri</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">fice;</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Alle</span></span><span class="seg"><span class="chord">D</span><span class="lyric">luia, </span></span><span class="seg"><span class="chord">G</span><span class="lyric">alleluia!</span></span></div>
 <div class="line"><span class="seg"><span class="chord">Am</span><span class="lyric">Earth to </span></span><span class="seg"><span class="chord">B7</span><span class="lyric">heav&#x27;n re</span></span><span class="seg"><span class="chord">Em</span><span class="lyric">plies.</span></span></div>
 </div>
-<div class="stanza">
+<div class="stanza refrain">
 <div class="label">Chorus</div>
 <div class="line"><span class="seg"><span class="chord">D7</span><span class="lyric">O </span></span><span class="seg"><span class="chord">G</span><span class="lyric">star of wonder, </span></span><span class="seg"><span class="chord">C</span><span class="lyric">star of </span></span><span class="seg"><span class="chord">G</span><span class="lyric">night,</span></span></div>
 <div class="line"><span class="seg"><span class="chord"></span><span class="lyric">Star with royal </span></span><span class="seg"><span class="chord">C</span><span class="lyric">beauty </span></span><span class="seg"><span class="chord">G</span><span class="lyric">bright,</span></span></div>
