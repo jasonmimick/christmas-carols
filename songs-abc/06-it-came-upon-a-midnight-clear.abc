@@ -3,22 +3,27 @@ T:It Came Upon a Midnight Clear
 C:Richard S. Willis, 1850. Words: Edmund H. Sears, 1849
 %curated: Tom
 M:6/8
-L:1/4
+L:1/8
 Q:1/4=60
 K:G
-"G"D/ | "G"B F/ "C"A/G/ E/ | "G"D E/ D D/ | "C"E/F/ G/ "A7"G/A/ B/ | "D"A3/2- A
-w: 1.~It came up- on * the mid- night clear, That glor- * ious song * of old, *
-w: 2.~Still through the clo- * ven skies they come With peace- * ful wings * un- furled, *
-w: 3.~For lo! the days * are has- t'ning on, By pro- * phet bards * fore- told, *
-"G"D/ | "G"B F/ "C"A/G/ E/ | "G"D E/ D D/ | "C"E E/ "D/F#"F/E/ "G"D/ | "G"G3/2- G
-w: From an- gels bend- * ing near the earth, To touch their harps * of gold; *
-w: And still their hea- ven- ly mu- sic floats O'er all the wea- * ry world; *
-w: When with the ev- * er circ- ling years Comes round the age * of gold; *
-"Bm"B/ | B B,/ B,/^C/ ^D/ | "Em"E F/ G "D"B/ | A/G/ "A7"F/ E/F/ "D"E/ | "D"D3/2- D
-w: "Peace on the earth, * good will to men, From heav'n's all gra- * cious King." *
-w: A- bove its sad * and low- ly plains, They bend * on hov- * 'ring wing, *
-w: When peace shall ov- * er all the earth Its an- * cient splen- * dors fling, *
-"G"D/ | "G"B F/ "C"A/G/ E/ | "G"D E/ D D/ | "C"E E/ "D/F#"F/E/ "G"D/ | "G"G3/2- G |]
-w: The world in so- * lemn still- ness lay, To hear the an- * gels sing. *
-w: And ev- er ov- * er its Ba- bel sounds The bless- èd an- * gels sing. *
-w: And the whole world * send back the song Which now the an- * gels sing. *
+%%vocalfont Times-Roman 12
+D | "G"B2 F "C"A G E | "G"D2 E D2 D | "C"E F G "A7"G A B | "D"A3-A2
+w: 1.~It came up- on * the mid- night clear, That glor- i- ous song * of old, *
+w: 2.~Yet with the woes * of sin and strife, The world has suf- fered * long * *
+w: 3.~And ye be- neath * life's crush- ing load, Whose forms are bend- ing * low * *
+w: 4.~For lo the days * are has- t'ning on, By pro- phet bards fore- * told * *
+D | "G"B2 F "C"A G E | "G"D2 E D2 D | "C"E2 E "D/F#"F E D | "G"G3-G2
+w: From an- gels bend- * ing near the earth, To touch their harps * of gold, *
+w: Be- neath the an- gel strain have * rolled, Two thou- sand years * of wrong; *
+w: Who toil a- long * the climb- ing way, With pain- ful steps * and slow, *
+w: When with the ev- er circ- ling * years, Comes round the age * of gold. *
+B | "Bm"B2 B, B, ^C ^D | "Em"E2 F G2 B | "D"A G F "A7"E F E | "D"D3-D2
+w: Peace on the earth, * good will to men, From heav- en's all gra- * cious King. *
+w: And man, at war * with man, hears not The love- song which * they * bring; *
+w: Look now for glad * and gold- en hours, Come swift- ly on * the * wing. *
+w: When peace shall o- * ver all the earth, Its an- cient splen- dors * * fling, *
+D | "G"B2 F "C"A G E | "G"D2 E D2 D | "C"E2 E "D/F#"F E D | "G"G3-G2 |]
+w: The world in sol- * emn still- ness lay, To hear the an- * gels sing. *
+w: O hush the noise, * ye men of strife, And hear the an- * gels sing. *
+w: O rest be- side * the wea- ry road, And hear the an- * gels sing. *
+w: And the whole world * gives back the song Which now the an- * gels sing. *

@@ -9,7 +9,7 @@ import json
 import re
 from pathlib import Path
 
-import lilyrender
+import m2render
 
 ROOT = Path(__file__).parent
 
@@ -246,7 +246,7 @@ def build_sheet(paths, appendix=(), chords=None):
     n_curated = 0
     for n, path in enumerate(paths):
         title, composer, abc, extra, curated = parse_abc(path)
-        wide, narrow = ('', '') if chords is not None else lilyrender.render(path)
+        wide, narrow = ('', '') if chords is not None else m2render.render(path)
         n_curated += bool(curated)
         slug = path.stem
         nav.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
