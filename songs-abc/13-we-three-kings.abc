@@ -1,34 +1,35 @@
 X:1
 T:We Three Kings of Orient Are
 C:John Henry Hopkins Jr., 1857
-%curated: RiffSpot.com (Easy Guitar)
+%curated: Misc Christmas chord sheet (Ultimate Guitar, key of Am); melody transposed from the Em lead sheet
+%bars-wide: 8
 M:3/8
 L:1/8
 Q:1/4=69
-K:Em
-"^Verse" "Em"B2A | G2E | "B7"FGF | "Em"E3 | B2A |
+K:Am
+"^Verse" "Am"e2d | c2A | "E"BcB | "Am"A3 | "Am"e2d |
 w: 1.~We three kings of O- ri- ent are, Bear- ing
 w: 2.~Born a King on Beth- le- hem's plain, Gold I
 w: 3.~Frank- in- cense to of- fer have I, In- cense
 w: 4.~Myrrh is mine; its bit- ter per- fume, Breathes a
 w: 5.~Glo- rious now be- hold him a- rise, King and
-G2E | "B7"FGF | "Em"E3 | G2G | "D"A2A |
+c2A | "E"BcB | "Am"A3 | "C"c2c | "G/B"d2d |
 w: gifts we tra- verse a- far, Field and foun- tain,
 w: bring to crown him a- gain, King for- ev- er,
 w: owns a De- i- ty nigh; Prayer and prais- ing,
 w: life of gath- er- ing gloom; Sor- r'wing, sigh- ing,
 w: God and sac- * ri- fice; Al- le- lu- ia,
-"G"B2B | dcB | "Am"ABA | "B7"G2F | "Em"E3 |
+"Am"e2e | "F"gfe | "Dm"ded | "E"c2B | "Am"A3 |
 w: moor and moun-_ tain, Fol- low- ing yon- der star.
 w: ceas- ing nev-_ er, O- ver us all to reign.
 w: all men rais-_ ing, Wor- ship him, God on high.
 w: bleed- ing, dy-_ ing, Sealed in the stone- cold tomb.
 w: al- le- lu-_ ia! Earth_ to heav'n re- plies.
-"^Refrain" "D7"!fermata!F2!fermata!A | "G"G2G | G2D | "C"G2E |
+"^Refrain" "G"!fermata!B2!fermata!d | "C"c2c | c2G | "F"c2A |
 w: O_ star of won- der, star of
-"G"G3 | G2G | G2D | "C"G2E |
+"C"c3 | c2c | c2G | "F"c2A |
 w: night, Star with roy- al beau- ty
-"G"G3 | "Em"G2G | "D"A2B | "C"c2B |
+"C"c3 | "Am"c2c | "G"d2e | "F"f2e |
 w: bright, West- ward lead- ing, still pro-
-"D"A2B | "G"G2G | G2D | "C"G2E | "G"G3 |]
+"G"d2e | "C"c2c | c2G | "F"c2A | "C"c3 |]
 w: ceed- ing, Guide us to thy per- fect light.
