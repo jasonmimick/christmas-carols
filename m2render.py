@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 
 CACHE = Path(__file__).parent / ".m2cache"
-VERSION = "1"  # bump when the settings below change
+VERSION = "5"  # bump when the settings below change
 
 COMMON = """%%writefields TCOPR 0
 %%vocalfont Times-Roman 13
@@ -27,16 +27,26 @@ COMMON = """%%writefields TCOPR 0
 %%maxshrink 0.7
 """
 LAYOUTS = {
-    "wide": "%%pagewidth 20.6cm\n%%staffwidth 20.2cm\n%%barsperstaff 4\n",
-    "narrow": "%%pagewidth 11cm\n%%staffwidth 10.6cm\n%%barsperstaff 2\n",
+    "wide": "%%pagewidth 20.6cm\n%%staffwidth 20.2cm\n",
+    "narrow": "%%pagewidth 11cm\n%%staffwidth 10.6cm\n",
 }
+# Bars per line to try, in order of preference. The first one that does not leave a short last line wins.
+BARS_TRY = {"wide": (4, 5, 3, 6), "narrow": (2, 3, 4)}
+BARS_TRY_24 = {"wide": (4, 5, 3, 6), "narrow": (3, 4, 2)}  # 2/4 bars are short, so 2 per line looks empty
+MIN_LAST = 0.6  # the last line must be at least this fraction of a full line
 
 
-def _engrave(abc_path, layout, work):
+def _last_line_fill(svg):
+    """Length of the last staff relative to the first, read from the staff-line paths."""
+    widths = [float(w) for w in re.findall(r"\bm[\d.]+ [\d.]+\s+h([\d.]+)", svg)]
+    return widths[-1] / widths[0] if widths else 1.0
+
+
+def _engrave(abc_path, layout, work, bars):
     # W: lines (extra verses) are printed by the page, so they are dropped here.
     body = "".join(l for l in abc_path.read_text().splitlines(True) if not l.startswith("W:"))
     src = work / "song.abc"
-    src.write_text(COMMON + LAYOUTS[layout] + "\n" + body)
+    src.write_text(COMMON + LAYOUTS[layout] + f"%%barsperstaff {bars}\n\n" + body)
     r = subprocess.run(["abcm2ps", "-g", "-O", str(work / "out.svg"), str(src)],
                        capture_output=True, text=True)
     out = work / "out001.svg"
@@ -49,6 +59,19 @@ def _engrave(abc_path, layout, work):
     return svg
 
 
+def _best(abc_path, layout, work):
+    is_24 = re.search(r"^M:\s*2/4\s*$", abc_path.read_text(), re.M)
+    best = None
+    for bars in (BARS_TRY_24 if is_24 else BARS_TRY)[layout]:
+        svg = _engrave(abc_path, layout, work, bars)
+        fill = _last_line_fill(svg)
+        if fill >= MIN_LAST:
+            return svg
+        if best is None or fill > best[0]:
+            best = (fill, svg)
+    return best[1]
+
+
 def render(abc_path):
     abc_path = Path(abc_path)
     key = hashlib.sha1((VERSION + abc_path.read_text()).encode()).hexdigest()[:16]
@@ -58,7 +81,7 @@ def render(abc_path):
         cached = CACHE / f"{abc_path.stem}-{layout}-{key}.svg"
         if not cached.exists():
             with tempfile.TemporaryDirectory() as tmp:
-                cached.write_text(_engrave(abc_path, layout, Path(tmp)))
+                cached.write_text(_best(abc_path, layout, Path(tmp)))
             for old in CACHE.glob(f"{abc_path.stem}-{layout}-*.svg"):
                 if old != cached:
                     old.unlink()
