@@ -347,7 +347,9 @@ def build_sheet(paths, appendix=(), chords=None):
   </ul>
   <div class="callout practice">
     <h2>Practice</h2>
-    <p><strong>Saturday, October 17, 3:30&ndash;5 pm, Holy Mother &amp; Child Parish, Corinth</strong></p>
+    <p><del>Saturday, October 17, 3:30&ndash;5 pm, Holy Mother &amp; Child Parish, Corinth</del></p>
+    <p>Great practice! We fixed up the charts, and all the songs, lyrics and chords are updated.</p>
+    <p><strong>Next practice: TBD, mid-November</strong></p>
   </div>
   <h2>The songbook</h2>
   <p>The set list on the left has all thirteen carols. Pick one, then choose a view
