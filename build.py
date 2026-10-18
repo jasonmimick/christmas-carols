@@ -359,6 +359,10 @@ def build_sheet(paths, appendix=(), chords=None):
     <li><a href="/chords"><strong>Chords &amp; lyrics</strong></a> &mdash; lyrics with the chord above each word.</li>
   </ul>
   <p>You can print any single song, or print the entire songbook and bring it with you.</p>
+  <p>The <strong>Appendix</strong> in the list has chord charts for Jingle Bell Rock and more Christmas
+     and jazz standards: How High the Moon, The Christmas Song, Have Yourself a Merry Little
+     Christmas, Let It Snow, Sleigh Ride, I'll Be Home for Christmas, Santa Claus Is Comin' to
+     Town, and Christmas Time Is Here.</p>
   <div class="callout">
     <h2>Help us fix the music</h2>
     <p>We checked every carol against published sheet music, but a few issues are
