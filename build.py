@@ -350,9 +350,13 @@ def build_sheet(paths, appendix=(), chords=None):
     <p><strong>Saturday, October 17, 3:30&ndash;5 pm, Holy Mother &amp; Child Parish, Corinth</strong></p>
   </div>
   <h2>The songbook</h2>
-  <p>The set list on the left has all thirteen carols &mdash; click one to see its
-     sheet music with lyrics and guitar chords. You can print any single song, or
-     print the entire songbook and bring it with you.</p>
+  <p>The set list on the left has all thirteen carols. Pick one, then choose a view
+     at the top of the list:</p>
+  <ul>
+    <li><a href="/songbook"><strong>Sheet music</strong></a> &mdash; melody, lyrics and guitar chords on a staff.</li>
+    <li><a href="/chords"><strong>Chords &amp; lyrics</strong></a> &mdash; lyrics with the chord above each word.</li>
+  </ul>
+  <p>You can print any single song, or print the entire songbook and bring it with you.</p>
   <div class="callout">
     <h2>Help us fix the music</h2>
     <p>We checked every carol against published sheet music, but a few issues are

@@ -16,7 +16,7 @@ https://christmas-carols-cjm.pages.dev).
 ## Commands
 ```
 python3 build.py
-cp songbook.html _redirects dist/
+cp songbook.html chords.html _redirects dist/
 npx wrangler pages deploy dist --project-name christmas-carols --branch main
 ```
 
