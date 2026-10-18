@@ -11,7 +11,7 @@ import tempfile
 from pathlib import Path
 
 CACHE = Path(__file__).parent / ".m2cache"
-VERSION = "5"  # bump when the settings below change
+VERSION = "6"  # bump when the settings below change
 
 COMMON = """%%writefields TCOPR 0
 %%vocalfont Times-Roman 13
@@ -60,6 +60,10 @@ def _engrave(abc_path, layout, work, bars):
 
 
 def _best(abc_path, layout, work):
+    # `%bars-wide: N` in an .abc file fixes the bars per line for desktop/print (e.g. 8 for slow 3/4 songs).
+    fixed = re.search(r"^%bars-wide:\s*(\d+)", abc_path.read_text(), re.M)
+    if fixed and layout == "wide":
+        return _engrave(abc_path, layout, work, int(fixed.group(1)))
     is_24 = re.search(r"^M:\s*2/4\s*$", abc_path.read_text(), re.M)
     best = None
     for bars in (BARS_TRY_24 if is_24 else BARS_TRY)[layout]:

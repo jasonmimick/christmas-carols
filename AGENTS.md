@@ -32,3 +32,7 @@ npx wrangler pages deploy dist --project-name christmas-carols --branch main
 - Sheet music (abcjs) renders at a fixed 760px staff on desktop and print. Below
   that, `renderTunes()` wraps bars at a 480px staff and scales it to fit. Wider
   than 480 at phone size and the lyrics get too small; narrower and you get one bar per line.
+- **Printed music is the P0 requirement; phone layout is not a priority.** Judge layout by the wide
+  (desktop/print) render. `m2render.py` engraves with `%%barsperstaff` and picks bars per line so the last
+  line is never a lone bar. For songs with short bars (slow 3/4, 2/4) set `%bars-wide: N` under the header
+  in the `.abc` (Silent Night 8, Joy to the World 5). Keep lines on phrase boundaries where you can.
