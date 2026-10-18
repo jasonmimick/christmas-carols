@@ -276,7 +276,7 @@ def build_sheet(paths, appendix=(), chords=None):
                '<hr><div class="label">Set list</div><ul>')
     out.extend(nav)
     if appendix:
-        out.append('</ul><hr><div class="label">Appendix</div><ul>')
+        out.append('</ul><hr><div class="label">Other tunes...</div><ul>')
         for k, path in enumerate(appendix):
             n = len(paths) + k
             title, *body = path.read_text().rstrip("\n").split("\n")
@@ -359,7 +359,7 @@ def build_sheet(paths, appendix=(), chords=None):
     <li><a href="/chords"><strong>Chords &amp; lyrics</strong></a> &mdash; lyrics with the chord above each word.</li>
   </ul>
   <p>You can print any single song, or print the entire songbook and bring it with you.</p>
-  <p>The <strong>Appendix</strong> in the list has chord charts for Jingle Bell Rock and more Christmas
+  <p>The <strong>Other tunes...</strong> section of the list has chord charts for Jingle Bell Rock and more Christmas
      and jazz standards: How High the Moon, The Christmas Song, Have Yourself a Merry Little
      Christmas, Let It Snow, Sleigh Ride, I'll Be Home for Christmas, Santa Claus Is Comin' to
      Town, and Christmas Time Is Here.</p>
