@@ -36,3 +36,12 @@ npx wrangler pages deploy dist --project-name christmas-carols --branch main
   (desktop/print) render. `m2render.py` engraves with `%%barsperstaff` and picks bars per line so the last
   line is never a lone bar. For songs with short bars (slow 3/4, 2/4) set `%bars-wide: N` under the header
   in the `.abc` (Silent Night 8, Joy to the World 5). Keep lines on phrase boundaries where you can.
+
+## Print booklet
+- `python3 booklet.py` → `booklet/booklet-7x10.pdf` (gitignored): all 13 carols, sheet music with
+  chords, for the spiral-bound musicians' booklets. 7x10 was picked over letter / 6x9 / half letter
+  (`python3 booklet.py all` rebuilds those for comparison; half letter forces 2 bars per line).
+- Engraved straight to PostScript by abcm2ps (`-1`, one song per page), not from the site SVGs.
+  Chords are Times-Bold to match the Times lyrics (Jason's pick over the site's Helvetica-Bold).
+- Two-page songs must start on a left (even) page; `build()` inserts a blank page if not.
+  Side margins are equal so double-sided printing works with the spiral.

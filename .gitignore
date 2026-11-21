@@ -3,3 +3,4 @@ dist/
 .wrangler/
 .lycache/
 .m2cache/
+booklet/
