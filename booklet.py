@@ -1,6 +1,6 @@
 """Engrave the 13 carols into a spiral-bound print booklet PDF (sheet music with chords).
 
-    python3 booklet.py            -> booklet/booklet-7x10.pdf   (the chosen size)
+    python3 booklet.py            -> booklet/booklet-letter.pdf (the chosen size)
     python3 booklet.py all        -> one PDF per size in SIZES, for comparing trim sizes
 
 Each song starts on a new page. A song that runs to two pages starts on a left-hand (even) page,
@@ -22,11 +22,12 @@ SCALE = 0.77
 
 # name: (width in, height in, music scale, label)
 SIZES = {
-    "letter": (8.5, 11, SCALE, "Letter 8.5x11"),
+    "letter": (8.5, 11, 0.9, "Letter 8.5x11"),  # music 17% bigger, fills the page
     "7x10": (7, 10, SCALE, "7x10"),
     "6x9": (6, 9, SCALE, "6x9"),
     "half-letter": (5.5, 8.5, SCALE, "Half letter 5.5x8.5"),
 }
+MIN_FIT = 0.84   # smallest per-song shrink allowed to keep a song on one page
 BINDING = 0.6    # both side margins match so double-sided pages line up; 0.6in clears spiral holes
 OUTSIDE = 0.6
 
@@ -83,7 +84,15 @@ def build(name, w, h, scale):
     body, page = setup, 1
     for i, p in enumerate(sorted((ROOT / "songs-abc").glob("*.abc")), 1):
         song = song_source(p, i).rstrip() + "\n\n"
-        n = engrave(setup + song, ps)
+        # A song just over one page is shrunk a little (down to MIN_FIT of the page scale) to fit.
+        for fit in [x / 100 for x in range(100, int(MIN_FIT * 100) - 1, -2)] + [1.0]:
+            sized = f"%%scale {scale * fit:.3f}\n" + song
+            n = engrave(setup + sized, ps)
+            if n == 1:
+                break
+        if n == 1 and fit < 1.0:   # one more notch so the last line clears the page number
+            sized = f"%%scale {scale * (fit - 0.02):.3f}\n" + song
+        song = sized
         if n > 1 and page % 2 == 1:   # multi-page song would start on a right page
             body += "%%newpage\n%%text  \n\n"
             page += 1
@@ -107,7 +116,7 @@ def page_count(pdf):
 
 def main():
     OUT.mkdir(exist_ok=True)
-    names = SIZES if sys.argv[1:] == ["all"] else ["7x10"]
+    names = SIZES if sys.argv[1:] == ["all"] else ["letter"]
     for name in names:
         w, h, scale, label = SIZES[name]
         pdf = build(name, w, h, scale)

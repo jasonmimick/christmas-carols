@@ -38,10 +38,13 @@ npx wrangler pages deploy dist --project-name christmas-carols --branch main
   in the `.abc` (Silent Night 8, Joy to the World 5). Keep lines on phrase boundaries where you can.
 
 ## Print booklet
-- `python3 booklet.py` → `booklet/booklet-7x10.pdf` (gitignored): all 13 carols, sheet music with
-  chords, for the spiral-bound musicians' booklets. 7x10 was picked over letter / 6x9 / half letter
+- `python3 booklet.py` → `booklet/booklet-letter.pdf` (gitignored): all 13 carols, sheet music with
+  chords, for the musicians' booklets (5 copies). Letter at scale 0.9 won over 7x10 / 6x9 / half letter
   (`python3 booklet.py all` rebuilds those for comparison; half letter forces 2 bars per line).
 - Engraved straight to PostScript by abcm2ps (`-1`, one song per page), not from the site SVGs.
   Chords are Times-Bold to match the Times lyrics (Jason's pick over the site's Helvetica-Bold).
 - Two-page songs must start on a left (even) page; `build()` inserts a blank page if not.
   Side margins are equal so double-sided printing works with the spiral.
+- A song slightly over one page is shrunk per song (down to `MIN_FIT`) so it stays on one page;
+  Jingle Bells and We Three Kings need this. O Holy Night stays two pages (a left/right spread).
+- Jingle Bells has verse 2 under the music (with verse 1) and verses 3–4 as text below, so it fits one page.
