@@ -6,27 +6,27 @@ Source: Dr. Uke (doctoruke.com) free chart. Check against a recording.
 
 A SECTION  "Christmas time is here ..."
 
+   Dmaj7  C9  Dmaj7  C9
   "Christmas time is here, happiness and cheer"
-    Dmaj7  C9  Dmaj7  C9
+   Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
   "Fun for all that children call"
-    Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
+   Dmaj7  C9  Dmaj7  C9
   "Snowflakes in the air, carols everywhere"
-    Dmaj7  C9  Dmaj7  C9
+   Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
   "Olden times and ancient rhymes"
-    Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
 
 BRIDGE  "Sleigh bells in the air ..."
 
+   Bbmaj7  Eb9  Bbmaj7  Eb9
   "Sleigh bells in the air, beauty everywhere"
-    Bbmaj7  Eb9  Bbmaj7  Eb9
+   F#m7  C9  B9  Em7  E7#5  A13
   "Yuletide by the fireside"
-    F#m7  C9  B9  Em7  E7#5  A13
 
 LAST A  "Christmas time is here, we'll be drawing near ..."
 
   Dmaj7  C9  Dmaj7  C9
+   Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
   "Oh, that we could always see"
-    Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
   (repeat to end)
     Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
 

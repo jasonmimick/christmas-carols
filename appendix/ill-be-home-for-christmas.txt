@@ -5,21 +5,21 @@ Chords only, in order for each phrase. Bar lines were not marked in the source c
 Source: Dr. Uke (doctoruke.com) free chart. Check against a recording.
 
 VERSE
+   Am9  D7b9  Gmaj7  Bbdim  Am7  D7  Gmaj7  G6
   "I'm dreaming tonight of a place I love"
-    Am9  D7b9  Gmaj7  Bbdim  Am7  D7  Gmaj7  G6
+   F#m7b5  B7#9  Em  Em6  Am7  D7b9
   "And although I know it's a long road back"
-    F#m7b5  B7#9  Em  Em6  Am7  D7b9
 
 CHORUS
+   G  Bbdim  Am7  D7  Em  Dm  E7  Am
   "I'll be home for Christmas, you can count on me"
-    G  Bbdim  Am7  D7  Em  Dm  E7  Am
+   Am7  D7  G  D  Em  A7  Em7  A7  Am7  D7
   "Please have snow and mistletoe"
-    Am7  D7  G  D  Em  A7  Em7  A7  Am7  D7
+   G  Bbdim  Am7  D7  Em  Dm  E7  Am
   "Christmas Eve will find me"
-    G  Bbdim  Am7  D7  Em  Dm  E7  Am
+   C  Cm6  G  F7  E7  A7  Am7  D7  Bm7b5  E7
   "I'll be home for Christmas, if only in my dreams"
-    C  Cm6  G  F7  E7  A7  Am7  D7  Bm7b5  E7
+   A7  Am7  D7  G  Cm6  G6
   "If only in my dreams"
-    A7  Am7  D7  G  Cm6  G6
 
 Chord key:  dim = diminished,  m7b5 = half-diminished,  b9 / #9 = flat / sharp nine,  maj7 = major seventh
