@@ -1,33 +1,23 @@
 Christmas Time Is Here
 Music by Vince Guaraldi, words by Lee Mendelson (1965)
 Key of D. Slow waltz ballad, 3/4. Intro: | Dmaj7 | A7b9 | Dmaj7 | A7b9 |
-Chords only, in order for each phrase. Bar lines were not marked in the source chart.
-Source: Dr. Uke (doctoruke.com) free chart. Check against a recording.
+Chords in order for each phrase. Source: Dr. Uke free chart; check against a recording.
 
-A SECTION  "Christmas time is here ..."
+A SECTION
+[Dmaj7]Christmas time is [C9]here, [Dmaj7]happiness and [C9]cheer
+[Bm6]Fun for [Gm7]all that [F#m7]children [Fm7]call [Em7]  [A7sus]  [Dmaj9]
+[Dmaj7]Snowflakes in the [C9]air, [Dmaj7]carols every[C9]where
+[Bm6]Olden [Gm7]times and [F#m7]ancient [Fm7]rhymes [Em7]  [A7sus]  [Dmaj9]
 
-   Dmaj7  C9  Dmaj7  C9
-  "Christmas time is here, happiness and cheer"
-   Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
-  "Fun for all that children call"
-   Dmaj7  C9  Dmaj7  C9
-  "Snowflakes in the air, carols everywhere"
-   Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
-  "Olden times and ancient rhymes"
+BRIDGE
+[Bbmaj7]Sleigh bells in the [Eb9]air, [Bbmaj7]beauty every[Eb9]where
+[F#m7]Yuletide [C9]by the [B9]fireside [Em7]  [E7#5]  [A13]
 
-BRIDGE  "Sleigh bells in the air ..."
+LAST A
+[Dmaj7]Christmas time is [C9]here ... [Dmaj7]  [C9]
+[Bm6]Oh, that [Gm7]we could [F#m7]always [Fm7]see [Em7]  [A7sus]  [Dmaj9]
 
-   Bbmaj7  Eb9  Bbmaj7  Eb9
-  "Sleigh bells in the air, beauty everywhere"
-   F#m7  C9  B9  Em7  E7#5  A13
-  "Yuletide by the fireside"
-
-LAST A  "Christmas time is here, we'll be drawing near ..."
-
-  Dmaj7  C9  Dmaj7  C9
-   Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
-  "Oh, that we could always see"
-  (repeat to end)
-    Bm6  Gm7  F#m7  Fm7  Em7  A7sus  Dmaj9
+ENDING (repeat the last line, slower)
+[Bm6]  [Gm7]  [F#m7]  [Fm7]  [Em7]  [A7sus]  [Dmaj9]
 
 Chord key:  maj9 = major ninth,  9 / 13 = dominant ninth / thirteenth,  sus = suspended fourth,  m6 = minor sixth

@@ -1,22 +1,44 @@
 How High the Moon
 Music by Morgan Lewis, words by Nancy Hamilton (1940)
-Key of G. Medium swing. 32 bars, 4/4 (second half is the first half with a new ending).
-Chords only. Each | is one bar; two chords in a bar get 2 beats each.
-Source: NIU Jazz Camp lead sheet. Check against a recording before the gig.
+Key of D, as recorded by Les Paul & Mary Ford (1951). Medium swing, 4/4.
+Chords from the Ultimate Guitar chart of the Les Paul & Mary Ford recording.
 
-FIRST HALF  "Somewhere there's music ..."
+INTRO (twice)
+[F#m7]  [F7]  [Em7]  [A7]  [D]  [A7]
 
-  | Gmaj7     | Gmaj7     | Gm7       | C7        |
-  | Fmaj7     | Fmaj7     | Fm7       | Bb7       |
-  | Ebmaj7    | Am7  D7b9 | Gm7       | Am7  D7   |
-  | Gmaj7     | Am7  D7   | Bm7  E7b9 | Am7  D7   |
+VERSE 1
+[A7]Somewhere there's [D]music, how faint the [Dm7]tune? [G7]
+Somewhere there's [Cmaj7]heaven, [C6]how high the [Cm7]moon? [F7]
+There is no [Bbm7]moon above
+When [Em7b5]love is [A7]far away, [Dm]too [Em7b5]
+[A7]Till it comes [D]true [A7]that you love [F#m7]me as I [F7]love [Em7]you
 
-SECOND HALF
+VERSE 2
+[A7]Somewhere there's [D]music, how near, how [Dm7]far? [G7]
+Somewhere there's [Cmaj7]heaven, [C6]it's where you [Cm7]are [F7]
+The [Bbmaj7]darkest night would shine
+If [Em7b5]you would [A7]come to me [D]soon [Em7]
+Un[A7]til you [F#m7]will, how [F7]still my [Em7]heart
+How [A7sus]high [A7]the [Dmaj7]moon?
 
-  | Gmaj7     | Gmaj7     | Gm7       | C7        |
-  | Fmaj7     | Fmaj7     | Fm7       | Bb7       |
-  | Ebmaj7    | Am7  D7   | Gmaj7     | Am7  D7b9 |
-  | Bm7  E7b9 | Am7  D7   | G6        | Am7  D7   |   then repeat or end on Gmaj7
+INTERLUDE (instrumental)
+[A7]  [D]  [Dm7]  [G7]  [Cmaj7]  [C6]  [Cm7]  [F7]
+[Bbm7]  [Em7b5]  [A7]  [Dm]  [Em7b5]
+[A7]  [D]  [A7]  [F#m7]  [F7]  [Em7]
 
-Notes:  The Gm7-C7 and Fm7-Bb7 pairs step down a whole tone: G, F, Eb.
-        Bars 9-12 land on Eb, then come back to G through Am7-D7.
+VERSE 3
+[A7]Somewhere there's [D]music, how faint the [Dm7]tune? [G7]
+Somewhere there's [Cmaj7]heaven, [C6]how high the [Cm7]moon? [F7]
+There is no [Bbm7]moon above
+When [Em7b5]love is [A7]far away, [Dm]too [Em7b5]
+[A7]Till it comes [D]true [A7]that you love [F#m7]me as I [F7]love [Em7]you
+
+VERSE 4
+[A7]Somewhere there's [D]music, how near, how [Dm7]far? [G7]
+Somewhere there's [Cmaj7]heaven, [C6]it's where you [Cm7]are [F7]
+The [Bbmaj7]darkest night would shine
+If [Em7b5]you would [A7]come to me [D]soon [Em7]
+Un[A7]til you [F#m7]will, how [F7]still my [Em7]heart
+How [A7sus]high [A7]the [Dmaj7]moon?
+
+Chord key:  m7b5 = half-diminished (Em7-5),  F#m7 = Gbm7,  6 = major sixth,  sus = suspended fourth

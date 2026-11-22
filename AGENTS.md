@@ -8,8 +8,11 @@ https://christmas-carols-cjm.pages.dev).
 - `build.py` — generates all HTML. **Home page copy lives here**, in `build_sheet()`.
 - `songs-abc/*.abc` — sheet-music songs → `songbook.html` (the site).
 - `songs/*.cho` — ChordPro text songs → `songbook-text.html`.
-- `appendix/*.txt` — plain-text extras shown under "Appendix" in the set list. First line is
-  the title, the rest is shown as preformatted text. Not part of the 13 curated carols.
+- `appendix/*.txt` — chord charts shown under "Appendix A: Additional Songs" on the site and in the booklet.
+  Format is in `chart.py`: title, notes, then sections; `[Chord]word` lines render chords over the
+  words (same layout as the chords page), indented lines stay fixed-width (bar grids, diagrams),
+  `---` starts a new printed page. These songs are under copyright: cue words only, never full lyrics
+  (the site and repo are public).
 - `_redirects` — maps `/` to `/songbook.html`.
 - `dist/` — deploy folder, gitignored.
 
@@ -47,4 +50,12 @@ npx wrangler pages deploy dist --project-name christmas-carols --branch main
   Side margins are equal so double-sided printing works with the spiral.
 - A song slightly over one page is shrunk per song (down to `MIN_FIT`) so it stays on one page;
   Jingle Bells and We Three Kings need this. O Holy Night stays two pages (a left/right spread).
+- Booklet order: title page, contents (generated with page numbers), the 13 carols from page 3
+  (abcm2ps numbers them; two placeholder pages are engraved first and swapped for the front matter),
+  then an "Appendix A: Additional Songs" divider page and the charts. No blank pages.
+- The appendix charts are drawn as PostScript by `chart_page()` (Times-Bold chords over Times words)
+  at one fixed size for every chart (`LYRIC_PT` etc.), top-aligned, notes as footnotes. A long chart
+  goes to two columns, and only then shrinks (to `MIN_PT`). Don't scale charts to fill the page:
+  Jason rejected that as unprofessional (different, oversized type on every page). `dist/songbook.pdf` is a copy of `booklet/booklet-letter.pdf`;
+  copy it before each deploy. One booklet only — Jason doesn't want a second print version.
 - Jingle Bells has verse 2 under the music (with verse 1) and verses 3–4 as text below, so it fits one page.

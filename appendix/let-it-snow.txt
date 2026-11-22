@@ -1,26 +1,19 @@
 Let It Snow! Let It Snow! Let It Snow!
 Music by Jule Styne, words by Sammy Cahn (1945)
 Key of D. Medium swing, 4/4.
-Chords only, in order for each phrase. Bar lines were not marked in the source chart.
-Source: Dr. Uke (doctoruke.com) free chart. Check against a recording.
+Chords in order for each phrase. Source: Dr. Uke free chart; check against a recording.
 
 VERSE (twice, with the second set of words)
-   D  A7  D  Fdim  A7
-  "Oh the weather outside is frightful"
-   B7  Em  B7  Em  Fdim  Em7  A7  D  A7
-  "And since we've no place to go ... let it snow"
+Oh the [D]weather out[A7]side is [D]fright[Fdim]ful [A7]
+[B7]And since [Em]we've no [B7]place to [Em]go [Fdim]  [Em7]  [A7]... let it [D]snow [A7]
 
 CHORUS
-   A  Bbdim  Bm7  E7  A
-  "When we finally kiss goodnight"
-   Em  F#7  B7  E7  A  Ab7  A7
-  "But if you'll really hold me tight"
+When we [A]finally [Bbdim]kiss good[Bm7]night [E7]  [A]
+[Em]But if [F#7]you'll really [B7]hold me [E7]tight [A]  [Ab7]  [A7]
 
 LAST VERSE
-   D  A7  D  Fdim  A7
-  "The fire is slowly dying"
-   B7  Em  B7  Em  Fdim  Em7  A7  D
-  "But as long as you love me so ... let it snow"
-  then the chorus again
+The [D]fire is [A7]slowly [D]dy[Fdim]ing [A7]
+[B7]But as [Em]long as you [B7]love me [Em]so [Fdim]  [Em7]  [A7]... let it [D]snow
+then the chorus again
 
 Chord key:  dim = diminished,  m7 = minor seventh,  7 = dominant seventh

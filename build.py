@@ -10,6 +10,7 @@ import re
 from pathlib import Path
 
 import m2render
+from chart import parse_chart, segments
 
 ROOT = Path(__file__).parent
 
@@ -184,7 +185,8 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
   .curated { font-size: 0.85rem; color: #2f6b34; margin: 0.2rem 0 0.6rem; }
   @media print { .curated { display: none; } }
   pre.plain { font-family: Menlo, Consolas, monospace; font-size: 0.85rem; line-height: 1.5;
-    white-space: pre-wrap; overflow-x: auto; }
+    white-space: pre; overflow-x: auto; margin: 0.3em 0; }
+  .chordsong .chartnote { font-family: Helvetica, Arial, sans-serif; font-size: 0.85rem; color: #555; margin-top: 0.3em; }
   .composer { font-family: "IM Fell English", Georgia, serif; font-style: italic;
               text-align: center; margin: 0 0 0.8em; font-size: 1rem; }
   .verses { font-family: Georgia, serif; font-size: 1rem; margin: 1em auto 0;
@@ -242,6 +244,32 @@ def parse_abc(path):
     return title, composer, "\n".join(abc), extra, curated
 
 
+def render_chart(sections):
+    """An appendix chart in the same layout as the carols' chords page."""
+    out = []
+    for sec in sections:
+        if sec[0][0] == "page":
+            continue
+        out.append('<div class="stanza">')
+        mono = []
+        for kind, text in sec + [("end", "")]:
+            if kind != "mono" and mono:
+                out.append(f'<pre class="plain">{html.escape(chr(10).join(mono))}</pre>')
+                mono = []
+            if kind == "label":
+                out.append(f'<div class="label">{html.escape(text)}</div>')
+            elif kind == "chords":
+                out.append('<div class="line">' + "".join(
+                    f'<span class="seg"><span class="chord">{html.escape(ch)}</span><span class="lyric">{html.escape(t)}</span></span>'
+                    for ch, t in segments(text)) + "</div>")
+            elif kind == "mono":
+                mono.append(text)
+            elif kind == "note":
+                out.append(f'<div class="chartnote">{html.escape(text)}</div>')
+        out.append("</div>")
+    return "\n".join(out)
+
+
 def build_sheet(paths, appendix=(), chords=None):
     """chords=None builds the sheet-music page; chords={slug: song} builds the chords-over-lyrics page."""
     out = [SHEET_HEAD]
@@ -280,16 +308,20 @@ def build_sheet(paths, appendix=(), chords=None):
                '<hr><div class="label">Set list</div><ul>')
     out.extend(nav)
     if appendix:
-        out.append('</ul><hr><div class="label">Other tunes...</div><ul>')
+        out.append('</ul><hr><div class="label">Appendix A: Additional Songs</div><ul>')
         for k, path in enumerate(appendix):
             n = len(paths) + k
-            title, *body = path.read_text().rstrip("\n").split("\n")
+            c = parse_chart(path)
+            title = c["title"]
             out.append(f'<li id="nav{n}" data-n="{n}"><span class="name">{html.escape(title)}</span>'
                        f'<span class="pr" title="Print this song">print</span></li>')
             sections.append(f'<section class="page song" id="song{n}" data-slug="{html.escape(path.stem)}">'
                             f'<h2 class="songtitle">{html.escape(title)}</h2>'
-                            f'<pre class="plain">{html.escape(chr(10).join(body))}</pre></section>')
-    out.append('</ul><span class="all" id="printall">Print entire songbook</span></nav>')
+                            f'<div class="composer">{html.escape(c["meta"][0])}</div>'
+                            f'<div class="chordsong"><div class="meta">{"<br>".join(html.escape(m) for m in c["meta"][1:])}</div>'
+                            f'{render_chart(c["sections"])}</div></section>')
+    out.append('</ul>'
+               '<a class="all" href="/songbook.pdf" download>Download the print booklet (PDF)</a></nav>')
     out.append("""<main><div class="sheet"><h1 id="booktitle">Christmas Carols</h1>
 <section class="page" id="home" data-slug="home">
   <h1 class="hometitle">Christmas Carols</h1>
@@ -353,7 +385,7 @@ def build_sheet(paths, appendix=(), chords=None):
     <h2>Practice</h2>
     <p><del>Saturday, October 17, 3:30&ndash;5 pm, Holy Mother &amp; Child Parish, Corinth</del></p>
     <p>Great practice! We fixed up the charts, and all the songs, lyrics and chords are updated.</p>
-    <p><strong>Next practice: TBD, mid-November</strong></p>
+    <p><strong>Next practice: Monday, November 23, 6 pm</strong></p>
   </div>
   <h2>The songbook</h2>
   <p>The set list on the left has all thirteen carols. Pick one, then choose a view
@@ -362,11 +394,11 @@ def build_sheet(paths, appendix=(), chords=None):
     <li><a href="/songbook"><strong>Sheet music</strong></a> &mdash; melody, lyrics and guitar chords on a staff.</li>
     <li><a href="/chords"><strong>Chords &amp; lyrics</strong></a> &mdash; lyrics with the chord above each word.</li>
   </ul>
-  <p>You can print any single song, or print the entire songbook and bring it with you.</p>
-  <p>The <strong>Other tunes...</strong> section of the list has chord charts for Jingle Bell Rock
-     and eight Christmas and jazz standards (The Christmas Song, Sleigh Ride, Let It Snow and others).
-     More are in our
-     <a href="https://jam-songbook.jmimick.workers.dev/"><strong>Jam Session Songbook</strong></a>.</p>
+  <p>You can print any single song from its page.
+     The <a href="/songbook.pdf" download><strong>print booklet (PDF)</strong></a> has every song laid out
+     for letter paper, one song per page, ready for a copy shop to spiral-bind.</p>
+  <p><strong>Appendix A: Additional Songs</strong> in the list has chords and words for Jingle Bell Rock
+     and seven more Christmas and jazz standards (The Christmas Song, Let It Snow and others).</p>
   <div class="callout">
     <h2>Help us fix the music</h2>
     <p>We checked every carol against published sheet music, but a few issues are
@@ -405,11 +437,6 @@ def build_sheet(paths, appendix=(), chords=None):
     });
   });
 
-  document.getElementById("printall").addEventListener("click", () => {
-    document.body.classList.add("print-all");
-    window.print();
-  });
-  window.addEventListener("afterprint", () => document.body.classList.remove("print-all"));
 
   const bySlug = {};
   document.querySelectorAll("section.page").forEach(s => bySlug[s.dataset.slug] = s.id);

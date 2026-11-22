@@ -1,25 +1,28 @@
 I'll Be Home for Christmas
 Music by Walter Kent, words by Kim Gannon (1943)
-Key of G. Ballad, 4/4.
-Chords only, in order for each phrase. Bar lines were not marked in the source chart.
-Source: Dr. Uke (doctoruke.com) free chart. Check against a recording.
+Key of G. Ballad, 4/4. Intro: | G | Em | Am | D |
+Chords as in the Bing Crosby recording (simplified chart).
 
-VERSE
-   Am9  D7b9  Gmaj7  Bbdim  Am7  D7  Gmaj7  G6
-  "I'm dreaming tonight of a place I love"
-   F#m7b5  B7#9  Em  Em6  Am7  D7b9
-  "And although I know it's a long road back"
+VERSE 1
+[G]I'll be [Em]home for [Am]Christmas
+[G]You can [Dm]plan [E]on [Am]me
+Please have [D]snow [G]and mistle[Em]toe
+And presents [A]on the [Am]tree [D]
 
-CHORUS
-   G  Bbdim  Am7  D7  Em  Dm  E7  Am
-  "I'll be home for Christmas, you can count on me"
-   Am7  D7  G  D  Em  A7  Em7  A7  Am7  D7
-  "Please have snow and mistletoe"
-   G  Bbdim  Am7  D7  Em  Dm  E7  Am
-  "Christmas Eve will find me"
-   C  Cm6  G  F7  E7  A7  Am7  D7  Bm7b5  E7
-  "I'll be home for Christmas, if only in my dreams"
-   A7  Am7  D7  G  Cm6  G6
-  "If only in my dreams"
+VERSE 2
+[G]Christmas [Em]Eve will [Am]find me
+[G]Where the [Dm]love [E]light [Am]gleams
+[C]I'll be [Cm]home for [G]Christ[E]mas
+If [Am]only [Cm]in [D]my [G]dreams
 
-Chord key:  dim = diminished,  m7b5 = half-diminished,  b9 / #9 = flat / sharp nine,  maj7 = major seventh
+VERSE 3
+[G]I'll be [Em]home for [Am]Christmas
+[G]You can [Dm]plan [E]on [Am]me
+[Am]Please have [D]snow [G]and mistle[Em]toe
+And presents [A]on the [Am]tree [D]
+
+VERSE 4
+[G]Christmas [Em]Eve will [Am]find me
+[G]Where the [Dm]love [E]light [Am]gleams
+[C]I'll be [Cm]home for [G]Christ[E]mas
+If [Am]only [Cm]in [D]my [G]dreams

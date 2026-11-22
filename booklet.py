@@ -3,6 +3,8 @@
     python3 booklet.py            -> booklet/booklet-letter.pdf (the chosen size)
     python3 booklet.py all        -> one PDF per size in SIZES, for comparing trim sizes
 
+booklet-letter.pdf is served on the site as /songbook.pdf.
+
 Each song starts on a new page. A song that runs to two pages starts on a left-hand (even) page,
 with a blank page inserted before it if needed, so the whole song shows when the book lies open.
 The inside margin is wider for the spiral. Extra verses (W: lines) print under the music.
@@ -10,9 +12,10 @@ Needs abcm2ps and ps2pdf (brew install abcm2ps ghostscript).
 """
 import re
 import sys
-import textwrap
 import subprocess
 from pathlib import Path
+
+from chart import parse_chart, segments
 
 ROOT = Path(__file__).parent
 OUT = ROOT / "booklet"
@@ -78,11 +81,17 @@ def engrave(abc_text, ps):
     return ps.read_text(errors="ignore").count("%%Page:")
 
 
+FRONT = 2   # title page and contents come before the carols, which start on page 3
+
+
 def build(name, w, h, scale):
     setup = page_setup(w, h, scale)
     ps = OUT / f"booklet-{name}.ps"
     pdf = OUT / f"booklet-{name}.pdf"
-    body, page = setup, 1
+    # Two placeholder pages stand in for the front matter so abcm2ps numbers the carols from 3;
+    # they are dropped and replaced with the real title and contents pages at the end.
+    body, page = setup + "%%text  \n%%newpage\n%%text  \n\n", FRONT + 1
+    contents = []
     for i, p in enumerate(sorted((ROOT / "songs-abc").glob("*.abc")), 1):
         song = song_source(p, i).rstrip() + "\n\n"
         # A song just over one page is shrunk a little (down to MIN_FIT of the page scale) to fit.
@@ -97,52 +106,229 @@ def build(name, w, h, scale):
         if n > 1 and page % 2 == 1:   # multi-page song would start on a right page
             body += "%%newpage\n%%text  \n\n"
             page += 1
+        contents.append((re.search(r"^T:\s*(.*)$", p.read_text(), re.M).group(1), page))
         body += song
         page += n
     total = engrave(body, ps)
     if total != page - 1:
         print(f"  warning: expected {page - 1} pages, got {total}")
-    # Other tunes (appendix/*.txt) go at the end, one page each, as fixed-width text so the
-    # ASCII chord diagrams line up. abcm2ps can't keep spacing in text, so these pages are
-    # written as plain PostScript and appended to the music before converting to PDF.
-    pages = [text_page(t, w, h, total + k) for k, t in enumerate(sorted((ROOT / "appendix").glob("*.txt")), 1)]
+    # Appendix A: a divider page, then the chord charts (appendix/*.txt), drawn as PostScript.
+    pages = [divider_page("Appendix A", "Additional Songs", w, h)]
+    appendix_start = total + 1
+    for t in sorted((ROOT / "appendix").glob("*.txt")):
+        parts = chart_pages(parse_chart(t))
+        contents.append(("A:" + parts[0]["title"], total + len(pages) + 1))
+        for c in parts:
+            pages.append(chart_page(c, w, h, total + len(pages) + 1))
     extra = OUT / "appendix.ps"
-    extra.write_text("%!PS\n" + "".join(pages))
+    extra.write_text("%!PS\n" + CHART_PS + "".join(pages))
+    front = OUT / "front.ps"
+    front.write_text("%!PS\n" + title_page(w, h) + contents_page(contents, appendix_start, w, h))
+    music = OUT / f"music-{name}.pdf"
+    subprocess.run(["gs", "-q", "-sDEVICE=pdfwrite", f"-dFirstPage={FRONT + 1}", "-o", str(music), str(ps)], check=True)
     subprocess.run(["gs", "-q", "-sDEVICE=pdfwrite", f"-dDEVICEWIDTHPOINTS={w*72:.0f}",
-                    f"-dDEVICEHEIGHTPOINTS={h*72:.0f}", "-dFIXEDMEDIA", "-o", str(pdf), str(ps), str(extra)],
-                   check=True)
-    ps.unlink()
-    extra.unlink()
+                    f"-dDEVICEHEIGHTPOINTS={h*72:.0f}", "-dFIXEDMEDIA", "-o", str(pdf),
+                    str(front), str(music), str(extra)], check=True)
+    for f in (ps, extra, front, music):
+        f.unlink()
     return pdf
+
+
+def centered(text, font, size, x, y):
+    return (f"/{font} findfont {size} scalefont setfont {x:.1f} {y:.1f} moveto "
+            f"{ps_str(text)} dup stringwidth pop 2 div neg 0 rmoveto show\n")
+
+
+def title_page(w, h):
+    W, H = w * 72, h * 72
+    return ("%%Page: 1 1\n" + centered("Christmas Carols", "Times-Roman", 46, W / 2, H * 0.62) +
+            f"0.6 setlinewidth {W/2 - 72:.1f} {H*0.62 - 28:.1f} moveto 144 0 rlineto stroke\n" +
+            centered("Sheet music with chords", "Times-Italic", 16, W / 2, H * 0.62 - 56) +
+            centered("13 carols  \267  Appendix A: additional songs", "Times-Roman", 11, W / 2, H * 0.62 - 80) +
+            "showpage\n")
+
+
+def contents_page(contents, appendix_start, w, h):
+    """Song titles with dot leaders to right-aligned page numbers; Appendix A as its own heading."""
+    W, H = w * 72, h * 72
+    left, right = (BINDING + 0.5) * 72, W - (OUTSIDE + 0.5) * 72
+    out = ["%%Page: 2 2\n", centered("Contents", "Times-Roman", 26, W / 2, H - 1.3 * 72)]
+    y = H - 2.0 * 72
+    pitch = 19
+
+    def entry(title, page, font="Times-Roman", size=12.5):
+        return (f"/{font} findfont {size} scalefont setfont {left:.1f} {y:.1f} moveto {ps_str(title)} show "
+                f"currentpoint pop 6 add /dx exch def "
+                f"/Times-Roman findfont {size} scalefont setfont ({page}) stringwidth pop {right:.1f} exch sub /px exch def "
+                f"px {right:.1f} sub 0 rmoveto "
+                f"dx 5 px 10 sub {{ {y:.1f} moveto (.) show }} for "
+                f"px {y:.1f} moveto ({page}) show\n")
+
+    in_appendix = False
+    for title, page in contents:
+        if title.startswith("A:") and not in_appendix:
+            in_appendix = True
+            y -= pitch * 0.9
+            out.append(entry("Appendix A: Additional Songs", appendix_start, "Times-Bold", 12.5))
+            y -= pitch
+        if title.startswith("A:"):
+            title = title[2:]
+            out.append(f"/LM {left + 18:.1f} def\n")
+            out.append(entry(title, page).replace(f"{left:.1f} {y:.1f} moveto {ps_str(title)}", f"{left + 18:.1f} {y:.1f} moveto {ps_str(title)}"))
+        else:
+            out.append(entry(title, page))
+        y -= pitch
+    out.append("showpage\n")
+    return "".join(out)
+
+
+def divider_page(label, title, w, h):
+    W, H = w * 72, h * 72
+    return ("%%Page: 0 0\n" + centered(label.upper(), "Times-Roman", 14, W / 2, H * 0.58 + 40) +
+            centered(title, "Times-Roman", 34, W / 2, H * 0.58) +
+            f"0.6 setlinewidth {W/2 - 54:.1f} {H*0.58 - 24:.1f} moveto 108 0 rlineto stroke\nshowpage\n")
 
 
 def ps_str(text):
     return "(" + text.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)") + ")"
 
 
-def text_page(path, w, h, number):
-    """One PostScript page: centered title, then the file's lines in Courier, sized so the
-    longest line fits the width and all lines fit the height."""
-    title, *raw = path.read_text().rstrip().splitlines()
-    # Wrap long prose lines (not indented); indented lines are chord rows and diagrams, kept as is.
-    lines = []
-    for l in raw:
-        if len(l) > 80 and not l.startswith(" "):
-            lines += textwrap.wrap(l, 80, subsequent_indent="    ")
+def measure(lines):
+    """Exact widths at 1pt of every words segment (Times-Roman) and chord (Times-Bold), via ghostscript."""
+    keys = sorted({("R", t) for l in lines for ch, t in segments(l)} | {("B", ch) for l in lines for ch, t in segments(l)})
+    ps = "".join(f"/{'Times-Roman' if f == 'R' else 'Times-Bold'} findfont 1 scalefont setfont {ps_str(t)} stringwidth pop =\n"
+                 for f, t in keys)
+    r = subprocess.run(["gs", "-q", "-dNODISPLAY", "-dNOSAFER", "-"], input=ps + "quit\n", capture_output=True, text=True)
+    return dict(zip(keys, map(float, r.stdout.split())))
+
+
+def chart_pages(c):
+    """Split a chart at its '---' lines into one chart per printed page."""
+    pages = [[]]
+    for sec in c["sections"]:
+        if sec[0][0] == "page":
+            pages.append([])
         else:
-            lines.append(l)
+            pages[-1].append(sec)
+    return [dict(c, sections=secs, title=c["title"] + (" (continued)" if i else ""), meta=c["meta"] if not i else [])
+            for i, secs in enumerate(pages)]
+
+
+CHART_PS = """/chordline { % [chord lyric ...] y -> draws chords above words from the left margin
+  /y exch def /segs exch def /x LEFT def
+  0 2 segs length 1 sub { /i exch def
+    /c segs i get def /l segs i 1 add get def
+    /Times-Roman findfont SZ scalefont setfont l stringwidth pop /lw exch def
+    /Times-Bold findfont CSZ scalefont setfont c stringwidth pop /cw exch def
+    c length 0 gt { x y SZ 1.0 mul add moveto c show } if
+    /Times-Roman findfont SZ scalefont setfont x y moveto l show
+    /x x lw c length 0 gt { cw SZ 0.6 mul add } { 0 } ifelse 2 copy lt { exch } if pop add def
+  } for } def
+"""
+
+
+# Typesetting for the appendix charts: one fixed size for every chart, matched to the engraved
+# carols (lyrics about 12pt Times, chords Times-Bold), rather than scaled to fill each page.
+LYRIC_PT = 12      # words
+CHORD_PT = 11.5    # chords, Times-Bold, set 0.95 * LYRIC_PT above the words
+LINE_PITCH = 2.35  # chord+words line, in LYRIC_PT units
+LABEL_PT = 10      # section headings, bold, letterspaced capitals
+NOTE_PT = 8.5      # composer line, key line and footnotes
+MIN_PT = 9         # a chart that will not fit even in two columns is shrunk, down to this
+
+
+def chart_page(c, w, h, number):
+    """One PostScript page for an appendix chart: title, composer and key under it, then each
+    section with a small bold heading and chords above the words. Bar grids and chord diagrams stay
+    fixed-width. Notes (source, chord key) go at the foot of the page. Type is a fixed size; a
+    chart that is too long goes to two columns, and only then shrinks."""
     W, H = w * 72, h * 72
-    left, top, bottom = BINDING * 72, H - 0.6 * 72, 0.6 * 72
-    longest = max(len(l) for l in lines) or 1
-    size = min(11.0, (W - 2 * left) / (longest * 0.6), (top - 50 - bottom) / (len(lines) * 1.2))
-    out = [f"%%Page: {number} {number}\n",
-           f"/Times-Roman findfont 22 scalefont setfont {W/2:.1f} {top - 16:.1f} moveto "
-           f"{ps_str(title)} dup stringwidth pop 2 div neg 0 rmoveto show\n",
-           f"/Courier findfont {size:.2f} scalefont setfont\n"]
-    y = top - 50
-    for l in lines:
-        out.append(f"{left:.1f} {y:.1f} moveto {ps_str(l)} show\n")
-        y -= size * 1.2
+    left, top, bottom = BINDING * 72, H - 0.6 * 72, 0.75 * 72
+    width = W - left - OUTSIDE * 72
+    gutter = 0.4 * 72
+    secs = [sec for sec in c["sections"] if any(k != "note" for k, t in sec)]
+    notes = [t for sec in c["sections"] if all(k == "note" for k, t in sec) for k, t in sec]
+    notes = c["meta"][2:] + notes
+    head = 20 + 16 + (13 if len(c["meta"]) > 1 else 0) + 18
+    avail = top - head - (bottom + len(notes) * NOTE_PT * 1.3 + 6)
+    widths = measure([t for sec in secs for k, t in sec if k == "chords"])
+
+    def one_w(ch, t, size):   # same spacing rule as chordline in CHART_PS
+        return max(widths[("R", t)], widths[("B", ch)] / 0.95 * (CHORD_PT / LYRIC_PT) + 0.6 if ch else 0) * size
+
+    def line_w(t, size):
+        return sum(one_w(ch, x, size) for ch, x in segments(t))
+
+    def mono_size(colw):
+        longest = max([len(t) for sec in secs for k, t in sec if k == "mono"] or [1])
+        return min(10.5, colw / (longest * 0.6))
+
+    def sec_h(sec, size, colw):
+        return size * 1.1 + sum({"label": LABEL_PT * 1.6, "note": NOTE_PT * 1.4,
+                                 "mono": mono_size(colw) * 1.2, "chords": size * LINE_PITCH}[k] for k, t in sec)
+
+    def fits(cols, colw, size):
+        return (max(sum(sec_h(x, size, colw) for x in col) for col in cols) <= avail and
+                all(line_w(t, size) <= colw for sec in secs for k, t in sec if k == "chords"))
+
+    def split(colw):
+        total = sum(sec_h(x, LYRIC_PT, colw) for x in secs)
+        best = min(range(1, len(secs)), key=lambda n: abs(sum(sec_h(x, LYRIC_PT, colw) for x in secs[:n]) - total / 2))
+        return [secs[:best], secs[best:]]
+
+    two = (width - gutter) / 2
+    options = [([secs], width)] + ([(split(two), two)] if len(secs) > 1 else [])
+    size, cols, colw = MIN_PT, *options[0]
+    for pt in [x / 4 for x in range(int(LYRIC_PT * 4), int(MIN_PT * 4) - 1, -1)]:
+        ok = [o for o in options if fits(*o, pt)]
+        if ok:
+            size, (cols, colw) = pt, ok[0]
+            break
+    ms = mono_size(colw)
+    out = [f"%%Page: {number} {number}\n/SZ {size:.2f} def /CSZ {size * CHORD_PT / LYRIC_PT:.2f} def\n",
+           f"/Times-Roman findfont 20 scalefont setfont {W/2:.1f} {top - 14:.1f} moveto "
+           f"{ps_str(c['title'])} dup stringwidth pop 2 div neg 0 rmoveto show\n"]
+    y = top - 14 - 16
+    for i, m in enumerate(c["meta"][:2]):
+        font = "Times-Italic" if i == 0 else "Times-Roman"
+        out.append(f"/{font} findfont {NOTE_PT + 1.5 if i == 0 else NOTE_PT + 0.5} scalefont setfont {W/2:.1f} {y:.1f} moveto "
+                   f"{ps_str(m)} dup stringwidth pop 2 div neg 0 rmoveto show\n")
+        y -= 13
+    y0 = top - head
+    for ci, col in enumerate(cols):
+        x, y = left + ci * (colw + gutter), y0
+        out.append(f"/LEFT {x:.1f} def\n")
+        for si, sec in enumerate(col):
+            y -= size * 1.1 if si else 0
+            for k, t in sec:
+                if k == "label":
+                    y -= LABEL_PT * 1.6
+                    name, _, rest = t.partition("(")
+                    name, _, cue = name.partition('"')
+                    out.append(f"/Times-Bold findfont {LABEL_PT} scalefont setfont {x:.1f} {y + LABEL_PT * 0.4:.1f} moveto "
+                               f"0.6 0 {ps_str(name.strip().upper())} ashow\n")
+                    extra = ("(" + rest) if rest else ('"' + cue) if cue else ""
+                    if extra:
+                        out.append(f"/Times-Italic findfont {LABEL_PT} scalefont setfont 6 0 rmoveto {ps_str(extra)} show\n")
+                elif k == "chords":
+                    y -= size * LINE_PITCH
+                    arr = " ".join(ps_str(ch) + " " + ps_str(tx) for ch, tx in segments(t))
+                    out.append(f"[{arr}] {y + size * 0.6:.1f} chordline\n")
+                elif k == "note":
+                    y -= NOTE_PT * 1.4
+                    out.append(f"/Times-Italic findfont {NOTE_PT + 1} scalefont setfont {x:.1f} {y:.1f} moveto {ps_str(t)} show\n")
+                else:
+                    y -= ms * 1.2
+                    out.append(f"/Courier-Bold findfont {ms:.2f} scalefont setfont {x:.1f} {y:.1f} moveto {ps_str(t)} show\n")
+    # footnotes above the page number, with a short rule
+    y = bottom + (len(notes) - 1) * NOTE_PT * 1.3
+    if notes:
+        out.append(f"0.5 setlinewidth {left:.1f} {y + NOTE_PT * 1.4:.1f} moveto 1.2 72 mul 0 rlineto stroke\n")
+    for t in notes:
+        out.append(f"/Times-Italic findfont {NOTE_PT} scalefont setfont {ps_str(t)} stringwidth pop "
+                   f"{width:.1f} exch div dup 1 lt {{ currentfont exch scalefont setfont }} {{ pop }} ifelse "
+                   f"{left:.1f} {y:.1f} moveto {ps_str(t)} show\n")
+        y -= NOTE_PT * 1.3
     out.append(f"/Times-Roman findfont 10 scalefont setfont {W/2:.1f} {0.3*72:.1f} moveto "
                f"({number}) dup stringwidth pop 2 div neg 0 rmoveto show\nshowpage\n")
     return "".join(out)

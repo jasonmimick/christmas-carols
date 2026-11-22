@@ -1,47 +1,72 @@
 Jingle-Bell Rock
-Words and Music by Joe Beal and Jim Boothe
-Key of C. Moderate shuffle, swing (quarter note = 130).
-Chords only. Each | is one bar of 4 beats; two chords in a bar get 2 beats each.
+Words and Music by Joe Beal and Jim Boothe (1957)
+Key of C. Moderately, with a swing (cut time, two beats per bar). Intro: | C | C | G | G |
+Words and chords from the published piano/vocal/guitar sheet (Chappell & Co.).
 
-VERSE   "Jingle-bell, jingle-bell, jingle-bell rock ..."
+VERSE 1
+[C]Jingle bell, jingle bell, jingle bell rock
+Jingle bells [C#dim7]swing and [Dm7]jingle bells [G7]ring
+[Dm7]Snowin' and [G7]blowin' up [Dm7]bushels of [G7]fun
+[Dm7]Now the [G7]jingle hop [G7#5]has begun
 
-  | C   Cmaj7 | C        | C#o7     | Dm  G7   |
-  | Dm  G7    | Dm  G7   |
+VERSE 2
+[C]Jingle bell, jingle bell, jingle bell rock
+Jingle bells [C#dim7]chime in [Dm7]jingle bell [G7]time
+[Dm7]Dancin' and [G7]prancin' in [Dm7]Jingle Bell [G7]Square
+[D7]In the [G7]frosty air
 
-  Verses 1 and 3 end:   | Dm       | G7#5     |   then back to the top
-  Verses 2 and 4 end:   | D7  G7   | C   C7   |   then on to the bridge
+BRIDGE
+[C]What a [C7]bright [F]time, it's the [F#dim7]right time
+To [C/G]rock the night a[C]way
+Jingle [Am7]bell [D9]time is a [Am7]swell [D9]time
+[G7]To go [Dm7]glidin' in a [G7]one-horse sleigh
 
-BRIDGE  "What a bright time, it's the right time ..."
+LAST VERSE
+[C]Giddy-ap, jingle horse, pick up your feet
+Jingle a[Em7b5/Bb]round the [A7#5]clock
+[F]Mix and mingle in a [Fm]jinglin' beat
+[D7]That's the [G7]jingle bell [C]rock  [C#dim7]  [Dm7]  [G7]
+(1st time: back to the bridge)
 
-  | F        | F#o7     | C        | ...
+ENDING (2nd time)
+[D7]That's the [G]jingle bell, [D7]that's the [G7]jingle bell [C]rock  [Dm7]  [B]  [C]
 
-  (The chart we have stops here; the rest of the bridge is missing.)
+Chord key:  dim7 = diminished seventh,  7#5 = seventh with sharp five,
+m7b5 = half-diminished,  9 = dominant ninth,  /Bb = Bb in the bass
 
-Chord key:  o7 = diminished seventh,  #5 = sharp five,  maj7 = major seventh
+---
 
-FINGERINGS  (strings low E to high e, left to right; O = fret, o = open, x = skip;
-            the first row is fret 1 unless a fret number is shown)
+FINGERINGS
+Strings low E to high e; O = fret, o = open, x = skip. The first row is fret 1 unless a fret number is shown.
 
-       C              Cmaj7             C#o7 (4fr)        Dm
-   x     o   o      x     o o o      x         x      x x o
-   ===========      ===========      -----------      ===========
-   |-|-|-|-O-|      |-|-|-|-|-|      |-O-|-O-|-|      |-|-|-|-|-O
-   |-|-O-|-|-|      |-|-O-|-|-|      |-|-O-|-O-|      |-|-|-O-|-|
-   |-O-|-|-|-|      |-O-|-|-|-|      |-|-|-|-|-|      |-|-|-|-O-|
-   |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|
+        C           C#dim7 3fr            Dm7               G7              G7#5
+   x     o   o      x         x      x x o                o o o          x       x
+   ===========      -----------      ===========      ===========      ===========
+   |-|-|-|-O-|      |-|-|-O-|-|      |-|-|-|-O-O      |-|-|-|-|-O      |-|-|-|-|-|
+   |-|-O-|-|-|      |-O-|-|-|-|      |-|-|-O-|-|      |-O-|-|-|-|      |-|-|-|-|-|
+   |-O-|-|-|-|      |-|-O-|-O-|      |-|-|-|-|-|      O-|-|-|-|-|      O-|-O-|-|-|
+   |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-O-O-|
 
-       G7              G7#5              D7               C7
-       o o o          x       x      x x o            x         o
-   ===========      ===========      ===========      ===========
-   |-|-|-|-|-O      |-|-|-|-|-|      |-|-|-|-O-|      |-|-|-|-O-|
-   |-O-|-|-|-|      |-|-|-|-|-|      |-|-|-O-|-O      |-|-O-|-|-|
-   O-|-|-|-|-|      O-|-O-|-|-|      |-|-|-|-|-|      |-O-|-O-|-|
-   |-|-|-|-|-|      |-|-|-O-O-|      |-|-|-|-|-|      |-|-|-|-|-|
+        D7               C7               F              F#dim7            C/G
+   x x o            x         o                         x       x            o   o
+   ===========      ===========      ===========      ===========      ===========
+   |-|-|-|-O-|      |-|-|-|-O-|      O-|-|-|-O-O      |-|-O-|-O-|      |-|-|-|-O-|
+   |-|-|-O-|-O      |-|-O-|-|-|      |-|-|-O-|-|      O-|-|-O-|-|      |-|-O-|-|-|
+   |-|-|-|-|-|      |-O-|-O-|-|      |-O-O-|-|-|      |-|-|-|-|-|      O-O-|-|-|-|
+   |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|
 
-       F               F#o7
-                      x       x
+       Am7            D9 4fr           Em7b5/Bb           A7#5              Fm
+   x o   o   o      x         x      x     o   x      x o   o
+   ===========      -----------      ===========      ===========      ===========
+   |-|-|-|-O-|      |-|-O-|-|-|      |-O-|-|-|-|      |-|-|-|-|-O      O-|-|-O-O-O
+   |-|-O-|-|-|      |-O-|-O-O-|      |-|-O-|-|-|      |-|-|-|-O-|      |-|-|-|-|-|
+   |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-O-|      |-|-O-|-|-|      |-O-O-|-|-|
+   |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|
+
+        G                B
+       o o o        x
    ===========      ===========
-   O-|-|-|-O-O      |-|-O-|-O-|
-   |-|-|-O-|-|      O-|-|-O-|-|
-   |-O-O-|-|-|      |-|-|-|-|-|
    |-|-|-|-|-|      |-|-|-|-|-|
+   |-O-|-|-|-|      |-O-|-|-|-O
+   O-|-|-|-|-O      |-|-|-|-|-|
+   |-|-|-|-|-|      |-|-O-O-O-|
