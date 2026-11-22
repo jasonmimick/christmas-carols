@@ -22,10 +22,10 @@ Chord key:  o7 = diminished seventh,  #5 = sharp five,  maj7 = major seventh
 FINGERINGS  (strings low E to high e, left to right; O = fret, o = open, x = skip;
             the first row is fret 1 unless a fret number is shown)
 
-       C              Cmaj7             C#o7              Dm
+       C              Cmaj7             C#o7 (4fr)        Dm
    x     o   o      x     o o o      x         x      x x o
-   ===========      ===========      ---------        ===========
-   |-|-|-|-O-|      |-|-|-|-|-|      |-O-|-O-|-|  4fr     |-|-|-|-|-O
+   ===========      ===========      -----------      ===========
+   |-|-|-|-O-|      |-|-|-|-|-|      |-O-|-O-|-|      |-|-|-|-|-O
    |-|-O-|-|-|      |-|-O-|-|-|      |-|-O-|-O-|      |-|-|-O-|-|
    |-O-|-|-|-|      |-O-|-|-|-|      |-|-|-|-|-|      |-|-|-|-O-|
    |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|      |-|-|-|-|-|

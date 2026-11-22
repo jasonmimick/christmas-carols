@@ -214,6 +214,10 @@ SHEET_HEAD = """<!doctype html><html><head><meta charset="utf-8">
       page-break-after: always; }
     body.print-all section.song { display: block; page-break-after: always; }
     body.print-all #home { display: none; }
+    /* The music is one image and cannot split across pages; cap its height so a long song
+       (O Holy Night) shrinks onto the page under its title instead of jumping to page 2. */
+    .ly-wide svg { max-height: 8.6in; width: auto; max-width: 100%; margin: 0 auto; }
+    pre.plain { font-size: 8.5pt; line-height: 1.3; }   /* Jingle Bell Rock chart fits one page */
   }
   @page { margin: 0.6in; }
 </style>
@@ -359,9 +363,9 @@ def build_sheet(paths, appendix=(), chords=None):
     <li><a href="/chords"><strong>Chords &amp; lyrics</strong></a> &mdash; lyrics with the chord above each word.</li>
   </ul>
   <p>You can print any single song, or print the entire songbook and bring it with you.</p>
-  <p>The <strong>Other tunes...</strong> section of the list has the chart for Jingle Bell Rock.
-     More jazz and Christmas standards (How High the Moon, The Christmas Song, Sleigh Ride and
-     others) are in our
+  <p>The <strong>Other tunes...</strong> section of the list has chord charts for Jingle Bell Rock
+     and eight Christmas and jazz standards (The Christmas Song, Sleigh Ride, Let It Snow and others).
+     More are in our
      <a href="https://jam-songbook.jmimick.workers.dev/"><strong>Jam Session Songbook</strong></a>.</p>
   <div class="callout">
     <h2>Help us fix the music</h2>

@@ -11,11 +11,11 @@ import tempfile
 from pathlib import Path
 
 CACHE = Path(__file__).parent / ".m2cache"
-VERSION = "6"  # bump when the settings below change
+VERSION = "7"  # bump when the settings below change
 
 COMMON = """%%writefields TCOPR 0
 %%vocalfont Times-Roman 13
-%%gchordfont Helvetica-Bold 12
+%%gchordfont Times-Bold 14
 %%partsfont Times-Italic 12
 %%annotationfont Helvetica-Oblique 11
 %%musicspace 0.6cm
