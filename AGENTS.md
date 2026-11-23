@@ -11,8 +11,9 @@ https://christmas-carols-cjm.pages.dev).
 - `appendix/*.txt` — chord charts shown under "Appendix A: Additional Songs" on the site and in the booklet.
   Format is in `chart.py`: title, notes, then sections; `[Chord]word` lines render chords over the
   words (same layout as the chords page), indented lines stay fixed-width (bar grids, diagrams),
-  `---` starts a new printed page. These songs are under copyright: cue words only, never full lyrics
-  (the site and repo are public).
+  `---` starts a new printed page. These songs are under copyright. Claude does not type their lyrics from
+  memory; the words come from sheets Jason supplies (PDFs in ~/Downloads), and Jason chose to publish
+  them on the site and repo.
 - `_redirects` — maps `/` to `/songbook.html`.
 - `dist/` — deploy folder, gitignored.
 
@@ -50,7 +51,9 @@ npx wrangler pages deploy dist --project-name christmas-carols --branch main
   Side margins are equal so double-sided printing works with the spiral.
 - A song slightly over one page is shrunk per song (down to `MIN_FIT`) so it stays on one page;
   Jingle Bells and We Three Kings need this. O Holy Night stays two pages (a left/right spread).
-- Booklet order: title page, contents (generated with page numbers), the 13 carols from page 3
+- Cover (page 1) is `cover.html` (title, the three churches on a line map, tree/candle/wreath icons),
+  printed to PDF by headless Chrome in `cover_pdf()`; needs the network for the IM Fell English font.
+- Booklet order: cover, contents (generated with page numbers), the 13 carols from page 3
   (abcm2ps numbers them; two placeholder pages are engraved first and swapped for the front matter),
   then an "Appendix A: Additional Songs" divider page and the charts. No blank pages.
 - The appendix charts are drawn as PostScript by `chart_page()` (Times-Bold chords over Times words)

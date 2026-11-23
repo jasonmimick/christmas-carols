@@ -1,23 +1,33 @@
 Christmas Time Is Here
 Music by Vince Guaraldi, words by Lee Mendelson (1965)
-Key of D. Slow waltz ballad, 3/4. Intro: | Dmaj7 | A7b9 | Dmaj7 | A7b9 |
-Chords in order for each phrase. Source: Dr. Uke free chart; check against a recording.
+Key of F. Slow waltz ballad, 3/4 (A Charlie Brown Christmas).
+Words and chords from the Ultimate Guitar chart of the Vince Guaraldi Trio recording.
 
-A SECTION
-[Dmaj7]Christmas time is [C9]here, [Dmaj7]happiness and [C9]cheer
-[Bm6]Fun for [Gm7]all that [F#m7]children [Fm7]call [Em7]  [A7sus]  [Dmaj9]
-[Dmaj7]Snowflakes in the [C9]air, [Dmaj7]carols every[C9]where
-[Bm6]Olden [Gm7]times and [F#m7]ancient [Fm7]rhymes [Em7]  [A7sus]  [Dmaj9]
+VERSE 1
+[Fmaj7]Christmas time is [Eb7]here
+[Fmaj7]Happiness and [Eb7]cheer
+[Bm7]Fun for all [Bb7]that [Am7]children call
+[Ab7]Their [Gm7]favorite time of [C9]the [Fmaj9]year
+
+VERSE 2
+[Fmaj7]Snowflakes in the [Eb7]air
+[Fmaj7]Carols every[Eb7]where
+[Bm7]Olden times [Bb7]and [Am7]ancient rhymes
+[Ab7]Of [Gm7]love and dreams to [C9]share [Fmaj9]
 
 BRIDGE
-[Bbmaj7]Sleigh bells in the [Eb9]air, [Bbmaj7]beauty every[Eb9]where
-[F#m7]Yuletide [C9]by the [B9]fireside [Em7]  [E7#5]  [A13]
+[Dbmaj7]Sleigh bells in the [Gb7b5]air
+[Dbmaj7]Beauty every[Gb7b5]where
+[Fmaj7]Yuletide by [Eb7]the [D7]fireside
+[D7b9]And [Gm7]joyful [Db7]memories [C7]there
 
-LAST A
-[Dmaj7]Christmas time is [C9]here ... [Dmaj7]  [C9]
-[Bm6]Oh, that [Gm7]we could [F#m7]always [Fm7]see [Em7]  [A7sus]  [Dmaj9]
+LAST VERSE
+[Fmaj7]Christmas time is [Eb7]here
+[Fmaj7]We'll be drawing [Eb7]near
+[Bm7]Oh, that we [Bb7]could [Am7]always see
+[Ab7]Such [Gm7]spirit through the [C9]year [Fmaj9]
 
-ENDING (repeat the last line, slower)
-[Bm6]  [Gm7]  [F#m7]  [Fm7]  [Em7]  [A7sus]  [Dmaj9]
+INSTRUMENTAL (then the bridge and last verse again, ending)
+[Ab7]Such [Gm7]spirit through the [C9]year [Fmaj9]
 
-Chord key:  maj9 = major ninth,  9 / 13 = dominant ninth / thirteenth,  sus = suspended fourth,  m6 = minor sixth
+Chord key:  maj7 / maj9 = major seventh / ninth,  7b5 = seventh with flat five,  b9 = flat nine

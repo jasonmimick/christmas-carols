@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Booklet cover</title>
+<!-- Page 1 of the print booklet. booklet.py prints this to booklet/cover.pdf with headless Chrome. -->
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  body { background: #ddd; margin: 0; padding: 24px; font-family: Helvetica, Arial, sans-serif; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p.note { margin: 0 0 18px; color: #444; font-size: 14px; }
+  .row { display: flex; gap: 22px; flex-wrap: wrap; align-items: flex-start; }
+  .opt { text-align: center; }
+  .opt h2 { font-size: 15px; margin: 0 0 8px; }
+  .page { width: 340px; height: 440px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+          position: relative; font-family: "IM Fell English", "Times New Roman", serif; color: #111; overflow: hidden; }
+  .stack { display: flex; flex-direction: column; align-items: center; }
+  .year { font-size: 12px; letter-spacing: 0.4em; margin: 4px 0; padding-left: 0.4em; }
+  .title { font-size: 40px; line-height: 1.05; }
+  .rule { width: 70px; border-top: 1px solid #111; margin: 8px 0 4px; }
+  .welcome-unused { font-style: italic; font-size: 11px; }
+  .names { font-size: 13px; margin-top: 4px; }
+  .bottom { position: absolute; bottom: 26px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .crow { display: flex; justify-content: center; align-items: flex-end; }
+  .frame { position: absolute; inset: 14px; border: 1px solid #111; outline: 1px solid #111; outline-offset: -5px; }
+  svg.map text { font-family: "IM Fell English", "Times New Roman", serif; font-size: 17px; fill: #111; }
+  svg.map text.town { font-style: italic; font-size: 14px; }
+  svg.map text.geo { font-style: italic; font-size: 10px; fill: #555; letter-spacing: 0.03em; }
+  svg.map text.river { font-size: 12px; fill: #222; letter-spacing: 0.06em; }
+  svg.map text.road { font-style: italic; font-size: 11px; fill: #555; }
+
+  @page { size: 8.5in 11in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .page { box-shadow: none; transform: scale(2.4); transform-origin: 0 0; }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+  <!-- Holy Mother & Child, Corinth: brick church, tall spire on the left, gable front with a rose window -->
+  <symbol id="hmc" viewBox="0 0 100 100">
+    <g fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 94 H96"/>
+      <path d="M16 94 V40 H34 V94"/>
+      <path d="M16 40 L25 8 L34 40"/>
+      <path d="M25 8 V1 M22 4 H28"/>
+      <path d="M21 52 v-4 a4 4 0 0 1 8 0 v4" stroke-width="1.3"/>
+      <path d="M21 94 V82 a4 4 0 0 1 8 0 V94"/>
+      <path d="M34 94 V58 L62 36 L90 58 V94"/>
+      <circle cx="62" cy="57" r="6" stroke-width="1.3"/>
+      <path d="M45 86 V75 a3 3 0 0 1 6 0 V86 M73 86 V75 a3 3 0 0 1 6 0 V86" stroke-width="1.3"/>
+      <path d="M56 94 V80 a6 6 0 0 1 12 0 V94" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <!-- St. Joseph's, Greenfield Center: white clapboard, small belfry on the ridge, porch, side wing with chimney -->
+  <symbol id="sjo" viewBox="0 0 100 100">
+    <g fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 94 H96"/>
+      <path d="M10 94 V54 L38 32 L66 54 V94"/>
+      <path d="M33 32 V20 H43 V32"/>
+      <path d="M33 20 L38 6 L43 20"/>
+      <path d="M38 6 V1"/>
+      <path d="M28 94 V76 L38 68 L48 76 V94"/>
+      <path d="M34 94 V82 H42 V94" stroke-width="1.3"/>
+      <path d="M35 58 V51 a3 3 0 0 1 6 0 V58" stroke-width="1.3"/>
+      <path d="M66 64 H94 V94"/>
+      <path d="M78 64 V52 H84 V64"/>
+      <path d="M74 84 V74 H82 V84 Z" stroke-width="1.3"/>
+      <path d="M15 84 V72 M21 84 V72 M15 72 H21 M15 84 H21 M55 84 V72 M61 84 V72 M55 72 H61 M55 84 H61" stroke-width="1.3"/>
+    </g>
+  </symbol>
+  <!-- St. Paul's, Rock City Falls: white gable front, cross on the peak, rose window, arched entry porch -->
+  <symbol id="spa" viewBox="0 0 100 100">
+    <g fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 94 H96"/>
+      <path d="M18 94 V50 L48 24 L78 50 V94"/>
+      <path d="M48 24 V9 M43 14 H53"/>
+      <circle cx="48" cy="45" r="7" stroke-width="1.3"/>
+      <path d="M48 38 V52 M41 45 H55" stroke-width="1.3"/>
+      <path d="M33 94 V72 L48 62 L63 72 V94"/>
+      <path d="M41 94 V82 a7 7 0 0 1 14 0 V94" stroke-width="1.3"/>
+      <path d="M78 50 L94 60 V94"/>
+      <path d="M83 84 V73 a3 3 0 0 1 6 0 V84" stroke-width="1.3"/>
+      <path d="M23 84 V73 a3 3 0 0 1 6 0 V84" stroke-width="1.3"/>
+    </g>
+  </symbol>
+
+
+  <symbol id="smallstar" viewBox="0 0 40 40"><g fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" stroke-width="1.5"/></g></symbol>
+  <symbol id="tree" viewBox="0 0 60 80"><g fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M30.0 2.5 L31.5 6.0 L35.2 6.3 L32.4 8.8 L33.2 12.4 L30.0 10.5 L26.8 12.4 L27.6 8.8 L24.8 6.3 L28.5 6.0 Z" stroke-width="1.2"/>
+  <path d="M30 15 C27 21 23 25 18 28 C22 29.5 25 28.5 27 27.5 C23 34 17 39 11 42 C16 44 21 43 24.5 41 C20 49 13 55 6 59 C14 62 22 60 30 57.5 C38 60 46 62 54 59 C47 55 40 49 35.5 41 C39 43 44 44 49 42 C43 39 37 34 33 27.5 C35 28.5 38 29.5 42 28 C37 25 33 21 30 15 Z"/>
+  <path d="M19 49 Q30 54 43 47 M17 35 Q29 39 40 33" stroke-width="0.9"/>
+  <path d="M26.5 59 V67 H33.5 V59"/>
+  <path d="M18 70 H42" stroke-width="1.1"/>
+  </g><g fill="#111"><circle cx="24" cy="44.5" r="1.5"/><circle cx="36" cy="49" r="1.5"/><circle cx="28" cy="32.5" r="1.4"/><circle cx="34" cy="37.5" r="1.4"/><circle cx="21" cy="55" r="1.5"/><circle cx="41" cy="55" r="1.5"/></g></symbol>
+  <symbol id="wreath" viewBox="0 0 70 70"><g fill="none" stroke="#111" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="35" cy="31" r="22.5" stroke-width="1.2"/><path d="M30.8 53.0 Q30.1 47.2 24.6 45.1 Q25.3 50.9 30.8 53.0 Z"/><path d="M30.4 53.9 Q25.0 51.7 20.5 55.3 Q25.9 57.6 30.4 53.9 Z"/><path d="M23.3 50.1 Q24.7 44.5 20.3 40.6 Q19.0 46.3 23.3 50.1 Z"/><path d="M22.7 50.9 Q18.4 46.9 12.9 48.7 Q17.1 52.7 22.7 50.9 Z"/><path d="M17.4 44.8 Q20.6 40.0 17.9 34.9 Q14.6 39.7 17.4 44.8 Z"/><path d="M16.5 45.3 Q13.9 40.1 8.1 39.9 Q10.6 45.1 16.5 45.3 Z"/><path d="M13.6 37.8 Q18.4 34.4 17.6 28.6 Q12.9 32.0 13.6 37.8 Z"/><path d="M12.6 37.9 Q12.1 32.1 6.7 29.9 Q7.3 35.7 12.6 37.9 Z"/><path d="M12.6 29.9 Q18.2 28.4 19.6 22.7 Q13.9 24.2 12.6 29.9 Z"/><path d="M11.6 29.6 Q13.1 24.0 8.9 20.0 Q7.4 25.7 11.6 29.6 Z"/><path d="M14.4 22.1 Q20.2 22.7 23.4 17.8 Q17.6 17.2 14.4 22.1 Z"/><path d="M13.6 21.5 Q17.0 16.8 14.4 11.6 Q11.0 16.3 13.6 21.5 Z"/><path d="M18.8 15.5 Q24.1 18.0 28.8 14.6 Q23.6 12.0 18.8 15.5 Z"/><path d="M18.3 14.6 Q23.1 11.4 22.5 5.6 Q17.7 8.8 18.3 14.6 Z"/><path d="M25.3 10.8 Q29.3 15.0 34.9 13.5 Q30.9 9.2 25.3 10.8 Z"/><path d="M25.0 9.8 Q30.7 8.5 32.2 2.8 Q26.5 4.2 25.0 9.8 Z"/><path d="M33.0 8.7 Q35.3 14.0 41.1 14.5 Q38.8 9.2 33.0 8.7 Z"/><path d="M33.1 7.7 Q38.9 8.4 42.2 3.6 Q36.4 2.9 33.1 7.7 Z"/><path d="M40.9 9.4 Q41.2 15.2 46.5 17.7 Q46.2 11.9 40.9 9.4 Z"/><path d="M41.4 8.5 Q46.6 11.2 51.4 7.9 Q46.2 5.2 41.4 8.5 Z"/><path d="M48.1 12.8 Q46.3 18.4 50.4 22.6 Q52.2 17.0 48.1 12.8 Z"/><path d="M48.9 12.1 Q52.8 16.5 58.4 15.1 Q54.5 10.7 48.9 12.1 Z"/><path d="M53.7 18.6 Q50.0 23.1 52.4 28.5 Q56.0 23.9 53.7 18.6 Z"/><path d="M54.6 18.2 Q56.7 23.6 62.5 24.3 Q60.4 18.9 54.6 18.2 Z"/><path d="M56.8 25.9 Q51.8 28.9 52.1 34.7 Q57.1 31.7 56.8 25.9 Z"/><path d="M57.8 25.9 Q57.9 31.7 63.1 34.4 Q63.0 28.5 57.8 25.9 Z"/><path d="M57.2 33.9 Q51.5 34.9 49.7 40.5 Q55.5 39.4 57.2 33.9 Z"/><path d="M58.2 34.2 Q56.2 39.7 60.2 44.0 Q62.1 38.5 58.2 34.2 Z"/><path d="M54.8 41.5 Q49.1 40.5 45.5 45.1 Q51.2 46.1 54.8 41.5 Z"/><path d="M55.6 42.1 Q51.9 46.6 54.0 52.0 Q57.8 47.5 55.6 42.1 Z"/><path d="M49.9 47.8 Q44.9 44.8 39.9 47.8 Q44.9 50.8 49.9 47.8 Z"/><path d="M50.4 48.6 Q45.3 51.5 45.5 57.3 Q50.6 54.4 50.4 48.6 Z"/><path d="M35 53 C28 46 21 48 22 53 C23 58 29 57 35 53 Z M35 53 C42 46 49 48 48 53 C47 58 41 57 35 53 Z" stroke-width="1.4"/><circle cx="35" cy="53" r="2" stroke-width="1.4"/><path d="M33.5 55 C32 60 29 64 26 68 M36.5 55 C38 60 41 64 44 68" stroke-width="1.4"/></g><g fill="#111"><circle cx="11.1" cy="35.9" r="1.7"/><circle cx="14.5" cy="35.9" r="1.7"/><circle cx="12.8" cy="33.0" r="1.7"/><circle cx="25.6" cy="10.9" r="1.7"/><circle cx="29.0" cy="10.9" r="1.7"/><circle cx="27.3" cy="8.0" r="1.7"/><circle cx="52.8" cy="20.7" r="1.7"/><circle cx="56.2" cy="20.7" r="1.7"/><circle cx="54.5" cy="17.8" r="1.7"/><circle cx="52.8" cy="43.2" r="1.7"/><circle cx="56.2" cy="43.2" r="1.7"/><circle cx="54.5" cy="40.4" r="1.7"/></g></symbol>
+  <symbol id="candle" viewBox="0 0 80 90"><g fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M40 6 C45.5 13 46.5 20 40 26 C33.5 20 34.5 13 40 6 Z"/>
+  <path d="M40 14 C42 18 42 21 40 23 C38 21 38 18 40 14 Z" stroke-width="0.9"/>
+  <path d="M40 26 V30"/>
+  <path d="M32 30 H48 V70 H32 Z"/>
+  <path d="M36 30 V35 a1.6 1.6 0 0 0 3.2 0 V30" stroke-width="1.1"/>
+  <path d="M36.0 72.0 Q29.9 67.7 31.5 64.0 Q26.6 63.6 25.7 59.3 Q22.3 62.1 18.3 59.2 Q17.1 63.1 9.7 62.4 Q15.8 66.7 14.2 70.4 Q19.1 70.8 20.0 75.1 Q23.4 72.4 27.4 75.2 Q28.6 71.4 36.0 72.0 Z"/><path d="M36.0 72.0 L9.7 62.4" stroke-width="0.8"/>
+  <path d="M44.0 72.0 Q51.4 71.4 52.6 75.2 Q56.6 72.4 60.0 75.1 Q60.9 70.8 65.8 70.4 Q64.2 66.7 70.3 62.4 Q62.9 63.1 61.7 59.2 Q57.7 62.1 54.3 59.3 Q53.4 63.6 48.5 64.0 Q50.1 67.7 44.0 72.0 Z"/><path d="M44.0 72.0 L70.3 62.4" stroke-width="0.8"/>
+  
+  </g><g fill="#111"><circle cx="36.5" cy="73" r="2.6"/><circle cx="43.5" cy="73" r="2.6"/><circle cx="40" cy="78" r="2.6"/></g></symbol>
+</svg>
+
+<div class="page">
+   <div class="frame"></div><svg style="position:absolute; left:92px; top:372px" width="30" height="40" viewBox="0 0 60 80"><use href="#tree"/></svg><svg style="position:absolute; left:152px; top:372px" width="36" height="40" viewBox="0 0 80 90"><use href="#candle"/></svg><svg style="position:absolute; left:214px; top:374px" width="37" height="37" viewBox="0 0 70 70"><use href="#wreath"/></svg>
+   <div class="stack" style="padding-top:34px"><svg width="26" height="26" viewBox="0 0 40 40"><use href="#smallstar"/></svg><div class="title">Christmas Songs</div><div class="year">2026</div></div>
+   <div class="stack" style="margin-top:22px"><svg class="map" width="205" viewBox="-10 -42 345 345"><g class="geo" fill="none" stroke="#333" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M54.0 96.0 L66.0 78.0 L78.0 96.0"/><path d="M61.7 84.5 L66.0 87.9 L70.3 84.5" stroke-width="0.9"/><path d="M72.8 90.0 L88.0 67.2 L103.2 90.0"/><path d="M82.5 75.4 L88.0 79.7 L93.5 75.4" stroke-width="0.9"/><path d="M99.6 98.0 L110.0 82.4 L120.4 98.0"/><path d="M106.3 88.0 L110.0 91.0 L113.7 88.0" stroke-width="0.9"/><path d="M71.2 120.0 L80.0 106.8 L88.8 120.0"/><path d="M76.8 111.6 L80.0 114.1 L83.2 111.6" stroke-width="0.9"/><path d="M40.0 47.0 L44.0 54.0 H36.0 Z M40.0 51.0 L45.0 58.0 H35.0 Z M40.0 58.0 V60.5"/><path d="M305.0 199.0 L309.0 206.0 H301.0 Z M305.0 203.0 L310.0 210.0 H300.0 Z M305.0 210.0 V212.5"/><path d="M150.0 260.1 L153.6 266.4 H146.4 Z M150.0 263.7 L154.5 270.0 H145.5 Z M150.0 270.0 V272.2"/><path d="M14 168 q10 -12 26 -8 q14 4 8 14 q-8 10 -24 8 q-14 -3 -10 -14 Z"/>
+          <path d="M22 170 h10 M28 176 h12" stroke-width="0.8"/><path d="M258 -42 q10 12 2 24 q-8 12 6 22 q14 10 8 24 q-5 12 12 20 q16 8 20 22 q3 10 30 14" stroke-width="2.4"/>
+<path d="M267 -42 q10 12 2 24 q-8 12 6 22 q14 10 8 24 q-5 12 12 20 q16 8 20 22 q3 10 21 11" stroke-width="1.1"/></g>
+            <path d="M217 30 L195 31 L170 70 L162 97 L165 123 L185 162 L162 179 L165 206 L157 230 L120 235 L87 240" fill="none" stroke="#111" stroke-width="1.3" stroke-dasharray="1 5" stroke-linecap="round"/>
+      
+      <use href="#hmc" x="183" y="-34" width="68" height="68"/>
+      <use href="#sjo" x="151" y="98" width="68" height="68"/>
+      <use href="#spa" x="53" y="176" width="68" height="68"/>
+      <g transform="translate(300 250)"><path d="M0 22 V0 M-5 7 L0 0 L5 7" fill="none" stroke="#111" stroke-width="1.2"/><text x="0" y="34" text-anchor="middle" class="town">N</text></g>
+      <text x="178" y="16" text-anchor="end">Holy Mother &amp; Child</text><text x="178" y="31" text-anchor="end" class="town">Corinth</text>
+                 <text x="224" y="148">St. Joseph’s</text><text x="224" y="163" class="town">Greenfield Center</text>
+                 <text x="87" y="258" text-anchor="middle">St. Paul’s</text><text x="87" y="272" text-anchor="middle" class="town">Rock City Falls</text>
+    </svg></div>
+   <div class="bottom" style="bottom:30px"></div></div>
+</body></html>

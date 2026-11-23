@@ -123,12 +123,13 @@ def build(name, w, h, scale):
     extra = OUT / "appendix.ps"
     extra.write_text("%!PS\n" + CHART_PS + "".join(pages))
     front = OUT / "front.ps"
-    front.write_text("%!PS\n" + title_page(w, h) + contents_page(contents, appendix_start, w, h))
+    front.write_text("%!PS\n" + contents_page(contents, appendix_start, w, h))
+    cover = cover_pdf()
     music = OUT / f"music-{name}.pdf"
     subprocess.run(["gs", "-q", "-sDEVICE=pdfwrite", f"-dFirstPage={FRONT + 1}", "-o", str(music), str(ps)], check=True)
     subprocess.run(["gs", "-q", "-sDEVICE=pdfwrite", f"-dDEVICEWIDTHPOINTS={w*72:.0f}",
                     f"-dDEVICEHEIGHTPOINTS={h*72:.0f}", "-dFIXEDMEDIA", "-o", str(pdf),
-                    str(front), str(music), str(extra)], check=True)
+                    str(cover), str(front), str(music), str(extra)], check=True)
     for f in (ps, extra, front, music):
         f.unlink()
     return pdf
@@ -139,7 +140,19 @@ def centered(text, font, size, x, y):
             f"{ps_str(text)} dup stringwidth pop 2 div neg 0 rmoveto show\n")
 
 
-def title_page(w, h):
+CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+
+def cover_pdf():
+    """Page 1: cover.html (title, the three churches on a map, Christmas icons) printed by headless
+    Chrome. Chrome fetches the IM Fell English font, so this needs the network."""
+    out = OUT / "cover.pdf"
+    subprocess.run([CHROME, "--headless", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=5000",
+                    f"--print-to-pdf={out}", (ROOT / "cover.html").as_uri()], check=True, capture_output=True)
+    return out
+
+
+def title_page(w, h):   # plain fallback title page, not used since cover.html
     W, H = w * 72, h * 72
     return ("%%Page: 1 1\n" + centered("Christmas Carols", "Times-Roman", 46, W / 2, H * 0.62) +
             f"0.6 setlinewidth {W/2 - 72:.1f} {H*0.62 - 28:.1f} moveto 144 0 rlineto stroke\n" +

@@ -1,21 +1,26 @@
 Santa Claus Is Comin' to Town
 Music by J. Fred Coots, words by Haven Gillespie (1934)
 Key of G. Medium swing, 4/4. Intro: | G  Em7 | Am7  D7 | G | D7 |
-Chords in order for each phrase. Source: Dr. Uke free chart; check against a recording.
+Chords from the Ultimate Guitar chart.
 
-VERSE
-You [G]better watch [C]out, you [G]better not [C]cry [Cm]
-[G]Santa Claus is [Em7]coming [Am7]to [D7]town [G]  [D7]
-He's [G]making a [C]list and [G]checking it [C]twice [Cm]
-[G]Santa Claus is [Em7]coming [Am7]to [D7]town [G]
+VERSE 1
+You [G]better watch out, you [C]better not cry
+You [G]better not pout, I'm [C]telling you why
+[G]Santa [Em]Claus is com[Am7]ing [D7]to [G]town
 
-CHORUS
-He [G7]sees you when you're [C]sleeping [G7]  [C]
-He [A7]knows if you've been [D]bad or good [A7]  [D7]
-You [G]better watch [C]out, you [G]better not [C]cry [Cm]
+VERSE 2
+He's [G]making a list, and [C]checking it twice
+[G]Gonna find out who's [C]naughty and nice
+[G]Santa [Em]Claus is com[Am7]ing [D7]to [G]town
 
-ENDINGS
-1st:  [G]Santa Claus is [Em7]coming [Am7]to [D7]town [G]   then repeat the chorus
-2nd:  [G]Santa Claus is [Em7]coming, [Am7]  [D7]  [G]  [Em7]  [Am7]  [D7]  [G]... to [F#]town [G]
+BRIDGE
+He [G7]sees you when you're [C]sleeping
+He [G7]knows when you're a[C]wake
+He [A7]knows if you've been [D]bad or good
+So be [A7]good for goodness [D]sake
 
-Chord key:  Cm = C minor (the minor-four chord),  F# = passing chord into the last G
+LAST VERSE
+You [G]better watch out, you [C]better not cry
+You [G]better not pout, I'm [C]telling you why
+[G]Santa [Em]Claus is com[Am7]ing [D7]to [G]town
+[G]Santa [Em]Claus is com[Am7]ing [D7]to [G]town

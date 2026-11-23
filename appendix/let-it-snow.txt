@@ -1,19 +1,49 @@
 Let It Snow! Let It Snow! Let It Snow!
 Music by Jule Styne, words by Sammy Cahn (1945)
-Key of D. Medium swing, 4/4.
-Chords in order for each phrase. Source: Dr. Uke free chart; check against a recording.
+Key of C (capo 1 to play in Db, as Dean Martin recorded it). Medium swing, 4/4.
+Chords from the Ultimate Guitar chart of the Dean Martin recording.
 
-VERSE (twice, with the second set of words)
-Oh the [D]weather out[A7]side is [D]fright[Fdim]ful [A7]
-[B7]And since [Em]we've no [B7]place to [Em]go [Fdim]  [Em7]  [A7]... let it [D]snow [A7]
+INTRO
+[C]  [C/E]  [D#dim7]  [G/D]  [G7]
+
+VERSE 1
+Oh, the [C]weather outside is frightful
+But the [C/E]fire is [D#dim7]so de[G/D]lightful [G7]
+And [Dm7]since we've no [A7]place to [Dm7]go
+Let it [Dm]snow, let it [G6]snow, let it [C]snow
+Man, it [C]doesn't show signs of stoppin'
+And I [C/E]brought me some [D#dim7]corn for pop[G/D]pin' [G7]
+The [Dm7]lights are turned [A7]way down [Dm7]low
+[Dm7]  [D#dim7]Let it [Dm7]snow, [G7]let it [C]snow [G]  [C]
 
 CHORUS
-When we [A]finally [Bbdim]kiss good[Bm7]night [E7]  [A]
-[Em]But if [F#7]you'll really [B7]hold me [E7]tight [A]  [Ab7]  [A7]
+When we [G]finally kiss good[G#dim]night
+How I'll [Am7]hate going [D7]out in the [G]storm
+But if you really hold me [Bm7]tight [E7]
+[A7]All the way home [D7]I'll be [G7]warm
 
-LAST VERSE
-The [D]fire is [A7]slowly [D]dy[Fdim]ing [A7]
-[B7]But as [Em]long as you [B7]love me [Em]so [Fdim]  [Em7]  [A7]... let it [D]snow
-then the chorus again
+VERSE 2
+And the [C]fire is slowly dying
+And, my [C/E]dear, we're [D#dim7]still good[G/D]byeing [G7]
+But as [Dm7]long as you [A7]love me [Dm7]so
+Let it [Dm]snow, let it [G6]snow, let it [C]snow
 
-Chord key:  dim = diminished,  m7 = minor seventh,  7 = dominant seventh
+INSTRUMENTAL
+[C]  [C/E]  [D#dim7]  [G/D]  [G7]  [Dm7]  [A7]  [Dm7]  [G7]  [C]
+
+CHORUS
+When we [G]finally kiss good[G#dim]night
+How I'll [Am7]hate going [D7]out in the [G]storm
+But if you really grab me [Bm7]tight [E7]
+[A7]All the way home [D7]I'll be [G7]warm [Ab7]
+
+LAST VERSE (up a half step, in Db)
+Oh, the [Db]fire is slowly dying
+And, my [Db/F]dear, we're [Edim7]still good[Ab/Eb]byeing [Ab7]
+But as [Ebm7]long as you [Bb7]love me [Ebm7]so
+Let it [Ebm]snow, let it [Ab6]snow, let it [Db]snow
+
+ENDING
+[Db]  [Ebm7]  [Ab/Eb]  [Db]
+
+Chord key:  dim7 = diminished seventh,  C/E = C with E in the bass,  6 = major sixth

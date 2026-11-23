@@ -1,21 +1,29 @@
 Have Yourself a Merry Little Christmas
 Music and words by Hugh Martin and Ralph Blane (1944)
-Key of A. Ballad, 4/4. Intro: | D  C#m7 | Bm7  E7 | A | E7 |
-Chords in order for each phrase. Source: Dr. Uke free chart; check against a recording.
+Key of G. Ballad, 4/4. Intro: | G  Em7 | Am7  D7 | (twice)
+Words and chords from the Ultimate Guitar chart of the Judy Garland recording (Meet Me in St. Louis).
 
-A SECTION
-[A]Have yourself a [F#m]merry little [Bm7]Christmas, [E7]let your [A]heart be [F#m]light [Bm7]  [E7]
-[A]From now on our [F#m]troubles will be [Bm7]out of [E7]sight [C#7]  [F#7]  [B7]  [E7]
-[A]Have yourself a [F#m]merry little [Bm7]Christmas, [E7]make the [A]Yuletide [F#m]gay [Bm7]  [E7]
-[A]From now on our [F#m]troubles will be [Bm7]miles [C#7]a[F#m]way [A7]
+VERSE 1
+[G]Have your[Em7]self a [Am7]merry little [D7]Christmas
+[G]Let your [Em7]heart be [Am7]light [D7]
+[G]Next year [Em7]all our [Am7]troubles will be [D7]out of [B7]sight [E7]  [A7]  [D]  [D7]
+[G]Have your[Em7]self a [Am7]merry little [D7]Christmas
+[G]Make the [Em7]Yuletide [Am7]gay [D7]
+[G]Next year [Em7]all our [Am7]troubles will be [B7]miles [Em]away [G]  [G7]
 
 BRIDGE
-[Dmaj7]Here we [E7]are as in [C#m7]olden [Bm7]days [E7]  [Amaj7]
-[F#m]Faithful [B7]friends who are [Emaj7]dear to [E6]us [F#m]  [B7]  [Bm7]  [E7]
+[Cmaj7]Once a[Cm6]gain as in [Bm]olden days [Bbdim]
+Happy [Am]golden days [D7]of [Gmaj7]yore
+[Em]Faithful [F#7]friends who were [Bm]dear to us [E7]
+Will be [D7]near to us [A7]once [Am7]more [D7]
 
-LAST A
-[A]Through the years we [F#m]all will be to[Bm7]gether [E7]  [A]  [F#m]  [Bm7]  [E7]
-[A]Hang a [F#m]shining [Bm7]star [C#7]  [F#m]  [A7]
-And [D]have your[C#m7]self a [Bm7]merry little [E7]Christmas [D]  [Dm6]  [A]now
+VERSE 2
+[G]Someday [Em7]soon we [Am7]all will be to[D7]gether
+[G]If the [Em7]Fates [Am7]allow [D7]
+[G]Until [Em7]then, we'll [Am7]have to muddle [B7]through some[Em]how [G]  [G7]
+So [Cmaj7]have yourself a [Am7]merry little [D7]Christmas [G]now
 
-Chord key:  maj7 = major seventh,  m6 = minor sixth,  7 = dominant seventh
+ENDING
+[G]  [Em7]  [Am7]  [D7]  [G]  [Em7]  [Am7]  [D7]  [Gmaj7]
+
+Chord key:  maj7 = major seventh,  m6 = minor sixth,  dim = diminished
